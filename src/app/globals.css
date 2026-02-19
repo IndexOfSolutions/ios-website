@@ -1,0 +1,191 @@
+@import "tailwindcss";
+
+@theme {
+  --color-mainbg: #18181b;
+  --color-fg: #F1F1F1;
+  --color-primary: #3b82f6;
+  --color-secondary: #27272a;
+  --color-border-color: #3f3f46;
+  --color-edges: #71717a;
+  --color-primary-button-border: #639EFF;
+  --shadow-primary-button-shadow: 0px 0px 24px #3B82F6;
+
+  --inset-shadow-question-bubble-card-avatar: inset 0px -0.6px 0.6px -0.2px rgba(29, 101, 218, 0.15),
+    inset 0px -2px 2px -0.5px rgba(255, 255, 255, 0.3),
+    inset 0px -4px 3px -1px rgba(112, 166, 255, 0.5),
+    inset 0px -7px 6px -3px #3B82F6,
+    inset 0px 2px 6px -3px #3B82F6;
+
+  --inset-shadow-question-bubble-card: inset 0px -3px 3px -1px rgba(29, 101, 218, 0.15),
+    inset 0px -10px 10px -2.5px rgba(255, 255, 255, 0.3),
+    inset 0px -20px 15px -5px rgba(112, 166, 255, 0.5),
+    inset 0px -35px 30px -15px #3B82F6;
+
+  --inset-shadow-answer-bubble-card-avatar: inset 0px -0.6px 0.6px -0.2px #27272A,
+    inset 0px -2px 2px -0.5px rgba(255, 255, 255, 0.3),
+    inset 0px -4px 3px -1px rgba(77, 77, 83, 0.5),
+    inset 0px -7px 6px -3px #27272A,
+    inset 0px 2px 6px -3px #27272A;
+
+  --inset-shadow-answer-bubble-card: inset 0px -3px 3px -1px rgba(39, 39, 42, 0.15),
+    inset 0px -10px 10px -2.5px rgba(255, 255, 255, 0.3),
+    inset 0px -20px 15px -5px rgba(66, 66, 70, 0.5),
+    inset 0px -35px 30px -15px #27272A;
+
+  --inset-shadow-services-card: inset 0px -6px 6px -2px rgba(29, 101, 218, 0.15),
+  inset 0px -20px 20px -5px rgba(255, 255, 255, 0.3),
+  inset 0px -40px 30px -10px rgba(112, 166, 255, 0.5),
+  inset 0px -70px 60px -30px #3B82F6;
+
+  --text-shadow-text-outline-mobile: -1px -1px 0 #F1F1F1, 1px 1px 0 #F1F1F1, -1px 1px 0 #F1F1F1, 1px 1px 0 #F1F1F1, 1px -1px 0 #F1F1F1;
+  --text-shadow-text-outline: -2px -2px 0 #F1F1F1, 2px 2px 0 #F1F1F1, -2px 2px 0 #F1F1F1, 2px 2px 0 #F1F1F1, 2px -2px 0 #F1F1F1;
+  --spacing-section-vertical: 120px;
+  --spacing-section-vertical-sm: 60px;
+}
+
+html,
+body {
+  width: 100%;
+  min-height: 100vh;
+  background-color: var(--color-mainbg);
+}
+
+.glow-line-left {
+  height: 4px;
+  background: linear-gradient(to left, rgba(59, 130, 246, 0) 0%, #3B82F6 100%);
+  transform: matrix(-1, 0, 0, 1, 0, 0);
+}
+
+.glow-line {
+  height: 4px;
+  background: linear-gradient(to left, rgba(59, 130, 246, 0) 0%, #3B82F6 50%, rgba(59, 130, 246, 0) 100%);
+  transform: matrix(-1, 0, 0, 1, 0, 0);
+}
+
+.glow-line-right {
+  height: 4px;
+  background: linear-gradient(to right, rgba(59, 130, 246, 0) 0%, #3B82F6 100%);
+  transform: matrix(-1, 0, 0, 1, 0, 0);
+}
+
+.left-side-fade-mainBg {
+  background: linear-gradient(to right, var(--color-mainbg), transparent);
+}
+
+.right-side-fade-mainBg {
+  background: linear-gradient(to left, var(--color-mainbg), transparent);
+}
+
+#appointment::-webkit-calendar-picker-indicator {
+  mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round' class='icon icon-tabler icons-tabler-outline icon-tabler-calendar-week'><path stroke='none' d='M0 0h24v24H0z' fill='none'/><path d='M4 7a2 2 0 0 1 2 -2h12a2 2 0 0 1 2 2v12a2 2 0 0 1 -2 2h-12a2 2 0 0 1 -2 -2v-12' /><path d='M16 3v4' /><path d='M8 3v4' /><path d='M4 11h16' /><path d='M7 14h.013' /><path d='M10.01 14h.005' /><path d='M13.01 14h.005' /><path d='M16.015 14h.005' /><path d='M13.015 17h.005' /><path d='M7.01 17h.005' /><path d='M10.01 17h.005' />%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-image: none;
+  background-color: currentColor;
+  mask-type: match-source;
+}
+
+.section--before-after img {
+  width: 100%;
+  vertical-align: middle;
+  display: inline-block;
+  user-select: none;
+  pointer-events: none;
+}
+
+.before-after-outer {
+  justify-content: center;
+  align-items: center;
+  display: flex;
+}
+
+.before-after-wrap {
+  width: 100%;
+  position: relative;
+}
+
+.dragger {
+  z-index: 2;
+  width: 2px;
+  height: 100%;
+  background-color: var(--color-fg);
+  border-radius: 15px;
+  justify-content: space-around;
+  align-items: center;
+  display: flex;
+  position: absolute;
+  top: 0%;
+  bottom: 0%;
+  left: 50%;
+  right: auto;
+}
+
+.dragger-innder {
+  width: 1rem;
+  height: 5rem;
+  background-color: var(--color-fg);
+  border-radius: 15px;
+  position: absolute;
+  justify-content: center;
+  align-items: center;
+  display: flex;
+  border: 2px solid var(--color-fg);
+  box-shadow: inset 0px 10px 15px -3px rgba(0,0,0,0.3);
+}
+
+.img-wrap {
+  position: relative;
+  overflow: hidden;
+}
+
+.img-wrap-is-before {
+  aspect-ratio: 16/9;
+  position: absolute;
+  top: 0%;
+  bottom: 0%;
+  left: 0%;
+  right: 0%;
+}
+
+.img-wrap.is-after {
+  aspect-ratio: 16/9;
+  -webkit-clip-path: inset(0 50% 0 0);
+  clip-path: inset(0 50% 0 0);
+  flex-flow: column;
+  justify-content: center;
+  align-items: flex-end;
+  display: flex;
+}
+
+.img.is-before-after {
+  object-fit: cover;
+  object-position: 50% 40%;
+  position: absolute;
+}
+
+.masonry {
+  --gap: 1em;
+  --columns: 3;
+  margin: 0 auto;
+  display: column;
+  columns: var(--columns);
+  gap: var(--gap);
+}
+
+.masonry > * {
+  break-inside: avoid;
+  margin-bottom: var(--gap);
+}
+
+@supports (grid-template-rows: masonry) {
+  .masonry {
+    display: grid;
+    grid-template-columns: repeat(var(--columns), 1fr);
+    grid-template-rows: masonry;
+    grid-auto-flow: dense;
+    /* align-tracks: stretch; */
+  }
+
+  .masonry > * {
+    margin-bottom: 0em;
+  }
+}
