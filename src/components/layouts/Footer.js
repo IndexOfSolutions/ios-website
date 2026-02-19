@@ -35,7 +35,7 @@ export const Footer = () => {
                                 <Link href="/blogs">
                                     Blogs
                                 </Link>
-                                <Link href="/Privacy-Policy">
+                                <Link href="/privacy-policy">
                                     Privacy Policy
                                 </Link>
                                 <Link href="/Terms-and-Conditions">
