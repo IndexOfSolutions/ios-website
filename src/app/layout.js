@@ -3,6 +3,7 @@ import "./globals.css";
 import localFont from "next/font/local";
 import { Footer } from "@/components/layouts/Footer";
 import { SmoothScrolling } from "@/components/animations/SmoothScrolling";
+import { SITE_NAME, DEFAULT_META_DESCRIPTION, META_KEYWORDS_STRING, SERVICES_KEYWORDS } from "@/constants/seo";
 
 const getSiteUrl = () => {
   const fromEnv =
@@ -42,27 +43,26 @@ const siteUrl = getSiteUrl();
 export const metadata = {
   metadataBase: new URL(siteUrl),
   title: {
-    default: "Index of Solutions",
+    default: "Microsoft Dynamics NAV & Dynamics 365 Business Central ERP Experts | Index of Solutions",
     template: "%s | Index of Solutions",
   },
-  description:
-    "Index of Solutions helps businesses design, build, and scale digital products with modern web development and marketing solutions.",
+  description: DEFAULT_META_DESCRIPTION,
+  keywords: META_KEYWORDS_STRING,
   alternates: {
     canonical: "/",
   },
   openGraph: {
     type: "website",
     url: siteUrl,
-    siteName: "Index of Solutions",
-    title: "Index of Solutions",
-    description:
-      "Design, build, and scale digital products with modern web development and marketing solutions.",
+    siteName: SITE_NAME,
+    title: "Microsoft Dynamics NAV & Dynamics 365 BC ERP Implementation | Index of Solutions",
+    description: DEFAULT_META_DESCRIPTION,
+    locale: "en_US",
   },
   twitter: {
-    card: "summary",
-    title: "Index of Solutions",
-    description:
-      "Design, build, and scale digital products with modern web development and marketing solutions.",
+    card: "summary_large_image",
+    title: "Microsoft Dynamics NAV & Business Central ERP Experts | Index of Solutions",
+    description: DEFAULT_META_DESCRIPTION,
   },
   robots: {
     index: true,
@@ -81,16 +81,43 @@ export default function RootLayout({ children }) {
   const jsonLd = [
     {
       "@context": "https://schema.org",
-      "@type": "Organization",
-      name: "Index of Solutions",
+      "@type": "ProfessionalService",
+      "@id": `${siteUrl}/#organization`,
+      name: SITE_NAME,
       url: siteUrl,
-      logo: `${siteUrl}/favicon.ico`,
+      logo: `${siteUrl}/assets/images/logo/ios.png`,
+      description: DEFAULT_META_DESCRIPTION,
+      foundingDate: "2012",
+      sameAs: ["https://www.linkedin.com/company/indexofsolutions/"],
+      areaServed: { "@type": "Place", name: "Lebanon" },
+      knowsAbout: [
+        "Microsoft Dynamics NAV",
+        "Microsoft Dynamics 365 Business Central",
+        "ERP implementation",
+        "Power BI",
+      ],
+      slogan: "Expert Microsoft Dynamics NAV and Dynamics 365 Business Central implementation, consultancy, and support.",
+      hasOfferCatalog: {
+        "@type": "OfferCatalog",
+        name: "ERP and Dynamics Services",
+        itemListElement: SERVICES_KEYWORDS.slice(0, 10).map((name, i) => ({
+          "@type": "Offer",
+          itemOffered: { "@type": "Service", name },
+        })),
+      },
     },
     {
       "@context": "https://schema.org",
       "@type": "WebSite",
-      name: "Index of Solutions",
+      "@id": `${siteUrl}/#website`,
+      name: SITE_NAME,
       url: siteUrl,
+      publisher: { "@id": `${siteUrl}/#organization` },
+      potentialAction: {
+        "@type": "SearchAction",
+        target: { "@type": "EntryPoint", urlTemplate: `${siteUrl}/blogs?q={search_term_string}` },
+        "query-input": "required name=search_term_string",
+      },
     },
   ];
 

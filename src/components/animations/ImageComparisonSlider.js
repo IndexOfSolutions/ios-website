@@ -51,8 +51,9 @@ export const ImageComparisonSlider = () => {
                     <Image 
                         src="/assets/images/dashboard/Power-BI.webp" 
                         fill
-                        alt='After' 
-                        className='object-cover'
+                        sizes="(max-width: 1200px) 100vw, 1092px"
+                        alt="Microsoft Power BI and Dynamics 365 Business Central dashboard comparison"
+                        className="object-cover"
                     />
                 </div>
 
@@ -65,8 +66,9 @@ export const ImageComparisonSlider = () => {
                     <Image 
                         src="/assets/images/dashboard/Business-Central.webp" 
                         fill
-                        alt='Before' 
-                        className='object-cover'
+                        sizes="(max-width: 1200px) 100vw, 1092px"
+                        alt="Microsoft Dynamics 365 Business Central dashboard"
+                        className="object-cover"
                     />
                 </div>
 

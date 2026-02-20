@@ -1,5 +1,25 @@
 import React from 'react'
 
+const getSiteUrl = () => {
+    const fromEnv =
+        process.env.NEXT_PUBLIC_SITE_URL ||
+        process.env.SITE_URL ||
+        process.env.VERCEL_PROJECT_PRODUCTION_URL;
+    if (fromEnv) return fromEnv.startsWith('http') ? fromEnv : `https://${fromEnv}`;
+    return 'https://www.indexofsolutions.com';
+};
+
+export const metadata = {
+    title: 'Privacy Policy | KSA ZATCA E-Invoicing & Dynamics 365 Business Central',
+    description: 'Privacy policy for Index of Solutions and the KSA ZATCA Integration with Flick for E-Invoicing extension for Microsoft Dynamics 365 Business Central. Data handling and security.',
+    alternates: { canonical: '/privacy-policy' },
+    openGraph: {
+        url: `${getSiteUrl()}/privacy-policy`,
+        title: 'Privacy Policy | Index of Solutions',
+        description: 'Privacy policy for KSA ZATCA E-Invoicing and Dynamics 365 Business Central extension.',
+    },
+};
+
 export default async function Page() {
 
     const lastUpdated = "October 2025";

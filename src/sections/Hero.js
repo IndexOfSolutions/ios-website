@@ -9,11 +9,11 @@ export const Hero = () => {
         <section id='hero' className='w-full py-section-vertical-sm md:py-section-vertical'>
             <div className="w-full mx-auto flex flex-col items-center gap-8">
                 <div className='w-fit px-4 md:px-8 flex items-center py-2 gap-[10] bg-secondary rounded-lg text-fg font-[inter] text-sm'>
-                    <Image src={"/assets/images/SVGs/microsoft.svg"} width={16} height={16} alt='' />
+                    <Image src={"/assets/images/SVGs/microsoft.svg"} width={18} height={18} alt='' />
                     <span>Microsoft Certified Partner</span>
                 </div>
                 <div className='text-6xl px-4 md:px-8 md:text-8xl text-center text-fg font-[newake] w-full max-w-[960]'>
-                    <h1 className='leading-none'>Unleash The Power of Finance Analytics</h1>
+                    <h1 className='leading-none'>Unleash The Power of Finance Analytics with ERP</h1>
                 </div>
                 <div className='text-base px-4 md:px-8 text-fg font-[inter] text-center w-full max-w-[660] z-1'>
                     <p>Revolutionizing the Lebanese business landscape, we deliver high-performance ERP ecosystems engineered on <b className="font-[interItalic] font-black">Microsoft Dynamics 365 Business Central</b> and <b className="font-interItalic font-black">Power BI</b>. We fortify your infrastructure for aggressive local and global expansion.</p>

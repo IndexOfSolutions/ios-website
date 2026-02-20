@@ -19,7 +19,7 @@ export const Header = () => {
             <header className='w-full h-[100] border-b border-border-color z-100'>
                 <div className="container max-w-[1366] h-full mx-auto p-4 flex items-center justify-between">
                     <div className="flex gap-[100] items-center">
-                        <Image src="/assets/images/logo/ios.png" alt="" width={50} height={52} />
+                        <Image src="/assets/images/logo/ios.webp" alt="Index of Solutions - Microsoft Dynamics NAV and Dynamics 365 Business Central ERP Partner" width={50} height={52} sizes="50px" />
                         <nav className='hidden md:block'>
                             <menu>
                                 <ul className='flex items-center gap-4 text-fg'>

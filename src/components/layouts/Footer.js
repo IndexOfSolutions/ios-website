@@ -12,7 +12,7 @@ export const Footer = () => {
                     <div className="w-full flex flex-col gap-4">
                         <p className='underline text-2xl text-fg'>Social Media Links</p>
                         <div className='flex gap-4 items-center'>
-                            <Link href="https://www.linkedin.com/company/indexofsolutions/" target='_blank'>
+                            <Link href="https://www.linkedin.com/company/indexofsolutions/" target='_blank' aria-label="Follow Index of Solutions on LinkedIn">
                                 <IconWrapper icon="fa-brands fa-linkedin-in" color='var(--color-fg)' w={21} h={21} />
                             </Link>
                         </div>
@@ -24,7 +24,7 @@ export const Footer = () => {
                                 <Link href="#what-we-offer">
                                     Services
                                 </Link>
-                                <Link href="#why-choose-ios">
+                                <Link href="#why-choose-us">
                                     About
                                 </Link>
                                 <Link href="#faq">
@@ -47,7 +47,7 @@ export const Footer = () => {
                 </div>
                 <div className='flex flex-col gap-8 mt-16'>
                     <div className='w-fit px-4 md:px-8 flex items-center py-2 gap-[10] bg-secondary rounded-lg text-fg font-[inter] text-sm'>
-                        <Image src={"/assets/images/SVGs/microsoft.svg"} width={16} height={16} alt='' />
+                        <Image src="/assets/images/SVGs/microsoft.svg" width={20} height={20} alt="" />
                         <span>Microsoft Certified Partner</span>
                     </div>
                     <div className="w-full hidden md:inline-block">

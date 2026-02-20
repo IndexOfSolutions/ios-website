@@ -3,6 +3,9 @@ import { FAQ } from "@/sections/FAQ";
 import { Hero } from "@/sections/Hero";
 import { WhatWeOffer } from "@/sections/WhatWeOffer";
 import { WhyChooseIOS } from "@/sections/WhyChooseIOS";
+import { FAQs } from "@/constants/FAQs";
+import { DEFAULT_META_DESCRIPTION } from "@/constants/seo";
+import { resolve } from "styled-jsx/css";
 
 const getSiteUrl = () => {
   const fromEnv =
@@ -20,32 +23,42 @@ const getSiteUrl = () => {
 const siteUrl = getSiteUrl();
 
 export const metadata = {
-  title: "Home",
+  title: "Microsoft Dynamics NAV & Dynamics 365 Business Central ERP Experts",
   description:
-    "Index of Solutions helps businesses design, build, and scale digital products with modern web development and marketing solutions.",
+    "12+ years implementing Microsoft Dynamics NAV and Dynamics 365 BC. ERP implementation, consultancy, customization, development, support and training for small and medium businesses. Microsoft Certified Partner.",
   alternates: {
     canonical: "/",
   },
   openGraph: {
     url: siteUrl,
-    title: "Index of Solutions",
-    description:
-      "Design, build, and scale digital products with modern web development and marketing solutions.",
+    title: "Microsoft Dynamics NAV & Dynamics 365 BC ERP Experts | Index of Solutions",
+    description: DEFAULT_META_DESCRIPTION,
   },
   twitter: {
-    title: "Index of Solutions",
-    description:
-      "Design, build, and scale digital products with modern web development and marketing solutions.",
+    title: "Microsoft Dynamics NAV & Business Central ERP Experts | Index of Solutions",
+    description: DEFAULT_META_DESCRIPTION,
   },
 };
 
-export default function Home() {
-  const jsonLd = {
-    "@context": "https://schema.org",
-    "@type": "WebPage",
-    name: "Index of Solutions",
-    url: `${siteUrl}/`,
-  };
+export default async function Home() {
+  const jsonLd = [
+    {
+      "@context": "https://schema.org",
+      "@type": "WebPage",
+      name: "Microsoft Dynamics NAV & Dynamics 365 Business Central ERP Experts | Index of Solutions",
+      description: DEFAULT_META_DESCRIPTION,
+      url: `${siteUrl}/`,
+    },
+    {
+      "@context": "https://schema.org",
+      "@type": "FAQPage",
+      mainEntity: FAQs.map((faq) => ({
+        "@type": "Question",
+        name: faq.question,
+        acceptedAnswer: { "@type": "Answer", text: faq.answer },
+      })),
+    },
+  ];
 
   return (
     <>
