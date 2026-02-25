@@ -35,11 +35,11 @@ export const ContactUsForm = () => {
                 errors.name = "Name field is required."
             }
 
-            if(!data.phoneNumber) {
+            if (!data.phoneNumber) {
                 errors.phoneNumber = "Phone Number field is required."
             }
 
-            if(!data.email) {
+            if (!data.email) {
                 errors.email = "Email field is required."
             }
 

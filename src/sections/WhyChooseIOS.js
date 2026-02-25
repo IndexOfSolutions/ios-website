@@ -71,7 +71,7 @@ export const WhyChooseIOS = () => {
                 </div>
                 <div className="w-full p-6 columns-1 lg:columns-2 gap-8">
                     <div className='testimonial p-6 border-[1] h-fit break-inside-avoid border-primary rounded-lg flex flex-col text-base whitespace-normal w-full mb-8 shadow-[0px_0px_10px_(var(--color-primary))] shadow-primary'>
-                        <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Non veritatis totam numquam inventore odit voluptas minima,</p>
+                        <p>Transitioning our pharmaceutical inventory and retail operations to Business Central seemed daunting, but Index of Solutions made it seamless. Their deep understanding of SMB workflows ensured our supply chain remained uninterrupted. They aren’t just developers; they are strategic partners who truly understand the pharmacy business.</p>
                         <div className="flex items-center gap-1 mt-4">
                             <IconWrapper icon={"fa-solid fa-star"} color={"yellow"} size={"sm"} />
                             <IconWrapper icon={"fa-solid fa-star"} color={"yellow"} size={"sm"} />
@@ -80,12 +80,12 @@ export const WhyChooseIOS = () => {
                             <IconWrapper icon={"fa-solid fa-star"} color={"yellow"} size={"sm"} />
                         </div>
                         <div className='flex flex-col gap-1 mt-4'>
-                            <p className='font-bold text-sm'>Youssef Nasser 1</p>
-                            <p className='text-xs font-[interItalic]'>CEO of Index of Solutions</p>
+                            <p className='font-bold text-sm'>Mazen Bsat</p>
+                            <p className='text-xs font-[interItalic]'>CEO, Mazen Pharmacy</p>
                         </div>
                     </div>
                     <div className='testimonial p-6 border-[1] border-primary rounded-lg h-fit break-inside-avoid flex flex-col whitespace-normal w-full mb-8 shadow-[0px_0px_10px_(var(--color-primary))] shadow-primary'>
-                        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Consequatur obcaecati sapiente eveniet labore totam dolor culpa pariatur mollitia. Eum, voluptas cumque dolorum non eveniet in qui incidunt autem officiis eos eaque quibusdam ipsam animi expedita?</p>
+                        <p>In the fast-paced world of cinema, real-time financial reporting is non-negotiable. Index of Solutions delivered a customized D365 Business Central implementation that streamlined our multi-location accounting and consolidated our data perfectly. Their support team is responsive, professional, and highly skilled.</p>
                         <div className="flex items-center gap-1 mt-4">
                             <IconWrapper icon={"fa-solid fa-star"} color={"yellow"} size={"sm"} />
                             <IconWrapper icon={"fa-solid fa-star"} color={"yellow"} size={"sm"} />
@@ -94,13 +94,13 @@ export const WhyChooseIOS = () => {
                             <IconWrapper icon={"fa-solid fa-star"} color={"yellow"} size={"sm"} />
                         </div>
                         <div className='flex flex-col gap-1 mt-4'>
-                            <p className='font-bold text-sm'>Youssef Nasser 2</p>
-                            <p className='text-xs font-[interItalic]'>CEO of Index of Solutions</p>
+                            <p className='font-bold text-sm'>Osama Roshdy</p>
+                            <p className='text-xs font-[interItalic]'>CFO, Empire Cinema</p>
                         </div>
                     </div>
 
                     <div className='testimonial p-6 border-[1] border-primary h-fit break-inside-avoid rounded-lg flex flex-col whitespace-normal w-full mb-8 shadow-[0px_0px_10px_(var(--color-primary))] shadow-primary'>
-                        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Similique soluta vitae voluptas quo magni accusamus quibusdam, voluptatum omnis et. Repudiandae quam similique amet velit fuga assumenda a! Eligendi consequuntur ut in sint, iure, assumenda soluta, blanditiis magni laudantium laboriosam voluptatem!</p>
+                        <p>We needed an ERP that could keep up with the seasonal demands of the sports industry. The team at Index of Solutions provided us with a tailored D365 Business Central environment that optimized our stock management and sales tracking. Their training made the transition easy for our entire staff.</p>
                         <div className="flex items-center gap-1 mt-4">
                             <IconWrapper icon={"fa-solid fa-star"} color={"yellow"} size={"sm"} />
                             <IconWrapper icon={"fa-solid fa-star"} color={"yellow"} size={"sm"} />
@@ -109,8 +109,23 @@ export const WhyChooseIOS = () => {
                             <IconWrapper icon={"fa-solid fa-star"} color={"yellow"} size={"sm"} />
                         </div>
                         <div className='flex flex-col gap-1 mt-4'>
-                            <p className='font-bold text-sm'>Youssef Nasser 3</p>
-                            <p className='text-xs font-[interItalic]'>CEO of Index of Solutions</p>
+                            <p className='font-bold text-sm'>Charbel Salameh</p>
+                            <p className='text-xs font-[interItalic]'>CEO, Sports Experts</p>
+                        </div>
+                    </div>
+
+                    <div className='testimonial p-6 border-[1] border-primary h-fit break-inside-avoid rounded-lg flex flex-col whitespace-normal w-full mb-8 shadow-[0px_0px_10px_(var(--color-primary))] shadow-primary'>
+                        <p>Managing the complexities of the AMB Group requires a robust system and a partner who knows how to push it to its limits. Index of Solutions provided the technical development and consultancy we needed to integrate our diverse operations into one unified platform. Their 12+ years of experience really shows in their problem-solving approach.</p>
+                        <div className="flex items-center gap-1 mt-4">
+                            <IconWrapper icon={"fa-solid fa-star"} color={"yellow"} size={"sm"} />
+                            <IconWrapper icon={"fa-solid fa-star"} color={"yellow"} size={"sm"} />
+                            <IconWrapper icon={"fa-solid fa-star"} color={"yellow"} size={"sm"} />
+                            <IconWrapper icon={"fa-solid fa-star"} color={"yellow"} size={"sm"} />
+                            <IconWrapper icon={"fa-solid fa-star"} color={"yellow"} size={"sm"} />
+                        </div>
+                        <div className='flex flex-col gap-1 mt-4'>
+                            <p className='font-bold text-sm'>Ahmad Hindawi</p>
+                            <p className='text-xs font-[interItalic]'>CFO, AMB Group</p>
                         </div>
                     </div>
                 </div>
