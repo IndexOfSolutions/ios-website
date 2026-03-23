@@ -9,31 +9,51 @@ const getSiteUrl = () => {
     return fromEnv.startsWith("http") ? fromEnv : `https://${fromEnv}`;
   }
 
-  return "http://localhost:3000";
+  return "https://www.indexofsolutions.com";
 };
 
 export default function sitemap() {
-  const siteUrl = getSiteUrl();
+  const rawSiteUrl = getSiteUrl();
+  const siteUrl = rawSiteUrl.endsWith("/")
+    ? rawSiteUrl.slice(0, -1)
+    : rawSiteUrl;
   const lastModified = new Date();
 
+  const routes = [
+    // Top priority
+    { path: "/", priority: 1, changeFrequency: "weekly" },
+    {
+      path: "/microsoft-dynamics-365-business-central-lebanon",
+      priority: 0.9,
+      changeFrequency: "weekly",
+    },
+
+    // Core services (Business Central first; NAV mainly when upgrading)
+    { path: "/services/business-central-consultancy", priority: 0.85, changeFrequency: "weekly" },
+    { path: "/services/business-central-implementation", priority: 0.85, changeFrequency: "weekly" },
+    { path: "/services/business-central-support", priority: 0.8, changeFrequency: "weekly" },
+    { path: "/services/business-central-training", priority: 0.8, changeFrequency: "weekly" },
+    { path: "/services/power-bi-and-analytics", priority: 0.75, changeFrequency: "weekly" },
+    { path: "/services/nav-to-business-central-upgrade", priority: 0.8, changeFrequency: "weekly" },
+
+    // Industry landing pages
+    { path: "/industries/business-central-for-retail", priority: 0.7, changeFrequency: "weekly" },
+    { path: "/industries/business-central-for-distribution", priority: 0.7, changeFrequency: "weekly" },
+    { path: "/industries/business-central-for-pharma", priority: 0.7, changeFrequency: "weekly" },
+
+    // Other indexable pages
+    { path: "/blogs", priority: 0.6, changeFrequency: "weekly" },
+    { path: "/privacy-policy", priority: 0.2, changeFrequency: "monthly" },
+  ];
+
+  const toUrl = (path) => (path === "/" ? `${siteUrl}/` : `${siteUrl}${path}`);
+
   return [
-    {
-      url: `${siteUrl}/`,
+    ...routes.map(({ path, priority, changeFrequency }) => ({
+      url: toUrl(path),
       lastModified,
-      changeFrequency: "weekly",
-      priority: 1,
-    },
-    {
-      url: `${siteUrl}/blogs`,
-      lastModified,
-      changeFrequency: "weekly",
-      priority: 0.8,
-    },
-    {
-      url: `${siteUrl}/privacy-policy`,
-      lastModified,
-      changeFrequency: "monthly",
-      priority: 0.4,
-    },
+      changeFrequency,
+      priority,
+    })),
   ];
 }

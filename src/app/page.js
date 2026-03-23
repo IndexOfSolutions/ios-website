@@ -4,8 +4,7 @@ import { Hero } from "@/sections/Hero";
 import { WhatWeOffer } from "@/sections/WhatWeOffer";
 import { WhyChooseIOS } from "@/sections/WhyChooseIOS";
 import { FAQs } from "@/constants/FAQs";
-import { DEFAULT_META_DESCRIPTION } from "@/constants/seo";
-import { resolve } from "styled-jsx/css";
+import { DEFAULT_META_DESCRIPTION, META_KEYWORDS_STRING } from "@/constants/seo";
 
 const getSiteUrl = () => {
   const fromEnv =
@@ -23,19 +22,20 @@ const getSiteUrl = () => {
 const siteUrl = getSiteUrl();
 
 export const metadata = {
-  title: "Microsoft Dynamics NAV & Dynamics 365 Business Central ERP Experts",
-  description:
-    "12+ years implementing Microsoft Dynamics NAV and Dynamics 365 BC. ERP implementation, consultancy, customization, development, support and training for small and medium businesses. Microsoft Certified Partner.",
+  title: "Microsoft Dynamics 365 Business Central ERP Experts | Index of Solutions",
+  description: DEFAULT_META_DESCRIPTION,
+  keywords: META_KEYWORDS_STRING,
   alternates: {
-    canonical: "/",
+    canonical: `${siteUrl}/`,
   },
   openGraph: {
     url: siteUrl,
-    title: "Microsoft Dynamics NAV & Dynamics 365 BC ERP Experts | Index of Solutions",
+    title: "Microsoft Dynamics 365 Business Central ERP Experts | Index of Solutions",
     description: DEFAULT_META_DESCRIPTION,
   },
   twitter: {
-    title: "Microsoft Dynamics NAV & Business Central ERP Experts | Index of Solutions",
+    card: "summary_large_image",
+    title: "Microsoft Dynamics 365 Business Central ERP Experts | Index of Solutions",
     description: DEFAULT_META_DESCRIPTION,
   },
 };
@@ -45,7 +45,7 @@ export default async function Home() {
     {
       "@context": "https://schema.org",
       "@type": "WebPage",
-      name: "Microsoft Dynamics NAV & Dynamics 365 Business Central ERP Experts | Index of Solutions",
+      name: "Microsoft Dynamics 365 Business Central ERP Experts | Index of Solutions",
       description: DEFAULT_META_DESCRIPTION,
       url: `${siteUrl}/`,
     },

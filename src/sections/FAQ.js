@@ -67,7 +67,7 @@ export const FAQ = () => {
                 <h3 className='font-[interItalic] text-fg'>Frequently Asked Questions</h3>
             </div>
             <div className='relative container max-w-[1366] mx-auto pt-[60] grid grid-cols-1 gap-16 md:grid-cols-2'>
-                <div className="md:sticky md:top-8 flex flex-col gap-4 text-fg h-fit">
+                <div className="md:sticky md:top-[139] flex flex-col gap-4 text-fg h-fit">
                     <h3 className='text-4xl font-[newake] md:text-5xl'>Frequently Asked Questions About Dynamics NAV &amp; Business Central</h3>
                     <p className='font-[inter]'>Find answers about Microsoft Dynamics NAV, Dynamics 365 Business Central, ERP implementation, consultancy, customization, support and training. Index of Solutions has over 12 years of experience helping small and medium businesses succeed with one connected ERP.</p>
                 </div>

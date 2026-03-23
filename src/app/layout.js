@@ -15,7 +15,7 @@ const getSiteUrl = () => {
     return fromEnv.startsWith("http") ? fromEnv : `https://${fromEnv}`;
   }
 
-  return "http://localhost:3000";
+  return "https://www.indexofsolutions.com";
 };
 
 const newake = localFont({
@@ -43,25 +43,25 @@ const siteUrl = getSiteUrl();
 export const metadata = {
   metadataBase: new URL(siteUrl),
   title: {
-    default: "Microsoft Dynamics NAV & Dynamics 365 Business Central ERP Experts | Index of Solutions",
+    default: "Microsoft Dynamics 365 Business Central ERP Experts | Index of Solutions",
     template: "%s | Index of Solutions",
   },
   description: DEFAULT_META_DESCRIPTION,
   keywords: META_KEYWORDS_STRING,
   alternates: {
-    canonical: "/",
+    canonical: `${siteUrl}/`,
   },
   openGraph: {
     type: "website",
     url: siteUrl,
     siteName: SITE_NAME,
-    title: "Microsoft Dynamics NAV & Dynamics 365 BC ERP Implementation | Index of Solutions",
+    title: "Microsoft Dynamics 365 Business Central ERP Implementation | Index of Solutions",
     description: DEFAULT_META_DESCRIPTION,
     locale: "en_US",
   },
   twitter: {
     card: "summary_large_image",
-    title: "Microsoft Dynamics NAV & Business Central ERP Experts | Index of Solutions",
+    title: "Microsoft Dynamics 365 Business Central ERP Experts | Index of Solutions",
     description: DEFAULT_META_DESCRIPTION,
   },
   robots: {
@@ -91,12 +91,13 @@ export default function RootLayout({ children }) {
       sameAs: ["https://www.linkedin.com/company/indexofsolutions/"],
       areaServed: { "@type": "Place", name: "Lebanon" },
       knowsAbout: [
-        "Microsoft Dynamics NAV",
         "Microsoft Dynamics 365 Business Central",
+        "Microsoft Dynamics NAV",
         "ERP implementation",
         "Power BI",
       ],
-      slogan: "Expert Microsoft Dynamics NAV and Dynamics 365 Business Central implementation, consultancy, and support.",
+      slogan:
+        "Expert Dynamics 365 Business Central implementation, consultancy, and support, including NAV to Business Central upgrades.",
       hasOfferCatalog: {
         "@type": "OfferCatalog",
         name: "ERP and Dynamics Services",

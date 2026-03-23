@@ -8,18 +8,23 @@ const getSiteUrl = () => {
     return fromEnv.startsWith("http") ? fromEnv : `https://${fromEnv}`;
   }
 
-  return "http://localhost:3000";
+  return "https://www.indexofsolutions.com";
 };
 
 export default function robots() {
-  const siteUrl = getSiteUrl();
+  const rawSiteUrl = getSiteUrl();
+  const siteUrl = rawSiteUrl.endsWith("/")
+    ? rawSiteUrl.slice(0, -1)
+    : rawSiteUrl;
 
   return {
-    rules: {
-      userAgent: "*",
-      allow: "/",
-      disallow: ["/api/"],
-    },
+    rules: [
+      {
+        userAgent: "*",
+        allow: "/",
+        disallow: ["/api/"],
+      },
+    ],
     sitemap: `${siteUrl}/sitemap.xml`,
     host: siteUrl,
   };

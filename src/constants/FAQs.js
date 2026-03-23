@@ -20,7 +20,7 @@ export const FAQs = [
         "answer": "Index of Solutions offers comprehensive Dynamics 365 Business Central and Dynamics NAV training for your team and ongoing support after implementation. Our Microsoft Certified experts are available to address issues and questions so your ERP runs smoothly."
     },
     {
-        "question": "What is the cost for Microsoft Dynamics 365 BC implementation?",
+        "question": "What is the cost for Microsoft Dynamics 365 Business Central implementation?",
         "answer": "Cost depends on your business requirements, scope of implementation, customization, and support needs. At Index of Solutions we work to plan the project to fit your budget whenever possible while delivering full value from your ERP."
     }
 ]
