@@ -28,14 +28,9 @@ jobs:
       - name: Build Next.js
         env:
           # NEXT_PUBLIC_* vars MUST be here — they're baked into the client bundle at build time
-          NEXT_PUBLIC_SUPABASE_URL: ${{ secrets.SUPABASE_URL }}
-          NEXT_PUBLIC_SUPABASE_PUBLISHABLE_DEFAULT_KEY: ${{ secrets.SUPABASE_PUBLISHABLE_KEY }}
+          NEXT_PUBLIC_SUPABASE_URL: ${{ env.NEXT_PUBLIC_SUPABASE_URL }}
+          NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY: ${{ env.NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY }}
           # Server-only vars (not NEXT_PUBLIC) also needed if used during build (e.g. generateStaticParams)
-          SUPABASE_URL: ${{ secrets.SUPABASE_URL }}
-          SUPABASE_PUBLISHABLE_DEFAULT_KEY: ${{ secrets.SUPABASE_PUBLISHABLE_KEY}}
-          RESEND_FROM: ${{ secrets.RESEND_FROM }}
-          RESEND_API_KEY: ${{ secrets.RESEND_API_KEY }}
-          CONTACT_TO: ${{ secrets.CONTACT_TO }}
         run: |
           npm install
           npm run build
