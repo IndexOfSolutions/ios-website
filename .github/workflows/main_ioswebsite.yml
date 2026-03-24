@@ -8,12 +8,6 @@ on:
     branches:
       - main
   workflow_dispatch:
-env:
-  SUPABASE_URL: ${{secrets.SUPABASE_URL}}
-  SUPABASE_PUBLISHABLE_DEFAULT_KEY: ${{secrets.SUPABASE_PUBLISHABLE_DEFAULT_KEY}}
-  RESEND_FROM: ${{secrets.RESEND_FROM}}
-  RESEND_API_KEY: ${{secrets.RESEND_API_KEY}}
-  CONTACT_TO: ${{secrets.CONTACT_TO}}
 
 jobs:
   build:
@@ -63,7 +57,11 @@ jobs:
           client-id: ${{ secrets.AZUREAPPSERVICE_CLIENTID_F044459DA0E64274B4148D4F8F3E9999 }}
           tenant-id: ${{ secrets.AZUREAPPSERVICE_TENANTID_F24D0C2008994AE983F496B82A4F07EA }}
           subscription-id: ${{ secrets.AZUREAPPSERVICE_SUBSCRIPTIONID_F4A22AFE298844C0863DCD9A7AA808F8 }}
-
+          SUPABASE_URL: ${{secrets.SUPABASE_URL}}
+          SUPABASE_PUBLISHABLE_DEFAULT_KEY: ${{secrets.SUPABASE_PUBLISHABLE_DEFAULT_KEY}}
+          RESEND_FROM: ${{secrets.RESEND_FROM}}
+          RESEND_API_KEY: ${{secrets.RESEND_API_KEY}}
+          CONTACT_TO: ${{secrets.CONTACT_TO}}
       - name: 'Deploy to Azure Web App'
         id: deploy-to-webapp
         uses: azure/webapps-deploy@v3
