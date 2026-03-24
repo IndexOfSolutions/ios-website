@@ -2,8 +2,7 @@
 const nextConfig = {
   /* config options here */
   reactStrictMode: true, //add this
- distDir: "build", //add this
- output: "standalone", //add this
+  output: "standalone", //add this
   images: {
     unoptimized: true,
   },
