@@ -9,14 +9,16 @@ import gsap from 'gsap';
 export const Header = () => {
 
     const [open, setOpen] = useState(false);
-
+    const [aboutMenuOpen, setAboutMenuOpen] = useState(false);
+    const [servicesMenuOpen, setServicesMenuOpen] = useState(false);
+    const [industriesMenuOpen, setIndustriesMenuOpen] = useState(false);
     useEffect(() => {
 
     })
 
     return (
         <>
-            <header className='sticky top-0 w-full h-[100] border-b border-border-color z-100 bg-mainbg/65 backdrop-blur-2xl'>
+            <header className='sticky top-0 w-full h-[100] border-b border-border-color z-30 bg-mainbg/65 backdrop-blur-2xl'>
                 <div className="container max-w-[1366] h-full mx-auto p-4 flex items-center justify-between">
                     <div className="flex gap-[100] items-center">
                         <Link href="/">
@@ -26,10 +28,10 @@ export const Header = () => {
                             <menu>
                                 <ul className='flex items-center gap-4 text-fg'>
                                     <li>
-                                        <Link href="/">Home</Link>
+                                        <Link href="/" className='hover:text-primary'>Home</Link>
                                     </li>
                                     <li className='relative inline-block group'>
-                                        <Link href="/about">About</Link>
+                                        <Link href="/about" className='hover:text-primary'>About</Link>
                                         <div className='absolute hidden group-hover:block pt-2'>
                                             <div className='bg-mainbg p-4 border-primary border rounded-md w-max flex flex-col gap-2'>
                                                 <Link href="/about/case-studies">Case Studies</Link>
@@ -50,7 +52,7 @@ export const Header = () => {
                                         </div>
                                     </li>
                                     <li className='relative inline-block group'>
-                                        <Link href="/#what-we-offer">Industries</Link>
+                                        <Link href="/#what-we-offer" className='hover:text-primary'>Industries</Link>
                                         <div className='absolute hidden group-hover:block pt-2'>
                                             <div className='bg-mainbg p-4 border-primary border rounded-md w-max flex flex-col gap-2'>
                                                 <Link href="/industries/business-central-for-retail">Business Central For Retail</Link>
@@ -60,7 +62,7 @@ export const Header = () => {
                                         </div>
                                     </li>
                                     <li>
-                                        <Link href="/#contact-us">Contact</Link>
+                                        <Link href="/#contact-us" className='hover:text-primary'>Contact</Link>
                                     </li>
                                 </ul>
                             </menu>
@@ -89,11 +91,37 @@ export const Header = () => {
                             <li>
                                 <Link href="/">Home</Link>
                             </li>
-                            <li>
-                                <Link href="/#why-choose-us">About</Link>
+                            <li className='relative inline-block group'>
+                                <span className='hover:text-primary' onClick={() => { setAboutMenuOpen(!aboutMenuOpen) }}>About</span>
+                                <div className={`absolute ${aboutMenuOpen ? 'block' : 'hidden'} pt-2 text-xl z-10`}>
+                                    <div className='bg-mainbg p-4 border-primary border rounded-md w-max flex flex-col gap-2'>
+                                        <Link href="/about/case-studies">About</Link>
+                                        <Link href="/about/case-studies">Case Studies</Link>
+                                    </div>
+                                </div>
                             </li>
-                            <li>
-                                <Link href="/#what-we-offer">Services</Link>
+                            <li className='relative inline-block group w-full text-center'>
+                                <span className='hover:text-primary' onClick={() => { setServicesMenuOpen(!servicesMenuOpen) }}>Services</span>
+                                <div className={`w-full mx-auto absolute ${servicesMenuOpen ? 'block' : 'hidden'} pt-2 z-10 text-xl`}>
+                                    <div className='bg-mainbg p-4 border-primary border rounded-md w-full flex flex-col gap-2'>
+                                        <Link href="/services/business-central-implementation">Business Central Implementation</Link>
+                                        <Link href="/services/business-central-consultancy">Business Central Consultancy</Link>
+                                        <Link href="/services/business-central-support">Business Central Support</Link>
+                                        <Link href="/services/business-central-training">Business Central Training</Link>
+                                        <Link href="/services/power-bi-and-analytics">Power BI & Analytics</Link>
+                                        <Link href="/services/nav-to-business-central-upgrade">Dynamics NAV to Business Central Upgrade</Link>
+                                    </div>
+                                </div>
+                            </li>
+                            <li className='relative inline-block group w-full text-center'>
+                                <span className='hover:Industriesmary' onClick={() => { setIndustriesMenuOpen(!industriesMenuOpen) }}>Industries</span>
+                                <div className={`w-full mx-auto absolute ${industriesMenuOpen ? 'block' : 'hidden'} pt-2 z-10 text-xl`}>
+                                    <div className='bg-mainbg p-4 border-primary border rounded-md w-full flex flex-col gap-2'>
+                                        <Link href="/industries/business-central-for-retail">Business Central For Retail</Link>
+                                        <Link href="/industries/business-central-for-distribution">Business Central Distribution</Link>
+                                        <Link href="/industries/business-central-pharma">Business Central For Pharma</Link>
+                                    </div>
+                                </div>
                             </li>
                             <li>
                                 <Link href="/#contact-us">Contact</Link>

@@ -1,7 +1,9 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   /* config options here */
-  output: 'standalone',
+  reactStrictMode: true, //add this
+ distDir: "build", //add this
+ output: "standalone", //add this
   images: {
     unoptimized: true,
   },

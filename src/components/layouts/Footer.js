@@ -19,29 +19,51 @@ export const Footer = () => {
                     </div>
                     <div className="w-full justify-between md:w-fit flex flex-col gap-4 md:justify-self-end">
                         <p className='underline text-2xl text-fg'>Links</p>
-                        <div className="w-full flex items-start gap-12 text-fg text-base">
-                            <div className="flex flex-col gap-2">
-                                <Link href="#what-we-offer">
-                                    Services
-                                </Link>
-                                <Link href="#why-choose-us">
-                                    About
-                                </Link>
-                                <Link href="#faq">
-                                    FAQ
-                                </Link>
-                            </div>
-                            <div className="flex flex-col gap-2">
-                                <Link href="/blogs">
-                                    Blogs
-                                </Link>
-                                <Link href="/privacy-policy">
-                                    Privacy Policy
-                                </Link>
-                                <Link href="/Terms-and-Conditions">
-                                    Terms & Conditions
-                                </Link>
-                            </div>
+                        <div className="w-full flex flex-wrap md:flex-nowrap items-start gap-12 text-fg text-base">
+                            <ul className='flex flex-col gap-2'>
+                                <li className="list-disc hover:text-primary">
+                                    <Link href="/services/business-central-implementation">Business Central Implementation</Link>
+                                </li>
+                                <li className="list-disc hover:text-primary">
+                                    <Link href="/services/business-central-consultancy">Business Central Consultancy</Link>
+                                </li>
+                                <li className="list-disc hover:text-primary">
+                                    <Link href="/services/business-central-support">Business Central Support</Link>
+                                </li>
+                            </ul>
+                            <ul className='flex flex-col gap-2'>
+                                <li className="list-disc hover:text-primary">
+                                    <Link href="/services/business-central-training">Business Central Training</Link>
+                                </li>
+                                <li className="list-disc hover:text-primary">
+                                    <Link href="/services/power-bi-and-analytics">Power BI & Analytics</Link>
+                                </li>
+                                <li className="list-disc hover:text-primary">
+                                    <Link href="/services/nav-to-business-central-upgrade">Dynamics NAV to Business Central Upgrade</Link>
+                                </li>
+                            </ul>
+                            <ul className="flex flex-col gap-2">
+                                <li className="list-disc hover:text-primary">
+                                    <Link href="/about">About</Link>
+                                </li>
+                                <li className="list-disc hover:text-primary">
+                                    <Link href="/about/case-studies">Case Studies</Link>
+                                </li>
+                                <li className="list-disc hover:text-primary">
+                                    <Link href="#faq">FAQ</Link>
+                                </li>
+                            </ul>
+                            <ul className="flex flex-col gap-2">
+                                <li className="list-disc hover:text-primary">
+                                    <Link href="/blogs">Blogs</Link>
+                                </li>
+                                <li className="list-disc hover:text-primary">
+                                    <Link href="/privacy-policy">Privacy Policy</Link>
+                                </li>
+                                <li className="list-disc hover:text-primary">
+                                    <Link href="/terms-and-conditions">Terms & Conditions</Link>
+                                </li>
+                            </ul>
                         </div>
                     </div>
                 </div>
