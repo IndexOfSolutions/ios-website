@@ -1,4 +1,5 @@
 import { createClient } from '@/utils/supabase/server'
+import { cookies } from 'next/headers'
 import Link from 'next/link'
 import React from 'react'
 
@@ -47,8 +48,8 @@ export default async function Page() {
             url: siteUrl,
         },
     }
-
-    const supabase = await createClient();
+    const cookieStore = await cookies()
+    const supabase = await createClient(cookieStore);
     const { data: Blogs, error } = await supabase
         .from('Blogs')
         .select('*')
