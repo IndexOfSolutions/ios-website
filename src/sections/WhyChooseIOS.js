@@ -24,13 +24,13 @@ export const WhyChooseIOS = () => {
                     <BoxLightEffet direction={"right"} />
                 </div>
                 <div className="relative w-full bg-secondary/50 flex flex-col gap-2 border-2 p-6 border-border-color rounded-lg backdrop-blur-125 text-fg">
-                    <h1 className='font-[newake] text-5xl md:text-8xl'>Our Mission</h1>
+                    <h2 className='font-[newake] text-5xl md:text-8xl'>Our Mission</h2>
                     <p>
                         At Index of Solutions, we understand the critical role your mission plays. Our mission-focused <strong>Microsoft Dynamics NAV</strong> and <strong>Dynamics 365 Business Central</strong> ERP services are tailored to your unique needs—implementation, consultancy, customization, development, support and training—optimizing your operations, enhancing transparency, and maximizing your impact. With over 12 years of experience and a Microsoft Certified team, we help small and medium businesses thrive. Elevate your mission with IOS.
                     </p>
                 </div>
                 <div className=" relative w-full bg-secondary/50 flex flex-col gap-2 border-2 p-6 border-border-color rounded-lg backdrop-blur-125 text-fg">
-                    <h1 className='font-[newake] text-5xl md:text-8xl'>Our Vision </h1>
+                    <h2 className='font-[newake] text-5xl md:text-8xl'>Our Vision </h2>
                     <p>
                         At Index of Solutions, we recognize that your vision is the driving force behind your organization&apos;s success. Our visionary <strong>ERP implementation</strong> and <strong>Business Central</strong> consultancy are designed to align seamlessly with your goals, providing the tools and insights needed to turn your vision into reality. With our forward-thinking approach and expertise in Dynamics NAV and Dynamics 365 BC, we empower small and medium-sized businesses to optimize operations and achieve growth. Illuminate your journey with IOS.
                     </p>

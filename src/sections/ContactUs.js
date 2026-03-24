@@ -10,8 +10,6 @@ export const ContactUs = () => {
             <div className="relative mx-auto max-w-[1728] flex flex-col gap-4 overflow-x-hidden">
                 <div className='absolute top-0 left-0 w-16 h-full left-side-fade-mainBg'></div>
                 <TextMarquee />
-                {/* <h1 className='text-fg font-[newake] text-7xl md:text-9xl text-nowrap'>Let&apos;s Talk Let&apos;s Talk Let&apos;s Talk Let&apos;s Talk Let&apos;s Talk</h1>
-                <h1 className='text-mainbg text-shadow-text-outline-mobile md:text-shadow-text-outline font-[newake] text-7xl md:text-9xl text-nowrap'>Let&apos;s Talk Let&apos;s Talk Let&apos;s Talk Let&apos;s Talk Let&apos;s Talk</h1> */}
                 <div className='absolute top-0 right-0 w-16 h-full right-side-fade-mainBg'></div>
             </div>
             <div className='relative container max-w-[1366] mx-auto flex flex-col md:flex-row md:justify-between gap-8 pt-16'>
