@@ -2,6 +2,7 @@ import { createClient } from '@/utils/supabase/server';
 import Image from 'next/image'
 import React from 'react'
 import { notFound } from 'next/navigation'
+import { Blogs } from '@/constants/Blogs';
 
 const getSiteUrl = () => {
     const fromEnv =
@@ -14,18 +15,18 @@ const getSiteUrl = () => {
 
 export async function generateMetadata({ params }) {
     const { slug } = await params;
-    const supabase = await createClient();
-    const { data: blog } = await supabase
-        .from('Blogs')
-        .select('title, excerpt, author, date')
-        .eq('link', slug)
-        .single();
+    // const supabase = await createClient();
+    // const { data: blog } = await supabase
+    //     .from('Blogs')
+    //     .select('title, excerpt, author, date')
+    //     .eq('link', slug)
+    //     .single();
 
-    if (!blog) return { title: 'Blog | Index of Solutions' };
+    if (!Blogs[slug]) return { title: 'Blog | Index of Solutions' };
 
     const siteUrl = getSiteUrl();
-    const description = blog.excerpt || `Read ${blog.title} by Index of Solutions. Microsoft Dynamics NAV & Business Central ERP experts.`;
-    const title = blog.title;
+    const description = Blogs[slug].excerpt || `Read ${Blogs[slug].title} by Index of Solutions. Microsoft Dynamics NAV & Business Central ERP experts.`;
+    const title = Blogs[slug].title;
 
     return {
         title,
@@ -36,8 +37,8 @@ export async function generateMetadata({ params }) {
             title: `${title} | Index of Solutions`,
             description,
             type: 'article',
-            publishedTime: blog.date,
-            authors: blog.author ? [blog.author] : undefined,
+            publishedTime: Blogs[slug].date,
+            authors: Blogs[slug].author ? [Blogs[slug].author] : undefined,
         },
         twitter: {
             card: 'summary_large_image',
@@ -50,24 +51,24 @@ export async function generateMetadata({ params }) {
 export default async function Page({ params }) {
     const { slug } = await params;
 
-    const supabase = await createClient();
+    // const supabase = await createClient();
 
-    const { data: Blogs, error } = await supabase
-      .from("Blogs")
-      .select("*")
-      .eq("link", slug)
-      .single();
+    // const { data: Blogs, error } = await supabase
+    //   .from("Blogs")
+    //   .select("*")
+    //   .eq("link", slug)
+    //   .single();
 
-    if (error || !Blogs) notFound();
+    // if (error || !Blogs) notFound();
 
     const siteUrl = getSiteUrl();
     const articleJsonLd = {
         '@context': 'https://schema.org',
         '@type': 'Article',
-        headline: Blogs.title,
-        description: Blogs.excerpt || Blogs.title,
-        author: { '@type': 'Person', name: Blogs.author },
-        datePublished: Blogs.date,
+        headline: Blogs[slug].title,
+        description: Blogs[slug].excerpt || Blogs[slug].title,
+        author: { '@type': 'Person', name: Blogs[slug].author },
+        datePublished: Blogs[slug].date,
         publisher: { '@type': 'Organization', name: 'Index of Solutions', url: siteUrl },
         mainEntityOfPage: { '@type': 'WebPage', '@id': `${siteUrl}/blogs/${slug}` },
     };
@@ -80,17 +81,17 @@ export default async function Page({ params }) {
             />
           <div className="relative container max-w-[1366px] mx-auto w-full">
             <div className="flex flex-col justify-center gap-16 lg:flex-row">
-              <Image src={Blogs.imageURL} alt={Blogs.title || 'Blog image'} width={100} height={100} className='w-full max-w-96'/>
+              <Image src={Blogs[slug].imageURL} alt={Blogs[slug].title || 'Blog image'} width={100} height={100} className='w-full max-w-96'/>
               <div className='grid grid-cols-1 md:grid-cols-[1fr_auto] md:grid-rows-[min-content_min-content] gap-8'>
-                <h1 className='font-[newake] text-fg text-5xl md:max-w-[684] max-h-fit'>{Blogs.title}</h1>
+                <h1 className='font-[newake] text-fg text-5xl md:max-w-[684] max-h-fit'>{Blogs[slug].title}</h1>
                 <div className="w-full md:max-w-60 h-full md:row-span-2 flex flex-col gap-4 text-fg border-l-3 border-secondary pl-4">
-                  <span className='w-fit leading-none font-[inter] bg-primary px-2 py-2 rounded-2xl text-sm'>{Blogs.type}</span>
-                  <p>Written by <span className="font-bold text-primary">{Blogs.author}</span></p>
+                  <span className='w-fit leading-none font-[inter] bg-primary px-2 py-2 rounded-2xl text-sm'>{Blogs[slug].type}</span>
+                  <p>Written by <span className="font-bold text-primary">{Blogs[slug].author}</span></p>
                   <div className="w-full flex justify-between items-center">
-                    <span>{Blogs.date}</span>
+                    <span>{Blogs[slug].date}</span>
                   </div>
                 </div>
-                <div className="w-full max-w-[684] mx-auto h-fit break-inside-avoid leading-relaxed text-fg" dangerouslySetInnerHTML={{ __html: Blogs.body }}></div>
+                <div className="w-full max-w-[684] mx-auto h-fit break-inside-avoid leading-relaxed text-fg" dangerouslySetInnerHTML={{ __html: Blogs[slug].body }}></div>
               </div>
             </div>
           </div>
