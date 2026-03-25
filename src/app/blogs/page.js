@@ -1,6 +1,4 @@
-import { Blogs } from '@/constants/Blogs'
 import { createClient } from '@/utils/supabase/server'
-import { cookies } from 'next/headers'
 import Link from 'next/link'
 import React from 'react'
 
@@ -50,13 +48,17 @@ export default async function Page() {
         },
     }
     
-    // const supabase = await createClient();
-    // const { data: Blogs, error } = await supabase
-    //     .from('Blogs')
-    //     .select('*')
-    //     .order('date', { ascending: false });
+    const supabase = await createClient();
+    const { data: blogs, error } = await supabase
+        .from('Blogs')
+        .select('*')
+        .order('date', { ascending: false });
 
-    // if(error) console.log(error);
+    if(error) {
+        console.error('Error fetching blogs:', error);
+    }
+
+    const blogsList = blogs || [];
 
     return (
         <section className='relative w-full h-full px-4 md:px-8 py-section-vertical-sm md:py-section-vertical'>
@@ -88,35 +90,35 @@ export default async function Page() {
                     </div>
                     <div className="columns-1 md:columns-3 gap-4 w-full text-fg">
                         {
-                            !Object.keys(Blogs).length ? (
+                            !blogsList.length ? (
                                 <p className='text-fg'>No Blogs Found</p>
                             ) :
                                 (
-                                    Object.keys(Blogs).map((blog) =>
+                                    blogsList.map((blog) =>
                                     (
                                         <Link
-                                            key={Blogs[blog].id}
-                                            href={`/blogs/${Blogs[blog].link}`}
+                                            key={blog.id}
+                                            href={`/blogs/${blog.link}`}
                                             target='_blank'
                                             className="break-inside-avoid mb-4 w-full p-6 bg-secondary rounded-lg flex flex-col gap-4"
                                         >
                                             <div className="flex justify-between">
                                                 <div className="flex flex-col gap-1">
                                                     <span className="font-[inter] font-black text-sm">
-                                                        {Blogs[blog].author}
+                                                        {blog.author}
                                                     </span>
-                                                    <span className="text-xs">{Blogs[blog].date}</span>
+                                                    <span className="text-xs">{blog.date}</span>
                                                 </div>
                                                 <div className="text-xs px-1.5 py-1 h-fit leading-none bg-primary rounded-2xl">
-                                                    <span className='capitalize'>{Blogs[blog].type}</span>
+                                                    <span className='capitalize'>{blog.type}</span>
                                                 </div>
                                             </div>
                                             <div className="flex flex-col gap-4">
                                                 <h2 className="text-xl font-[inter] font-black">
-                                                    {Blogs[blog].title}
+                                                    {blog.title}
                                                 </h2>
-                                                {Blogs[blog].excerpt && (
-                                                    <p className="line-clamp-3">{Blogs[blog].excerpt}</p>
+                                                {blog.excerpt && (
+                                                    <p className="line-clamp-3">{blog.excerpt}</p>
                                                 )}
                                             </div>
                                         </Link>
