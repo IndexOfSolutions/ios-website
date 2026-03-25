@@ -48,8 +48,8 @@ export default async function Page() {
             url: siteUrl,
         },
     }
-    const cookieStore = await cookies()
-    const supabase = await createClient(cookieStore);
+
+    const supabase = await createClient();
     const { data: Blogs, error } = await supabase
         .from('Blogs')
         .select('*')
