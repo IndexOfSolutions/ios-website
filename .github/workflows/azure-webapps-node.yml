@@ -23,15 +23,6 @@ jobs:
         with:
           node-version: '22.x'
 
-      - name: npm install, build, and test
-        run: |
-          npm install
-          npm run build --if-present
-          npm run test --if-present
-
-      - name: Zip artifact for deployment
-        run: zip next.zip ./* .next -qr
-
       - name: Upload artifact for deployment job
         uses: actions/upload-artifact@v4
         with:
@@ -54,9 +45,9 @@ jobs:
       - name: Login to Azure
         uses: azure/login@v2
         with:
-          client-id: ${{ secrets.AZUREAPPSERVICE_CLIENTID_F044459DA0E64274B4148D4F8F3E9999 }}
-          tenant-id: ${{ secrets.AZUREAPPSERVICE_TENANTID_F24D0C2008994AE983F496B82A4F07EA }}
-          subscription-id: ${{ secrets.AZUREAPPSERVICE_SUBSCRIPTIONID_F4A22AFE298844C0863DCD9A7AA808F8 }}
+          client-id: ${{ secrets.__clientidsecretname__ }}
+          tenant-id: ${{ secrets.__tenantidsecretname__ }}
+          subscription-id: ${{ secrets.__subscriptionidsecretname__ }}
 
       - name: 'Deploy to Azure Web App'
         id: deploy-to-webapp
@@ -65,3 +56,4 @@ jobs:
           app-name: 'IOSWebsite'
           slot-name: 'Production'
           package: .
+          
