@@ -29,6 +29,9 @@ jobs:
       - name: Build application
         run: npm run build
 
+      - name: Verify build output
+        run: ls -la .next/standalone/
+
       - name: Upload artifact for deployment job
         uses: actions/upload-artifact@v4
         with:
