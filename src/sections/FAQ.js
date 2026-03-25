@@ -15,8 +15,7 @@ export const FAQ = () => {
     const containerRef = useRef();
 
     useGSAP(() => {
-
-        console.log(process.env.CONTACT_TO)
+        
         if (!containerRef.current) return;
 
         document.querySelectorAll(".qa").forEach((qa) => {

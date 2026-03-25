@@ -48,6 +48,8 @@ export default async function Page() {
         },
     }
     
+    console.log(process.env.NEXT_PUBLIC_SUPABASE_URL, process.env.NEXT_PUBLIC_SUPABASE_PUBLISHABLE_DEFAULT_KEY)
+    
     const supabase = await createClient();
     const { data: blogs, error } = await supabase
         .from('Blogs')
