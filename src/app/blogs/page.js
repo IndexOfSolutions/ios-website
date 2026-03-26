@@ -1,9 +1,7 @@
 import { createClient } from '@/utils/supabase/server'
+import { cookies } from 'next/headers'
 import Link from 'next/link'
 import React from 'react'
-
-// Revalidate every 60 seconds (ISR) - For Vercel compatibility
-export const revalidate = 60;
 
 const getSiteUrl = () => {
     const fromEnv =
@@ -52,7 +50,8 @@ export default async function Page() {
     }
 
     try {
-        const supabase = await createClient();
+        const cookieStore = await cookies()
+        const supabase = await createClient(cookieStore);
         
         if (!supabase) {
             throw new Error('Failed to initialize Supabase client');
