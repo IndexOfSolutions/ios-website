@@ -2,39 +2,52 @@ import { createClient } from '@/utils/supabase/server'
 import Link from 'next/link'
 import React from 'react'
 
-// const getSiteUrl = () => {
-//     const fromEnv =
-//         process.env.NEXT_PUBLIC_SITE_URL ||
-//         process.env.SITE_URL ||
-//         process.env.VERCEL_PROJECT_PRODUCTION_URL
+const getSiteUrl = () => {
+    const fromEnv =
+        process.env.NEXT_PUBLIC_SITE_URL ||
+        process.env.SITE_URL ||
+        process.env.VERCEL_PROJECT_PRODUCTION_URL
 
-//     if (fromEnv) {
-//         return fromEnv.startsWith('http') ? fromEnv : `https://${fromEnv}`
-//     }
+    if (fromEnv) {
+        return fromEnv.startsWith('http') ? fromEnv : `https://${fromEnv}`
+    }
 
-//     return 'https://www.indexofsolutions.com'
-// }
+    return 'https://www.indexofsolutions.com'
+}
+const siteUrl = getSiteUrl()
 
-// const siteUrl = getSiteUrl()
-
-// export const metadata = {
-//     title: 'Blogs & Success Stories | Microsoft Dynamics NAV & Business Central',
-//     description: 'Read our blogs and success stories on Microsoft Dynamics 365 Business Central, Dynamics NAV, ERP implementation, consultancy, and best practices. Index of Solutions—12+ years of ERP expertise.',
-//     alternates: {
-//         canonical: '/blogs',
-//     },
-//     openGraph: {
-//         url: `${siteUrl}/blogs`,
-//         title: 'Blogs & Success Stories | Dynamics NAV & Business Central | Index of Solutions',
-//         description: 'Blogs and success stories on Dynamics 365 BC, Dynamics NAV, ERP implementation and consultancy.',
-//     },
-//     twitter: {
-//         title: 'Blogs | Dynamics NAV & Business Central | Index of Solutions',
-//         description: 'Blogs and success stories on Dynamics 365 BC, Dynamics NAV, and ERP.',
-//     },
-// }
+export const metadata = {
+    title: 'Blogs & Success Stories | Microsoft Dynamics 365 Business Central',
+    description: 'Read our blogs and success stories on Microsoft Dynamics 365 Business Central, Dynamics NAV, ERP implementation, consultancy, and best practices. Index of Solutions—12+ years of ERP expertise.',
+    alternates: {
+        canonical: '/blogs',
+    },
+    openGraph: {
+        url: `${siteUrl}/blogs`,
+        title: 'Blogs & Success Stories | Dynamics 365 Business Central | Index of Solutions',
+        description: 'Blogs and success stories on Dynamics 365 Business Central, Dynamics NAV, ERP implementation and consultancy.',
+    },
+    twitter: {
+        title: 'Blogs | Dynamics 365 Business Central | Index of Solutions',
+        description: 'Blogs and success stories on Dynamics 365 Business Central, Dynamics NAV, and ERP.',
+    },
+}
 
 export default async function Page() {
+
+    const jsonLd = {
+        '@context': 'https://schema.org',
+        '@type': 'Blog',
+        name: 'Index of Solutions Blog – Microsoft Dynamics NAV & Business Central',
+        description: 'Blogs and success stories on ERP implementation, Dynamics 365 BC, and Dynamics NAV.',
+        url: `${siteUrl}/blogs`,
+        publisher: {
+            '@type': 'Organization',
+            name: 'Index of Solutions',
+            url: siteUrl,
+        },
+    }
+
     try {
         const supabase = await createClient();
         
@@ -81,6 +94,10 @@ export default async function Page() {
 
         return (
             <section className='relative w-full h-full px-4 md:px-8 py-section-vertical-sm md:py-section-vertical'>
+                <script
+                    type="application/ld+json"
+                    dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+                />
                 <div className='flex flex-col gap-1 items-center justify-center'>
                     <div className="flex gap-8 items-center text-fg font-[newake] text-4xl mx-auto md:text-6xl">
                         <div className='hidden md:block glow-line-left w-72'></div>

@@ -1,9 +1,7 @@
 import IndustriesLayout from '@/components/layouts/Industries'
-import { AnswerBubbleCard } from '@/components/ui/AnswerBubbleCard'
-import { QuestionBubbleCard } from '@/components/ui/QuestionBubbleCard'
 import React from 'react'
 
-export default function BusinessCentralForPharma() {
+export default function PharmaERP() {
   return (
     <IndustriesLayout
         title={"Microsoft Dynamics 365 Business Central for Pharmaceutical Businesses"}

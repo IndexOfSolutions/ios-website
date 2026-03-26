@@ -3,7 +3,7 @@ import { AnswerBubbleCard } from '@/components/ui/AnswerBubbleCard'
 import { QuestionBubbleCard } from '@/components/ui/QuestionBubbleCard'
 import React from 'react'
 
-export default function BusinessCentralForRetail() {
+export default function RetailERP() {
   return (
     <IndustriesLayout
         title={"Business Central For Retail"}

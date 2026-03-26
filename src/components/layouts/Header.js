@@ -52,12 +52,12 @@ export const Header = () => {
                                         </div>
                                     </li>
                                     <li className='relative inline-block group'>
-                                        <Link href="/#what-we-offer" className='hover:text-primary'>Industries</Link>
+                                        <span className='hover:text-primary'>Industries</span>
                                         <div className='absolute hidden group-hover:block pt-2'>
                                             <div className='bg-mainbg p-4 border-primary border rounded-md w-max flex flex-col gap-2'>
-                                                <Link href="/industries/business-central-for-retail">Business Central For Retail</Link>
-                                                <Link href="/industries/business-central-for-distribution">Business Central Distribution</Link>
-                                                <Link href="/industries/business-central-pharma">Business Central For Pharma</Link>
+                                                <Link href="/industries/pharma-erp">Business Central For Pharma</Link>
+                                                <Link href="/industries/retail-erp">Business Central For Retail</Link>
+                                                <Link href="/industries/distribution-erp">Business Central Distribution</Link>
                                             </div>
                                         </div>
                                     </li>
@@ -117,9 +117,9 @@ export const Header = () => {
                                 <span className='hover:Industriesmary' onClick={() => { setIndustriesMenuOpen(!industriesMenuOpen) }}>Industries</span>
                                 <div className={`w-full mx-auto absolute ${industriesMenuOpen ? 'block' : 'hidden'} pt-2 z-10 text-xl`}>
                                     <div className='bg-mainbg p-4 border-primary border rounded-md w-full flex flex-col gap-2'>
-                                        <Link href="/industries/business-central-for-retail">Business Central For Retail</Link>
-                                        <Link href="/industries/business-central-for-distribution">Business Central Distribution</Link>
-                                        <Link href="/industries/business-central-pharma">Business Central For Pharma</Link>
+                                        <Link href="/industries/retail-erp">Business Central For Retail</Link>
+                                        <Link href="/industries/distribution-erp">Business Central Distribution</Link>
+                                        <Link href="/industries/pharma-erp">Business Central For Pharma</Link>
                                     </div>
                                 </div>
                             </li>

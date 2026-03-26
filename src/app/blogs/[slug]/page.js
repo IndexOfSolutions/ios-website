@@ -3,49 +3,49 @@ import Image from 'next/image'
 import React from 'react'
 import { notFound } from 'next/navigation'
 
-// const getSiteUrl = () => {
-//     const fromEnv =
-//         process.env.NEXT_PUBLIC_SITE_URL ||
-//         process.env.SITE_URL ||
-//         process.env.VERCEL_PROJECT_PRODUCTION_URL;
-//     if (fromEnv) return fromEnv.startsWith('http') ? fromEnv : `https://${fromEnv}`;
-//     return 'https://www.indexofsolutions.com';
-// };
+const getSiteUrl = () => {
+    const fromEnv =
+        process.env.NEXT_PUBLIC_SITE_URL ||
+        process.env.SITE_URL ||
+        process.env.VERCEL_PROJECT_PRODUCTION_URL;
+    if (fromEnv) return fromEnv.startsWith('http') ? fromEnv : `https://${fromEnv}`;
+    return 'https://www.indexofsolutions.com';
+};
 
-// export async function generateMetadata({ params }) {
-//     const { slug } = await params;
-//     const supabase = await createClient();
-//     const { data: blog } = await supabase
-//         .from('Blogs')
-//         .select('title, excerpt, author, date')
-//         .eq('link', slug)
-//         .single();
+export async function generateMetadata({ params }) {
+    const { slug } = await params;
+    const supabase = await createClient();
+    const { data: blog } = await supabase
+        .from('Blogs')
+        .select('title, excerpt, author, date')
+        .eq('link', slug)
+        .single();
 
-//     if (!blog) return { title: 'Blog | Index of Solutions' };
+    if (!blog) return { title: 'Blog | Index of Solutions' };
 
-//     const siteUrl = getSiteUrl();
-//     const description = blog.excerpt || `Read ${blog.title} by Index of Solutions. Microsoft Dynamics NAV & Business Central ERP experts.`;
-//     const title = blog.title;
+    const siteUrl = getSiteUrl();
+    const description = blog.excerpt || `Read ${blog.title} by Index of Solutions. Microsoft Dynamics 365 Business Central ERP experts.`;
+    const title = blog.title;
 
-//     return {
-//         title,
-//         description,
-//         alternates: { canonical: `${siteUrl}/blogs/${slug}` },
-//         openGraph: {
-//             url: `${siteUrl}/blogs/${slug}`,
-//             title: `${title} | Index of Solutions`,
-//             description,
-//             type: 'article',
-//             publishedTime: blog.date,
-//             authors: blog.author ? [blog.author] : undefined,
-//         },
-//         twitter: {
-//             card: 'summary_large_image',
-//             title: `${title} | Index of Solutions`,
-//             description,
-//         },
-//     };
-// }
+    return {
+        title,
+        description,
+        alternates: { canonical: `${siteUrl}/blogs/${slug}` },
+        openGraph: {
+            url: `${siteUrl}/blogs/${slug}`,
+            title: `${title} | Index of Solutions`,
+            description,
+            type: 'article',
+            publishedTime: blog.date,
+            authors: blog.author ? [blog.author] : undefined,
+        },
+        twitter: {
+            card: 'summary_large_image',
+            title: `${title} | Index of Solutions`,
+            description,
+        },
+    };
+}
 
 export default async function Page({ params }) {
     const { slug } = await params;
@@ -60,24 +60,24 @@ export default async function Page({ params }) {
 
     if (error || !blog) notFound();
 
-    // const siteUrl = getSiteUrl();
-    // const articleJsonLd = {
-    //     '@context': 'https://schema.org',
-    //     '@type': 'Article',
-    //     headline: blog.title,
-    //     description: blog.excerpt || blog.title,
-    //     author: { '@type': 'Person', name: blog.author },
-    //     datePublished: blog.date,
-    //     publisher: { '@type': 'Organization', name: 'Index of Solutions', url: siteUrl },
-    //     mainEntityOfPage: { '@type': 'WebPage', '@id': `${siteUrl}/blogs/${slug}` },
-    // };
+    const siteUrl = getSiteUrl();
+    const articleJsonLd = {
+        '@context': 'https://schema.org',
+        '@type': 'Article',
+        headline: blog.title,
+        description: blog.excerpt || blog.title,
+        author: { '@type': 'Person', name: blog.author },
+        datePublished: blog.date,
+        publisher: { '@type': 'Organization', name: 'Index of Solutions', url: siteUrl },
+        mainEntityOfPage: { '@type': 'WebPage', '@id': `${siteUrl}/blogs/${slug}` },
+    };
 
     return (
         <section className='relative w-full h-full px-4 md:px-8 py-section-vertical-sm md:py-section-vertical'>
-            {/* <script
+            <script
                 type="application/ld+json"
                 dangerouslySetInnerHTML={{ __html: JSON.stringify(articleJsonLd) }}
-            /> */}
+            />
           <div className="relative container max-w-[1366px] mx-auto w-full">
             <div className="flex flex-col justify-center gap-16 lg:flex-row">
               <Image src={blog.imageURL} alt={blog.title || 'Blog image'} width={100} height={100} className='w-full max-w-96'/>

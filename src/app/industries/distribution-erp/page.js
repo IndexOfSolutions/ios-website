@@ -1,8 +1,7 @@
 import IndustriesLayout from '@/components/layouts/Industries'
 import React from 'react'
 
-export default function BusinessCentralForDistribution
-() {
+export default function DistributionERP() {
   return (
     <IndustriesLayout
         title={"Microsoft Dynamics 365 Business Central for Wholesale and Distribution in Lebanon"}
