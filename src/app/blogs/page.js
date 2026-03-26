@@ -2,6 +2,8 @@ import { createPublicClient } from '@/utils/supabase/public'
 import Link from 'next/link'
 import React from 'react'
 
+export const revalidate = 3600; // Revalidate every hour (ISR)
+
 const getSiteUrl = () => {
     const fromEnv =
         process.env.NEXT_PUBLIC_SITE_URL ||
