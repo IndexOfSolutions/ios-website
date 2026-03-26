@@ -1,5 +1,4 @@
-import { createClient } from '@/utils/supabase/server'
-import { cookies } from 'next/headers'
+import { createPublicClient } from '@/utils/supabase/public'
 import Link from 'next/link'
 import React from 'react'
 
@@ -50,8 +49,7 @@ export default async function Page() {
     }
 
     try {
-        const cookieStore = await cookies()
-        const supabase = await createClient(cookieStore);
+        const supabase = createPublicClient();
         
         if (!supabase) {
             throw new Error('Failed to initialize Supabase client');

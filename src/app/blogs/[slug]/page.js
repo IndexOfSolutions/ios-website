@@ -1,7 +1,7 @@
-import { createClient } from '@/utils/supabase/server';
 import Image from 'next/image'
 import React from 'react'
 import { notFound } from 'next/navigation'
+import { createPublicClient } from '@/utils/supabase/public';
 
 const getSiteUrl = () => {
     const fromEnv =
@@ -14,7 +14,7 @@ const getSiteUrl = () => {
 
 export async function generateMetadata({ params }) {
     const { slug } = await params;
-    const supabase = await createClient();
+    const supabase = createPublicClient();
     const { data: blog } = await supabase
         .from('Blogs')
         .select('title, excerpt, author, date')
