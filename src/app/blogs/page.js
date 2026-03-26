@@ -2,6 +2,9 @@ import { createClient } from '@/utils/supabase/server'
 import Link from 'next/link'
 import React from 'react'
 
+// Revalidate every 60 seconds (ISR) - For Vercel compatibility
+export const revalidate = 60;
+
 const getSiteUrl = () => {
     const fromEnv =
         process.env.NEXT_PUBLIC_SITE_URL ||

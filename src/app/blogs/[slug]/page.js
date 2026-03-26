@@ -3,6 +3,9 @@ import Image from 'next/image'
 import React from 'react'
 import { notFound } from 'next/navigation'
 
+// Revalidate every 60 seconds (ISR) - For Vercel compatibility
+export const revalidate = 60;
+
 const getSiteUrl = () => {
     const fromEnv =
         process.env.NEXT_PUBLIC_SITE_URL ||
