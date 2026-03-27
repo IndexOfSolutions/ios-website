@@ -19,22 +19,22 @@ const getSiteUrl = () => {
 };
 
 const newake = localFont({
-  src: "../../public/assets/fonts/Newake.woff2",
+  src: "../../../public/assets/fonts/Newake.woff2",
   variable: "--font-newake",
 });
 
 const interItalic = localFont({
-  src: "../../public/assets/fonts/Inter-Italic.woff2",
+  src: "../../../public/assets/fonts/Inter-Italic.woff2",
   variable: "--font-inter-italic",
 });
 
 const inter = localFont({
-  src: "../../public/assets/fonts/Inter.woff2",
+  src: "../../../public/assets/fonts/Inter.woff2",
   variable: "--font-inter",
 });
 
 const jetBrainsMono = localFont({
-  src: "../../public/assets/fonts/JetBrainsMono.woff2",
+  src: "../../../public/assets/fonts/JetBrainsMono.woff2",
   variable: "--font-jetBrainsMono",
 });
 
