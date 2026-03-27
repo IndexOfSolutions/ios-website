@@ -34,7 +34,7 @@ jobs:
           cp package.json deploy/
           cp package-lock.json deploy/
           # If you use custom next.config.js, include it:
-          cp next.config.js deploy/ || true 
+          cp next.config.mjs deploy/ || cp next.config.js deploy/ || true
 
       - name: Upload artifact
         uses: actions/upload-artifact@v4
@@ -69,3 +69,4 @@ jobs:
           app-name: 'IOSWebsite'
           slot-name: 'Production'
           package: .
+          clean: true
