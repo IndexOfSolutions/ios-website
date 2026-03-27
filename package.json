@@ -1,13 +1,16 @@
 {
   "name": "ios-website",
-  "version": "0.1.0",
-  "private": true,
-  "scripts": {
-    "dev": "next dev",
-    "build": "next build",
-    "start": "next start",
-    "lint": "eslint"
-  },
+    "version": "0.1.0",
+    "private": true,
+    "engines": {
+        "node": ">=20.0.0"
+    },
+    "scripts": {
+        "dev": "next dev",
+        "build": "next build",
+        "start": "next start",
+        "lint": "eslint"
+    },
   "dependencies": {
     "next": "16.1.6",
     "react": "19.2.3",
