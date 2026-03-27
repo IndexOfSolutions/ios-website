@@ -1,6 +1,6 @@
 import { createPublicClient } from '@/utils/supabase/public'
 import BlogFilters from '@/components/BlogFilters'
-import React from 'react'
+import React, { Suspense } from 'react'
 import { Blogs } from '@/constants/Blogs';
 
 // export const revalidate = 3600; // Revalidate every hour (ISR)
@@ -64,7 +64,9 @@ export default async function Page() {
             </div>
             <div className="relative container max-w-[1366px] mx-auto pt-[60] w-full">
                 <div className="w-full flex flex-col gap-8">
-                    <BlogFilters blogs={Object.entries(Blogs).map(([key, value]) => ({ ...value, id: key })).reverse()} />
+                    <Suspense fallback={<div className="text-fg">Loading blogs...</div>}>
+                        <BlogFilters blogs={Object.entries(Blogs).map(([key, value]) => ({ ...value, id: key })).reverse()} />
+                    </Suspense>
                 </div>
             </div>
         </section>
