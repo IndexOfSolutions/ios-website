@@ -43,6 +43,7 @@ export default function sitemap() {
 
     // Other indexable pages
     { path: "/blogs", priority: 0.6, changeFrequency: "weekly" },
+    { path: "/our-blogs", priority: 0.6, changeFrequency: "weekly" },
     { path: "/privacy-policy", priority: 0.2, changeFrequency: "monthly" },
   ];
 
