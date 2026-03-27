@@ -50,8 +50,7 @@ export async function generateMetadata({ params }) {
 export default async function Page({ params }) {
     const { slug } = await params;
 
-    const cookieStore = await cookies();
-    const supabase = await createClient(cookieStore);
+    const supabase = createPublicClient();
 
     const { data: blog, error } = await supabase
       .from("Blogs")
@@ -75,10 +74,6 @@ export default async function Page({ params }) {
 
     return (
         <section className='relative w-full h-full px-4 md:px-8 py-section-vertical-sm md:py-section-vertical'>
-            <script
-                type="application/ld+json"
-                dangerouslySetInnerHTML={{ __html: JSON.stringify(articleJsonLd) }}
-            />
           <div className="relative container max-w-[1366px] mx-auto w-full">
             <div className="flex flex-col justify-center gap-16 lg:flex-row">
               <Image src={blog.imageURL} alt={blog.title || 'Blog image'} width={100} height={100} className='w-full max-w-96'/>
