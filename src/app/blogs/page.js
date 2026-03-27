@@ -3,6 +3,8 @@ import BlogFilters from '@/components/BlogFilters'
 import React, { Suspense } from 'react'
 import { Blogs } from '@/constants/Blogs';
 
+
+export const dynamic = 'force-dynamic';
 // export const revalidate = 3600; // Revalidate every hour (ISR)
 
 // const getSiteUrl = () => {
@@ -62,7 +64,7 @@ export default async function Page() {
                 <div className="w-full md:hidden glow-line"></div>
                 <h2 className='font-[interItalic] text-fg'>Blogs & Success Stories</h2>
             </div>
-            <div className="relative container max-w-[1366px] mx-auto pt-[60] w-full">
+            <div className="relative container max-w-[1366] mx-auto pt-[60] w-full">
                 <div className="w-full flex flex-col gap-8">
                     <Suspense fallback={<div className="text-fg">Loading blogs...</div>}>
                         <BlogFilters blogs={Object.entries(Blogs).map(([key, value]) => ({ ...value, id: key })).reverse()} />

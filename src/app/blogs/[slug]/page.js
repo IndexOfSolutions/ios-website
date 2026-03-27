@@ -3,6 +3,7 @@ import React from 'react'
 import { notFound } from 'next/navigation'
 import { createPublicClient } from '@/utils/supabase/public';
 
+export const dynamic = 'force-dynamic';
 // const getSiteUrl = () => {
 //     const fromEnv =
 //         process.env.NEXT_PUBLIC_SITE_URL ||
@@ -74,7 +75,7 @@ export default async function Page({ params }) {
 
     return (
         <section className='relative w-full h-full px-4 md:px-8 py-section-vertical-sm md:py-section-vertical'>
-          <div className="relative container max-w-[1366px] mx-auto w-full">
+          <div className="relative container max-w-[1366] mx-auto w-full">
             <div className="flex flex-col justify-center gap-16 lg:flex-row">
                 <h1 className='font-[newake] text-fg text-5xl md:max-w-[684] max-h-fit'>{slug}</h1>
               {/* <Image src={blog.imageURL} alt={blog.title || 'Blog image'} width={100} height={100} className='w-full max-w-96'/>
