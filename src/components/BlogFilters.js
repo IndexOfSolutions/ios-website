@@ -5,7 +5,6 @@ import { useSearchParams, useRouter } from 'next/navigation';
 import { useState } from 'react';
 
 export default function BlogFilters({ blogs }) {
-    console.log('Received blogs:', blogs);
     const searchParams = useSearchParams();
     const router = useRouter();
     const [activeFilter, setActiveFilter] = useState(searchParams.get('type') || 'all');
