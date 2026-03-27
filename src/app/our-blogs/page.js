@@ -1,7 +1,7 @@
 import { Blogs } from '@/constants/Blogs';
 import React from 'react'
 
-export default function pages() {
+export default function Page() {
 
     console.log(Blogs);
 
