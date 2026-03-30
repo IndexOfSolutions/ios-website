@@ -27,23 +27,18 @@ jobs:
 
       - name: Prepare standalone deployment package
         run: |
-          # Copy contents of standalone (includes its own node_modules)
           cp -r .next/standalone/. ./deploy
-
-          # These two MUST be copied manually - Next.js excludes them from standalone intentionally
           cp -r .next/static ./deploy/.next/static
           cp -r public ./deploy/public
-
-      # DO NOT run npm install here - standalone already has node_modules
 
       - name: Zip deployment package
         run: |
           cd deploy
-          zip -r ../deploy.zip .
+          zip -r ${{ github.workspace }}/deploy.zip .
 
       - name: Deploy to Azure
         uses: azure/webapps-deploy@v3
         with:
           app-name: 'IOSWebsite'
           publish-profile: ${{ secrets.AZURE_WEBAPP_PUBLISH_PROFILE }}
-          package: ../deploy.zip
+          package: ${{ github.workspace }}/deploy.zip
