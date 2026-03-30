@@ -1,4 +1,3 @@
-# .github/workflows/deploy.yml
 name: Deploy Next.js to Azure App Service
 
 on:
@@ -19,31 +18,32 @@ jobs:
           cache: 'npm'
 
       - name: Install dependencies
-        run: npm install
+        run: npm ci
 
       - name: Build
         run: npm run build
         env:
           NODE_ENV: production
 
-      # This is important — package ONLY what's needed
       - name: Prepare standalone deployment package
         run: |
-          # Copy CONTENTS of standalone, not the folder itself
-          cp -r .next/standalone/. ./deploy        # <-- note the /. at the end
-          
-          # Then copy static and public into the right places
+          # Copy contents of standalone (includes its own node_modules)
+          cp -r .next/standalone/. ./deploy
+
+          # These two MUST be copied manually - Next.js excludes them from standalone intentionally
           cp -r .next/static ./deploy/.next/static
           cp -r public ./deploy/public
 
-      - name: Install production deps in deploy folder
+      # DO NOT run npm install here - standalone already has node_modules
+
+      - name: Zip deployment package
         run: |
           cd deploy
-          npm install --omit=dev
+          zip -r ../deploy.zip .
 
       - name: Deploy to Azure
         uses: azure/webapps-deploy@v3
         with:
           app-name: 'IOSWebsite'
           publish-profile: ${{ secrets.AZURE_WEBAPP_PUBLISH_PROFILE }}
-          package: ./deploy
+          package: ../deploy.zip
