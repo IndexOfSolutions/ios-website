@@ -23,8 +23,13 @@ jobs:
       - name: Prepare Standalone for Azure
         run: |
           # Copy static and public files into the standalone folder
-          cp -r public .next/standalone/public
-          cp -r .next/static .next/standalone/.next/static
+          mkdir -p .next/standalone/public
+          cp -r public/* .next/standalone/public/ || true
+          mkdir -p .next/standalone/.next/static
+          cp -r .next/static/* .next/standalone/.next/static/ || true
+          # Verify the copy
+          echo "Contents of .next/standalone/public:"
+          ls -la .next/standalone/public/ || echo "No public folder"
 
       - name: Deploy to Azure Web App
         uses: azure/webapps-deploy@v3

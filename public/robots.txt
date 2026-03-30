@@ -1,0 +1,16 @@
+# Robots file for Index of Solutions
+User-agent: *
+Allow: /
+Disallow: /admin
+Disallow: /login
+Disallow: /api
+
+# Sitemaps
+Sitemap: https://www.indexofsolutions.com/sitemap.xml
+
+# Prevent crawling of common vulnerability paths
+Disallow: /.env
+Disallow: /.git
+Disallow: /node_modules
+Disallow: /.next
+Disallow: /src
