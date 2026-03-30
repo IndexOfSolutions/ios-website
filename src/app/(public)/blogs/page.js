@@ -1,6 +1,6 @@
 import React from 'react'
 
-export default function Blogs() {
+export default async function Blogs() {
     return (
         <section className='relative w-full h-full px-4 md:px-8 py-section-vertical-sm md:py-section-vertical'>
             <div className='flex flex-col gap-1 items-center justify-center'>
@@ -14,7 +14,7 @@ export default function Blogs() {
             </div>
             <div className="relative container max-w-[1366px] mx-auto pt-[60] w-full">
                 <div className="w-full flex flex-col gap-8">
-                    {/* <BlogFilters blogs={blogsList} /> */}
+                    
                 </div>
             </div>
         </section>
