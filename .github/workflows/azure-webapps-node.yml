@@ -37,7 +37,7 @@ jobs:
       - name: Install production deps in deploy folder
         run: |
           cd deploy
-          npm ci --omit=dev
+          npm install --omit=dev
 
       - name: Deploy to Azure
         uses: azure/webapps-deploy@v3
