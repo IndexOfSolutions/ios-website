@@ -19,17 +19,31 @@ jobs:
         run: |
           npm ci
           npm run build
+          # Verify node_modules exists
+          if [ ! -d ".next/standalone/node_modules" ]; then
+            echo "ERROR: node_modules not found in .next/standalone"
+            exit 1
+          fi
+          echo "✓ Build successful, node_modules found"
 
       - name: Prepare Standalone for Azure
         run: |
-          # Copy static and public files into the standalone folder
+          # Copy public files to standalone
           mkdir -p .next/standalone/public
           cp -r public/* .next/standalone/public/ || true
+          
+          # Copy .next/static to standalone
           mkdir -p .next/standalone/.next/static
           cp -r .next/static/* .next/standalone/.next/static/ || true
-          # Verify the copy
-          echo "Contents of .next/standalone/public:"
-          ls -la .next/standalone/public/ || echo "No public folder"
+          
+          # Verify structure
+          echo "Checking .next/standalone structure:"
+          ls -la .next/standalone/ | head -20
+          echo "---"
+          if [ -d ".next/standalone/node_modules" ]; then
+            echo "✓ node_modules exists"
+            echo "  Size: $(du -sh .next/standalone/node_modules)"
+          fi
 
       - name: Deploy to Azure Web App
         uses: azure/webapps-deploy@v3
