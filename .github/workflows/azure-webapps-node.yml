@@ -25,16 +25,12 @@ jobs:
         env:
           NODE_ENV: production
 
-      - name: Prepare standalone deployment package
-        run: |
-          cp -r .next/standalone/. ./deploy
-          cp -r .next/static ./deploy/.next/static
-          cp -r public ./deploy/public
-
       - name: Zip deployment package
         run: |
-          cd deploy
-          zip -r ${{ github.workspace }}/deploy.zip .
+          zip -r ${{ github.workspace }}/deploy.zip . \
+            --exclude "*.git*" \
+            --exclude "*/.github/*" \
+            --exclude "*/node_modules/*"
 
       - name: Deploy to Azure
         uses: azure/webapps-deploy@v3
