@@ -123,7 +123,7 @@ export default function RootLayout({ children }) {
   ];
 
   return (
-      <body
+      <div
         className={`${newake.variable} ${interItalic.variable} ${inter.variable} ${jetBrainsMono.variable}`}
       >
         <script
@@ -135,6 +135,6 @@ export default function RootLayout({ children }) {
           {children}
           <Footer />
         </SmoothScrolling>
-      </body>
+      </div>
   );
 }
