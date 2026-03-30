@@ -18,21 +18,22 @@ jobs:
           cache: 'npm'
 
       - name: Install all dependencies
-        run: npm ci              # install everything including devDeps
+        run: npm ci          # ← just this, no --omit=dev flag
 
       - name: Build
         run: npm run build
         env:
           NODE_ENV: production
 
-      - name: Prune dev dependencies
-        run: npm prune --omit=dev   # remove devDeps AFTER build
+      - name: Prune dev dependencies after build
+        run: npm prune --omit=dev
 
       - name: Zip deployment package
         run: |
           zip -r ${{ github.workspace }}/deploy.zip . \
             --exclude "*.git*" \
-            --exclude "*/.github/*"
+            --exclude "*/.github/*" \
+            --exclude "*.next/cache*"
 
       - name: Deploy to Azure
         uses: azure/webapps-deploy@v3
