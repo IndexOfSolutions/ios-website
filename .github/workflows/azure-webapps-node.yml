@@ -17,8 +17,8 @@ jobs:
           node-version: '20'
           cache: 'npm'
 
-      - name: Install dependencies
-        run: npm ci
+      - name: Install production dependencies
+        run: npm ci --omit=dev
 
       - name: Build
         run: npm run build
@@ -29,8 +29,7 @@ jobs:
         run: |
           zip -r ${{ github.workspace }}/deploy.zip . \
             --exclude "*.git*" \
-            --exclude "*/.github/*" \
-            --exclude "*/node_modules/*"
+            --exclude "*/.github/*"
 
       - name: Deploy to Azure
         uses: azure/webapps-deploy@v3
