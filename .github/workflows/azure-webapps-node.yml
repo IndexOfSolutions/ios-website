@@ -24,23 +24,13 @@ jobs:
         run: npm run build
         env:
           NODE_ENV: production
-          # Add your build-time env variables here
-          # NEXT_PUBLIC_API_URL: ${{ secrets.NEXT_PUBLIC_API_URL }}
 
       - name: Prepare standalone deployment package
         run: |
-          # Copy standalone contents (includes its own node_modules)
           cp -r .next/standalone/. ./deploy
-
-          # These must be copied manually - Next.js excludes them from standalone
           cp -r .next/static ./deploy/.next/static
           cp -r public ./deploy/public
 
-          # Stop Oryx from rebuilding on the server
-          echo '[config]' > ./deploy/.deployment
-          echo 'SCM_DO_BUILD_DURING_DEPLOYMENT=false' >> ./deploy/.deployment
-
-          # Create startup script
           cat > ./deploy/startup.sh << 'EOF'
           #!/bin/bash
           export PORT=8080
@@ -50,14 +40,9 @@ jobs:
           EOF
           chmod +x ./deploy/startup.sh
 
-      - name: Zip deployment package
-        run: |
-          cd deploy
-          zip -r ${{ github.workspace }}/deploy.zip .
-
       - name: Deploy to Azure
         uses: azure/webapps-deploy@v3
         with:
           app-name: 'IOSWebsite'
           publish-profile: ${{ secrets.AZURE_WEBAPP_PUBLISH_PROFILE }}
-          package: ${{ github.workspace }}/deploy.zip
+          package: ./deploy
