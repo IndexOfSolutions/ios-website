@@ -1,6 +1,18 @@
+import BlogFilters from '@/components/BlogFilters';
+import { createClient } from '@/utils/supabase/server'
 import React from 'react'
 
 export default async function Blogs() {
+
+    const supabase = await createClient();
+    const { data: Blogs, error } = await supabase
+        .from('Blogs')
+        .select('*')
+        .order('date', { ascending: false });
+
+    console.log(Blogs, error);
+    if(error) console.log(error);
+
     return (
         <section className='relative w-full h-full px-4 md:px-8 py-section-vertical-sm md:py-section-vertical'>
             <div className='flex flex-col gap-1 items-center justify-center'>
@@ -12,9 +24,9 @@ export default async function Blogs() {
                 <div className="w-full md:hidden glow-line"></div>
                 <h2 className='font-[interItalic] text-fg'>Blogs & Success Stories</h2>
             </div>
-            <div className="relative container max-w-[1366px] mx-auto pt-[60] w-full">
+            <div className="relative container max-w-[1366] mx-auto pt-[60] w-full">
                 <div className="w-full flex flex-col gap-8">
-                    
+                    <BlogFilters blogs={Object.entries(Blogs).map(([key, value]) => ({ ...value, id: key })).reverse()} />
                 </div>
             </div>
         </section>
