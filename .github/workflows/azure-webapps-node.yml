@@ -26,38 +26,16 @@ jobs:
         env:
           NODE_ENV: production
           # Build-time variables (NEXT_PUBLIC_* must be here)
-          NEXT_PUBLIC_API_URL: ${{ secrets.NEXT_PUBLIC_API_URL }}
           # Add any other NEXT_PUBLIC_ vars here
 
-      - name: Prepare deployment package
+      - name: Prepare standalone deployment package
         run: |
-          # Copy standalone output (includes its own trimmed node_modules)
           cp -r .next/standalone/. ./deploy
-
-          # Must copy these manually - Next.js excludes them from standalone
-          cp -r .next/static ./deploy/.next/static
+          mkdir -p ./deploy/.next/static
+          cp -r .next/static/. ./deploy/.next/static
           cp -r public ./deploy/public
-
-          # Prevent Oryx from rebuilding on the server
-          echo '[config]' > ./deploy/.deployment
-          echo 'SCM_DO_BUILD_DURING_DEPLOYMENT=false' >> ./deploy/.deployment
-
-          # Startup script - more reliable than Azure portal startup command
-          cat > ./deploy/startup.sh << 'EOF'
-          #!/bin/bash
-          export PORT=8080
-          export NODE_ENV=production
-          cd /home/site/wwwroot
-          node server.js
-          EOF
+          cp startup.sh ./deploy/startup.sh
           chmod +x ./deploy/startup.sh
-
-      - name: Upload artifact
-        uses: actions/upload-artifact@v4
-        with:
-          name: nextjs-build
-          path: ./deploy
-          retention-days: 1
 
   deploy:
     name: Deploy
