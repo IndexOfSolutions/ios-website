@@ -10,7 +10,6 @@ export default async function Blogs() {
         .select('*')
         .order('date', { ascending: false });
 
-    console.log(Blogs, error);
     if(error) console.log(error);
 
     return (
@@ -25,7 +24,7 @@ export default async function Blogs() {
                 <h2 className='font-[interItalic] text-fg'>Blogs & Success Stories</h2>
             </div>
             <div className="relative container max-w-[1366] mx-auto pt-[60] w-full">
-                <div className="w-full flex flex-col gap-8">
+                <div className="relative w-full flex flex-col gap-8">
                     <BlogFilters blogs={Object.entries(Blogs).map(([key, value]) => ({ ...value, id: key })).reverse()} />
                 </div>
             </div>

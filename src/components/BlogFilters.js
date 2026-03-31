@@ -33,7 +33,7 @@ export default function BlogFilters({ blogs }) {
 
     return (
         <>
-            <div className="flex items-center gap-4 mb-8">
+            <div className="flex items-center gap-4 mb-8 top-[100] sticky z-10 bg-mainbg py-4">
                 {filterOptions.map(option => (
                     <button
                         key={option.value}
