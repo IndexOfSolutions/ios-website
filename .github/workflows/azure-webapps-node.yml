@@ -24,13 +24,26 @@ jobs:
         run: npm run build
         env:
           NODE_ENV: production
+          # Add your NEXT_PUBLIC_ vars here if you have any
 
       - name: Prepare standalone deployment package
         run: |
+          # Copy standalone contents (includes its own node_modules)
           cp -r .next/standalone/. ./deploy
+
+          # Must copy manually - Next.js excludes these from standalone
           mkdir -p ./deploy/.next/static
           cp -r .next/static/. ./deploy/.next/static
           cp -r public ./deploy/public
+
+          # Overwrite oryx manifest to prevent node_modules compression
+          cat > ./deploy/oryx-manifest.toml << 'EOF'
+          compressedNodeModulesFile=""
+          EOF
+
+          # Prevent Oryx from rebuilding
+          echo '[config]' > ./deploy/.deployment
+          echo 'SCM_DO_BUILD_DURING_DEPLOYMENT=false' >> ./deploy/.deployment
 
       - name: Zip deployment package
         run: |
