@@ -24,7 +24,7 @@ export async function generateMetadata({ params }) {
     if (!blog) return { title: 'Blog | Index of Solutions' };
 
     const siteUrl = getSiteUrl();
-    const description = blog.excerpt || `Read ${blog.title} by Index of Solutions. Microsoft Dynamics NAV & Business Central ERP experts.`;
+    const description = blog.excerpt || `Read ${blog.title} by Index of Solutions. Microsoft Dynamics 365 Business Central ERP experts.`;
     const title = blog.title;
 
     return {
