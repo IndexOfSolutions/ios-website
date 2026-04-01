@@ -21,17 +21,17 @@ export const Header = () => {
             <header className='sticky top-0 w-full h-[100] border-b border-border-color z-30 bg-mainbg/65 backdrop-blur-2xl'>
                 <div className="container max-w-[1366] h-full mx-auto p-4 flex items-center justify-between">
                     <div className="flex gap-[100] items-center">
-                        <Link href="/">
+                        <Link href="/" scroll={true}>
                             <Image src="/assets/images/logo/ios.webp" alt="Index of Solutions - Microsoft Dynamics NAV and Dynamics 365 Business Central ERP Partner" width={50} height={52} sizes="50px" />
                         </Link>
                         <nav className='hidden md:block'>
                             <menu>
                                 <ul className='flex items-center gap-4 text-fg'>
                                     <li>
-                                        <Link href="/" className='hover:text-primary'>Home</Link>
+                                        <Link href="/" scroll={true} className='hover:text-primary'>Home</Link>
                                     </li>
                                     <li className='relative inline-block group'>
-                                        <Link href="/about" className='hover:text-primary'>About</Link>
+                                        <Link href="/about" scroll={true} className='hover:text-primary'>About</Link>
                                         <div className='absolute hidden group-hover:block pt-2'>
                                             <div className='bg-mainbg p-4 border-primary border rounded-md w-max flex flex-col gap-2'>
                                                 <Link href="/about/case-studies">Case Studies</Link>
@@ -39,7 +39,7 @@ export const Header = () => {
                                         </div>
                                     </li>
                                     <li className='relative inline-block group'>
-                                        <Link href="/#what-we-offer" className='hover:text-primary'>Services</Link>
+                                        <Link href="/#what-we-offer" scroll={true} className='hover:text-primary'>Services</Link>
                                         <div className='absolute hidden group-hover:block pt-2'>
                                             <div className='bg-mainbg p-4 border-primary border rounded-md w-max flex flex-col gap-2'>
                                                 <Link href="/services/business-central-implementation">Business Central Implementation</Link>
@@ -55,14 +55,14 @@ export const Header = () => {
                                         <span className='hover:text-primary'>Industries</span>
                                         <div className='absolute hidden group-hover:block pt-2'>
                                             <div className='bg-mainbg p-4 border-primary border rounded-md w-max flex flex-col gap-2'>
-                                                <Link href="/industries/pharma-erp">Business Central For Pharma</Link>
-                                                <Link href="/industries/retail-erp">Business Central For Retail</Link>
-                                                <Link href="/industries/distribution-erp">Business Central Distribution</Link>
+                                                <Link href="/industries/pharma-erp" scroll={true}>Business Central For Pharma</Link>
+                                                <Link href="/industries/retail-erp" scroll={true}>Business Central For Retail</Link>
+                                                <Link href="/industries/distribution-erp" scroll={true}>Business Central Distribution</Link>
                                             </div>
                                         </div>
                                     </li>
                                     <li>
-                                        <Link href="/#contact-us" className='hover:text-primary'>Contact</Link>
+                                        <Link href="/contact" scroll={true} className='hover:text-primary'>Contact</Link>
                                     </li>
                                 </ul>
                             </menu>

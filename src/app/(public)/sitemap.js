@@ -37,13 +37,13 @@ export default function sitemap() {
     { path: "/services/nav-to-business-central-upgrade", priority: 0.8, changeFrequency: "weekly" },
 
     // Industry landing pages
-    { path: "/industries/business-central-for-retail", priority: 0.7, changeFrequency: "weekly" },
-    { path: "/industries/business-central-for-distribution", priority: 0.7, changeFrequency: "weekly" },
-    { path: "/industries/business-central-for-pharma", priority: 0.7, changeFrequency: "weekly" },
+    { path: "/industries/retail-erp", priority: 0.7, changeFrequency: "weekly" },
+    { path: "/industries/distribution-erp", priority: 0.7, changeFrequency: "weekly" },
+    { path: "/industries/pharma-erp", priority: 0.7, changeFrequency: "weekly" },
 
     // Other indexable pages
     { path: "/blogs", priority: 0.6, changeFrequency: "weekly" },
-    { path: "/our-blogs", priority: 0.6, changeFrequency: "weekly" },
+    { path: "/contact", priority: 0.8, changeFrequency: "weekly" },
     { path: "/privacy-policy", priority: 0.2, changeFrequency: "monthly" },
   ];
 

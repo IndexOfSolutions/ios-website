@@ -47,7 +47,7 @@ export async function submitContactForm(_prevState, formData) {
 
     return {
       success: true,
-      message: "Success! I'll get back to you as soon as possible.",
+      message: "Email Sent Successfully! We will get back to you as soon as possible.",
     };
   } catch (error) {
     console.error("Server action error:", error);
