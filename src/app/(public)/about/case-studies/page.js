@@ -1,6 +1,53 @@
 import Image from 'next/image'
 import React from 'react'
 
+const getSiteUrl = () => {
+  const fromEnv =
+    process.env.NEXT_PUBLIC_SITE_URL ||
+    process.env.SITE_URL ||
+    process.env.VERCEL_PROJECT_PRODUCTION_URL;
+
+  if (fromEnv) {
+    return fromEnv.startsWith('http') ? fromEnv : `https://${fromEnv}`;
+  }
+
+  return 'https://www.indexofsolutions.com';
+};
+
+const siteUrl = getSiteUrl();
+
+export const metadata = {
+  title: 'Business Central Implementation Case Studies | Index of Solutions',
+  description:
+    'Read real success stories from our Business Central implementations across retail, pharmaceutical, and distribution industries. See how we helped Lebanese businesses modernize their ERP systems and achieve operational excellence.',
+  keywords: [
+    'Business Central case studies',
+    'Business Central success stories',
+    'Business Central implementation examples',
+    'ERP case studies',
+    'Business Central for retail',
+    'Business Central for pharma',
+    'Business Central for distribution',
+    'ERP project success stories',
+  ].join(', '),
+  alternates: {
+    canonical: `${siteUrl}/about/case-studies`,
+  },
+  openGraph: {
+    url: `${siteUrl}/about/case-studies`,
+    title: 'Business Central Implementation Case Studies | Index of Solutions',
+    description:
+      'Real-world case studies showing how we implemented Business Central for retail, pharmaceutical, and distribution companies in Lebanon.',
+    type: 'website',
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'Business Central Case Studies | Index of Solutions',
+    description:
+      'See how we implemented Business Central successfully for retail, pharma, and distribution businesses.',
+  },
+};
+
 export default function page() {
     return (
         <section className='relative w-full h-full px-4 md:px-8 py-section-vertical-sm md:py-section-vertical'>

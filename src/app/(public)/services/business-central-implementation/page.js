@@ -4,7 +4,18 @@ import { QuestionBubbleCard } from '@/components/ui/QuestionBubbleCard'
 import React from 'react'
 
 export const metadata = {
-  title: 'Microsoft Dynamics 365 Business Central Implementation | Index of Solutions',
+  title: 'Microsoft Dynamics 365 Business Central Implementation | Index of Solutions',icons: {
+    icon: [
+      { url: '/favicon.ico' },
+      { url: '/icon-16x16.png', sizes: '16x16', type: 'image/png' },
+      { url: '/icon-32x32.png', sizes: '32x32', type: 'image/png' },
+      { url: '/android-chrome-192x192.png', sizes: '192x192', type: 'image/png' },
+      { url: '/android-chrome-512x512.png', sizes: '512x512', type: 'image/png' },
+    ],
+    apple: '/apple-touch-icon.png',
+    shortcut: '/favicon.ico',
+
+  },
   description:
     '12+ years implementing Microsoft Dynamics 365 Business Central for SMBs. We deliver full end-to-end implementations: discovery, configuration, data migration, user training, and post-launch support.',
   alternates: {

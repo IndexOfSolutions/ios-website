@@ -19,6 +19,18 @@ const siteUrl = getSiteUrl()
 
 export const metadata = {
     title: 'Blogs & Success Stories | Microsoft Dynamics 365 Business Central',
+    icons: {
+    icon: [
+      { url: '/favicon.ico' },
+      { url: '/icon-16x16.png', sizes: '16x16', type: 'image/png' },
+      { url: '/icon-32x32.png', sizes: '32x32', type: 'image/png' },
+      { url: '/android-chrome-192x192.png', sizes: '192x192', type: 'image/png' },
+      { url: '/android-chrome-512x512.png', sizes: '512x512', type: 'image/png' },
+    ],
+    apple: '/apple-touch-icon.png',
+    shortcut: '/favicon.ico',
+
+  },
     description: 'Read our blogs and success stories on Microsoft Dynamics 365 Business Central, Dynamics NAV, ERP implementation, consultancy, and best practices. Index of Solutions—12+ years of ERP & Business Central expertise.',
     alternates: {
         canonical: `${siteUrl}/blogs`,

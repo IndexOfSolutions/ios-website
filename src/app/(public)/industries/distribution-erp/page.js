@@ -1,6 +1,53 @@
 import IndustriesLayout from '@/components/layouts/Industries'
 import React from 'react'
 
+const getSiteUrl = () => {
+  const fromEnv =
+    process.env.NEXT_PUBLIC_SITE_URL ||
+    process.env.SITE_URL ||
+    process.env.VERCEL_PROJECT_PRODUCTION_URL;
+
+  if (fromEnv) {
+    return fromEnv.startsWith('http') ? fromEnv : `https://${fromEnv}`;
+  }
+
+  return 'https://www.indexofsolutions.com';
+};
+
+const siteUrl = getSiteUrl();
+
+export const metadata = {
+  title: 'Business Central for Wholesale & Distribution | ERP for Supply Chain',
+  description:
+    'Microsoft Dynamics 365 Business Central for wholesale, distribution, and supply chain businesses: multi-warehouse inventory, purchase order management, delivery scheduling, and logistics integration.',
+  keywords: [
+    'Business Central for distribution',
+    'distribution ERP',
+    'wholesale ERP',
+    'supply chain ERP',
+    'multi-warehouse inventory',
+    'purchase order management',
+    'Business Central distribution',
+    'logistics integration Business Central',
+  ].join(', '),
+  alternates: {
+    canonical: `${siteUrl}/industries/distribution-erp`,
+  },
+  openGraph: {
+    url: `${siteUrl}/industries/distribution-erp`,
+    title: 'Business Central for Wholesale & Distribution | Supply Chain ERP',
+    description:
+      'Business Central ERP for distribution and wholesale businesses: multi-warehouse management, purchase orders, delivery scheduling, and supply chain visibility.',
+    type: 'website',
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'Business Central for Distribution | Supply Chain ERP',
+    description:
+      'Manage multi-warehouse inventory, purchase orders, and supply chain with Business Central for distribution.',
+  },
+};
+
 export default function DistributionERP() {
   return (
     <IndustriesLayout

@@ -3,6 +3,53 @@ import { AnswerBubbleCard } from '@/components/ui/AnswerBubbleCard'
 import { QuestionBubbleCard } from '@/components/ui/QuestionBubbleCard'
 import React from 'react'
 
+const getSiteUrl = () => {
+  const fromEnv =
+    process.env.NEXT_PUBLIC_SITE_URL ||
+    process.env.SITE_URL ||
+    process.env.VERCEL_PROJECT_PRODUCTION_URL;
+
+  if (fromEnv) {
+    return fromEnv.startsWith('http') ? fromEnv : `https://${fromEnv}`;
+  }
+
+  return 'https://www.indexofsolutions.com';
+};
+
+const siteUrl = getSiteUrl();
+
+export const metadata = {
+  title: 'Business Central for Retail | ERP Solution for Retail Businesses',
+  description:
+    'Microsoft Dynamics 365 Business Central for retail businesses: multi-location inventory management, POS integration, real-time sales reporting, and customer loyalty management. Designed for Lebanese and regional retail chains.',
+  keywords: [
+    'Business Central for retail',
+    'retail ERP',
+    'retail inventory management',
+    'POS integration Business Central',
+    'multi-location retail ERP',
+    'retail point of sale',
+    'Business Central retail solution',
+    'ERP for retail businesses',
+  ].join(', '),
+  alternates: {
+    canonical: `${siteUrl}/industries/retail-erp`,
+  },
+  openGraph: {
+    url: `${siteUrl}/industries/retail-erp`,
+    title: 'Business Central for Retail | ERP Solution for Retail Businesses',
+    description:
+      'Business Central ERP for multi-location retail businesses: inventory management, POS integration, real-time sales reporting, and customer management.',
+    type: 'website',
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'Business Central for Retail | ERP Solution',
+    description:
+      'Manage multi-location inventory, integrate POS, and track sales in real-time with Business Central for retail.',
+  },
+};
+
 export default function RetailERP() {
   return (
     <IndustriesLayout

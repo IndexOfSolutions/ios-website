@@ -4,6 +4,53 @@ import { QuestionBubbleCard } from '@/components/ui/QuestionBubbleCard'
 import Image from 'next/image'
 import React from 'react'
 
+const getSiteUrl = () => {
+  const fromEnv =
+    process.env.NEXT_PUBLIC_SITE_URL ||
+    process.env.SITE_URL ||
+    process.env.VERCEL_PROJECT_PRODUCTION_URL;
+
+  if (fromEnv) {
+    return fromEnv.startsWith('http') ? fromEnv : `https://${fromEnv}`;
+  }
+
+  return 'https://www.indexofsolutions.com';
+};
+
+const siteUrl = getSiteUrl();
+
+export const metadata = {
+  title: 'Microsoft Dynamics 365 Business Central in Lebanon | Business Central Partner',
+  description:
+    'Index of Solutions: Microsoft Certified Business Central partner in Lebanon with 12+ years of Dynamics expertise, 50+ implementations, and specialized solutions for Lebanese SMBs dealing with multi-currency, supply chain, and real-time reporting challenges.',
+  keywords: [
+    'Business Central Lebanon',
+    'Dynamics 365 Lebanon',
+    'Microsoft ERP Lebanon',
+    'Business Central implementation Lebanon',
+    'Microsoft Certified Partner Lebanon',
+    'Business Central MENA',
+    'Middle East ERP solution',
+    'Lebanese SMB ERP',
+  ].join(', '),
+  alternates: {
+    canonical: `${siteUrl}/microsoft-dynamics-365-business-central-lebanon`,
+  },
+  openGraph: {
+    url: `${siteUrl}/microsoft-dynamics-365-business-central-lebanon`,
+    title: 'Microsoft Dynamics 365 Business Central in Lebanon',
+    description:
+      'Microsoft Certified Business Central partner in Beirut, Lebanon with 12+ years of expertise helping SMBs implement modern ERP solutions.',
+    type: 'website',
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'Business Central in Lebanon | Microsoft Dynamics Partner',
+    description:
+      'Microsoft Certified Business Central partner based in Beirut serving Lebanese and MENA region SMBs.',
+  },
+};
+
 export default async function MicrosoftDynamics365BCLebanon() {
     return (
         <ServicesLayout
