@@ -45,36 +45,6 @@ const nextConfig = {
         destination: '/industries/pharma-erp',
         permanent: true,
       },
-      {
-        source: '/Terms-and-Conditions',
-        destination: '/terms-and-conditions',
-        permanent: true,
-      },
-      {
-        source: '/Privacy-Policy',
-        destination: '/privacy-policy',
-        permanent: true,
-      },
-      {
-        source: '/About',
-        destination: '/about',
-        permanent: true,
-      },
-      {
-        source: '/About/Case-Studies',
-        destination: '/about/case-studies',
-        permanent: true,
-      },
-      {
-        source: '/Contact',
-        destination: '/contact',
-        permanent: true,
-      },
-      {
-        source: '/Blogs',
-        destination: '/blogs',
-        permanent: true,
-      },
     ];
   },
 };
