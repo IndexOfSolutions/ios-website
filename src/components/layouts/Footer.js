@@ -20,7 +20,7 @@ export const Footer = () => {
                     <div className="w-full justify-between md:w-fit flex flex-col gap-4 md:justify-self-end">
                         <p className='underline text-2xl text-fg'>Links</p>
                         <div className="w-full flex flex-wrap md:flex-nowrap items-start gap-12 text-fg text-base">
-                            <ul className='flex flex-col gap-2'>
+                            <ul className='flex flex-col gap-2 ml-4'>
                                 <li className="list-disc hover:text-primary">
                                     <Link href="/services/business-central-implementation">Business Central Implementation</Link>
                                 </li>
@@ -31,7 +31,7 @@ export const Footer = () => {
                                     <Link href="/services/business-central-support">Business Central Support</Link>
                                 </li>
                             </ul>
-                            <ul className='flex flex-col gap-2'>
+                            <ul className='flex flex-col gap-2 ml-4'>
                                 <li className="list-disc hover:text-primary">
                                     <Link href="/services/business-central-training">Business Central Training</Link>
                                 </li>
@@ -42,7 +42,7 @@ export const Footer = () => {
                                     <Link href="/services/nav-to-business-central-upgrade">Dynamics NAV to Business Central Upgrade</Link>
                                 </li>
                             </ul>
-                            <ul className="flex flex-col gap-2">
+                            <ul className="flex flex-col gap-2 ml-4">
                                 <li className="list-disc hover:text-primary">
                                     <Link href="/about">About</Link>
                                 </li>
@@ -53,7 +53,7 @@ export const Footer = () => {
                                     <Link href="#faq">FAQ</Link>
                                 </li>
                             </ul>
-                            <ul className="flex flex-col gap-2">
+                            <ul className="flex flex-col gap-2 ml-4">
                                 <li className="list-disc hover:text-primary">
                                     <Link href="/blogs">Blogs</Link>
                                 </li>
@@ -68,9 +68,14 @@ export const Footer = () => {
                     </div>
                 </div>
                 <div className='flex flex-col gap-8 mt-16'>
-                    <div className='w-fit px-4 md:px-8 flex items-center py-2 gap-[10] bg-secondary rounded-lg text-fg font-[inter] text-sm'>
-                        <Image src="/assets/images/SVGs/microsoft.svg" width={20} height={20} alt="" />
-                        <span>Microsoft Certified Partner</span>
+                    <div className="flex flex-col sm:flex-row items-center justify-between gap-4">
+                        <div className='w-fit px-4 md:px-8 flex items-center py-2 gap-[10] bg-secondary rounded-lg text-fg font-[inter] text-sm'>
+                            <Image src="/assets/images/SVGs/microsoft.svg" width={20} height={20} alt="" />
+                            <span>Microsoft Certified Partner</span>
+                        </div>
+                        <a href="https://topdynamicspartners.com/listings/a093af15-e1c9-4b85-aa9d-0e87569bb343" target="_blank" rel="noopener noreferrer" title="View on Top Dynamics Partners">
+                            <Image src="https://topdynamicspartners.com/api/badge/a093af15-e1c9-4b85-aa9d-0e87569bb343" alt="Top Dynamics Partners — Verified Partner" width="280" height="56" />
+                        </a>
                     </div>
                     <div className="w-full hidden md:inline-block">
                         <svg
