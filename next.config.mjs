@@ -75,11 +75,6 @@ const nextConfig = {
         destination: '/blogs',
         permanent: true,
       },
-      {
-        source: '/:path(.*[A-Z].*)',
-        destination: '/:path',
-        permanent: true,
-      },
     ];
   },
 };
