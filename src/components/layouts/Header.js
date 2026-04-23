@@ -48,7 +48,7 @@ export const Header = () => {
                                                 <Link href="/services/business-central-training">Business Central Training</Link>
                                                 <Link href="/services/power-bi-and-analytics">Power BI & Analytics</Link>
                                                 <Link href="/services/nav-to-business-central-upgrade">Dynamics NAV to Business Central Upgrade</Link>
-                                                <Link href="/services/ls-central-transforms-business-central-into-a-complete-retail-powerhouse">LS Central & Business Central Is A Complete Retail Powerhouse</Link>
+                                                <Link href="/services/ls-central-transforms-business-central-into-a-complete-retail-powerhouse">LS Central For Retail</Link>
                                             </div>
                                         </div>
                                     </li>
@@ -114,7 +114,7 @@ export const Header = () => {
                                         <Link href="/services/business-central-training">Business Central Training</Link>
                                         <Link href="/services/power-bi-and-analytics">Power BI & Analytics</Link>
                                         <Link href="/services/nav-to-business-central-upgrade">Dynamics NAV to Business Central Upgrade</Link>
-                                        <Link href="/services/ls-central-transforms-business-central-into-a-complete-retail-powerhouse">LS Central & Business Central Is A Complete Retail Powerhouse</Link>
+                                        <Link href="/services/ls-central-transforms-business-central-into-a-complete-retail-powerhouse">LS Central For Retail</Link>
                                     </div>
                                 </div>
                             </li>
