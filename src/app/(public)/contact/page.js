@@ -152,7 +152,7 @@ export default function Contact() {
                             </div>
                             <span>+961 3 865 174</span>
                         </Link>
-                        <Link href={"https://maps.app.goo.gl/81wxEhbnypozH9fF8"} target='_blank' className="grid grid-cols-[auto_1fr] gap-4 items-center">
+                        <Link href={"https://maps.app.goo.gl/81wxEhbnypozH9fF8"} target='_blank' rel="noopener noreferrer" className="grid grid-cols-[auto_1fr] gap-4 items-center">
                             <div className="relative w-[55] h-[55]">
                                 <IconWrapper icon={"fa-solid fa-location-dot"} color={"var(--color-primary)"} size="2x" className={"absolute top-1/2 left-1/2 -translate-1/2 mix-blend-plus-lighter blur-[2px]"} />
                                 <IconWrapper icon={"fa-solid fa-location-dot"} color={"var(--color-primary)"} size="2x" className={"absolute top-1/2 left-1/2 -translate-1/2 mix-blend-plus-lighter blur-xs"} />

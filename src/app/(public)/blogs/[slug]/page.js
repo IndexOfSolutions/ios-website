@@ -9,7 +9,7 @@ const getSiteUrl = () => {
         process.env.SITE_URL ||
         process.env.VERCEL_PROJECT_PRODUCTION_URL;
     if (fromEnv) return fromEnv.startsWith('http') ? fromEnv : `https://${fromEnv}`;
-    return 'https://www.indexofsolutions.com';
+    return 'https://indexofsolutions.com';
 };
 
 export async function generateMetadata({ params }) {

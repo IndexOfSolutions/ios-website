@@ -12,7 +12,7 @@ export const Footer = () => {
                     <div className="w-full flex flex-col gap-4">
                         <p className='underline text-2xl text-fg'>Social Media Links</p>
                         <div className='flex gap-4 items-center'>
-                            <Link href="https://www.linkedin.com/company/indexofsolutions/" target='_blank' aria-label="Follow Index of Solutions on LinkedIn">
+                            <Link href="https://www.linkedin.com/company/indexofsolutions/" target='_blank' rel="noopener noreferrer" aria-label="Follow Index of Solutions on LinkedIn">
                                 <IconWrapper icon="fa-brands fa-linkedin-in" color='var(--color-fg)' w={21} h={21} />
                             </Link>
                         </div>

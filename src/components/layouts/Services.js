@@ -14,7 +14,7 @@ export default function ServicesLayout({ children, title, imageURL, imageAlt }) 
                     <div className="w-full xl:hidden glow-line"></div>
                 </div>
                 <div className="flex flex-col gap-16 w-full max-w-[800] mx-auto text-white">
-                    <Image src={`/assets/images/pages/${imageURL}.webp`} alt={imageAlt} width={100} height={100} className='w-full' />
+                    {imageURL && <Image src={`/assets/images/pages/${imageURL}.webp`} alt={imageAlt} width={100} height={100} className='w-full' />}
                     {children}
                 </div>
             </div>

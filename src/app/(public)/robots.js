@@ -8,7 +8,7 @@ const getSiteUrl = () => {
     return fromEnv.startsWith("http") ? fromEnv : `https://${fromEnv}`;
   }
 
-  return "https://www.indexofsolutions.com";
+  return "https://indexofsolutions.com";
 };
 
 export default function robots() {

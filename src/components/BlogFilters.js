@@ -64,6 +64,7 @@ export default function BlogFilters({ blogs }) {
                                 key={blog.id}
                                 href={`/blogs/${blog.link}`}
                                 target='_blank'
+                                rel="noopener noreferrer"
                                 className="break-inside-avoid mb-4 w-full p-6 bg-secondary rounded-lg flex flex-col gap-4"
                             >
                                 <div className="flex justify-between">

@@ -48,6 +48,7 @@ export const Header = () => {
                                                 <Link href="/services/business-central-training">Business Central Training</Link>
                                                 <Link href="/services/power-bi-and-analytics">Power BI & Analytics</Link>
                                                 <Link href="/services/nav-to-business-central-upgrade">Dynamics NAV to Business Central Upgrade</Link>
+                                                <Link href="/services/ls-central-transforms-business-central-into-a-complete-retail-powerhouse">LS Central & Business Central Is A Complete Retail Powerhouse</Link>
                                             </div>
                                         </div>
                                     </li>
@@ -62,6 +63,9 @@ export const Header = () => {
                                         </div>
                                     </li>
                                     <li>
+                                        <Link href="/blogs" scroll={true} className='hover:text-primary'>Blogs</Link>
+                                    </li>
+                                    <li>
                                         <Link href="/contact" scroll={true} className='hover:text-primary'>Contact</Link>
                                     </li>
                                 </ul>
@@ -69,10 +73,10 @@ export const Header = () => {
                         </nav>
                     </div>
                     <div className="hidden items-center gap-8 text-fg  md:flex">
-                        <Link href={'https://www.linkedin.com/company/indexofsolutions/'} target='_blank'>
+                        <Link href={'https://www.linkedin.com/company/indexofsolutions/'} target='_blank' rel="noopener noreferrer">
                             <span className='flex items-center'>Follow on Linked <span className='relative top-[1]'><IconWrapper icon="fa-brands fa-linkedin-in" color='var(--color-primary)' className={"w-3.5 h-3.5"} /></span></span>
                         </Link>
-                        <Link href="/assets/PDFs/IOSDesign16.pdf" target='_blank' className='px-6 py-3 bg-[linear-gradient(90deg,#3B82F6_0%,#619DFF_50%,#3B82F6_100%)] rounded-lg border-primary-button-border shadow-primary-button-shadow'>
+                        <Link href="/assets/PDFs/IOSDesign16.pdf" target='_blank' rel="noopener noreferrer" className='px-6 py-3 bg-[linear-gradient(90deg,#3B82F6_0%,#619DFF_50%,#3B82F6_100%)] rounded-lg border-primary-button-border shadow-primary-button-shadow'>
                             IOS Brochure
                         </Link>
                     </div>
@@ -110,6 +114,7 @@ export const Header = () => {
                                         <Link href="/services/business-central-training">Business Central Training</Link>
                                         <Link href="/services/power-bi-and-analytics">Power BI & Analytics</Link>
                                         <Link href="/services/nav-to-business-central-upgrade">Dynamics NAV to Business Central Upgrade</Link>
+                                        <Link href="/services/ls-central-transforms-business-central-into-a-complete-retail-powerhouse">LS Central & Business Central Is A Complete Retail Powerhouse</Link>
                                     </div>
                                 </div>
                             </li>
@@ -124,15 +129,18 @@ export const Header = () => {
                                 </div>
                             </li>
                             <li>
-                                <Link href="/#contact-us">Contact</Link>
+                                <Link href="/blogs">Blogs</Link>
+                            </li>
+                            <li>
+                                <Link href="/contact">Contact</Link>
                             </li>
                         </ul>
                     </menu>
                 </nav>
-                <Link href="/assets/PDFs/IOSDesign16.pdf" target='_blank' className='w-fit mx-auto px-6 py-3 bg-[linear-gradient(90deg,#3B82F6_0%,#619DFF_50%,#3B82F6_100%)] rounded-lg border-primary-button-border shadow-primary-button-shadow'>
+                <Link href="/assets/PDFs/IOSDesign16.pdf" target='_blank' rel="noopener noreferrer" className='w-fit mx-auto px-6 py-3 bg-[linear-gradient(90deg,#3B82F6_0%,#619DFF_50%,#3B82F6_100%)] rounded-lg border-primary-button-border shadow-primary-button-shadow'>
                     IOS Brochure
                 </Link>
-                <Link href={'https://www.linkedin.com/company/indexofsolutions/'} className='text-center mx-auto' target='_blank'>
+                <Link href={'https://www.linkedin.com/company/indexofsolutions/'} className='text-center mx-auto' target='_blank' rel="noopener noreferrer">
                     <span className='flex items-center text-fg'>Follow on Linked <span className='relative top-[1]'><IconWrapper icon="fa-brands fa-linkedin-in" color='var(--color-primary)' className={"w-3.5 h-3.5"} /></span></span>
                 </Link>
             </div>

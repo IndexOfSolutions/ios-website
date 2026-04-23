@@ -6,7 +6,7 @@ const getSiteUrl = () => {
         process.env.SITE_URL ||
         process.env.VERCEL_PROJECT_PRODUCTION_URL;
     if (fromEnv) return fromEnv.startsWith('http') ? fromEnv : `https://${fromEnv}`;
-    return 'https://www.indexofsolutions.com';
+    return 'https://indexofsolutions.com';
 };
 
 export const metadata = {
@@ -142,7 +142,7 @@ export default async function Page() {
           <h2 className="text-xl font-bold text-primary mb-4">8. Support and Contact</h2>
           <div className="space-y-2 italic">
             <p><strong>Email:</strong> <a href="mailto:y.nasser@indexofsolutions.com" className="text-primary hover:underline">y.nasser@indexofsolutions.com</a> </p>
-            <p><strong>Website:</strong> <a href="https://www.indexofsolutions.com:453/site/" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline">www.indexofsolutions.com</a></p>
+            <p><strong>Website:</strong> <a href="https://indexofsolutions.com:453/site/" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline">www.indexofsolutions.com</a></p>
             <p><strong>Address:</strong> Beirut, Lebanon</p>
           </div>
         </section>
