@@ -37,6 +37,7 @@ export default async function sitemap() {
     { path: "/services/business-central-training", priority: 0.8, changeFrequency: "weekly" },
     { path: "/services/power-bi-and-analytics", priority: 0.75, changeFrequency: "weekly" },
     { path: "/services/nav-to-business-central-upgrade", priority: 0.8, changeFrequency: "weekly" },
+    { path: "/services/ls-central-transforms-business-central-into-a-complete-retail-powerhouse", priority: 0.8, changeFrequency: "weekly" },
 
     // About pages
     { path: "/about", priority: 0.8, changeFrequency: "monthly" },
@@ -58,10 +59,10 @@ export default async function sitemap() {
   let blogRoutes = [];
   try {
     const supabase = await createClient();
+    // Remove .eq('published', true) filter - table has no published field
     const { data: blogs, error } = await supabase
       .from('Blogs')
-      .select('link, updated_at')
-      .eq('published', true);
+      .select('link, updated_at');
 
     if (!error && blogs) {
       blogRoutes = blogs.map(blog => ({
