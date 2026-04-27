@@ -99,7 +99,7 @@ export const Header = () => {
                                 <span className='hover:text-primary' onClick={() => { setAboutMenuOpen(!aboutMenuOpen) }}>About</span>
                                 <div className={`absolute ${aboutMenuOpen ? 'block' : 'hidden'} pt-2 text-xl z-10`}>
                                     <div className='bg-mainbg p-4 border-primary border rounded-md w-max flex flex-col gap-2'>
-                                        <Link href="/about/case-studies">About</Link>
+                                        <Link href="/about">About</Link>
                                         <Link href="/about/case-studies">Case Studies</Link>
                                     </div>
                                 </div>

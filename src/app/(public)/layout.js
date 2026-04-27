@@ -96,7 +96,7 @@ export default function RootLayout({ children }) {
       "@id": `${siteUrl}/#organization`,
       name: SITE_NAME,
       url: siteUrl,
-      logo: `${siteUrl}/assets/images/logo/ios.png`,
+      logo: `${siteUrl}/favicon.ico`,
       description: DEFAULT_META_DESCRIPTION,
       foundingDate: "2012",
       sameAs: ["https://www.linkedin.com/company/indexofsolutions/"],
