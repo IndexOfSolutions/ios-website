@@ -8,10 +8,10 @@ export const Hero = () => {
     return (
         <section id='hero' className='w-full py-section-vertical-sm md:py-section-vertical'>
             <div className="w-full mx-auto flex flex-col items-center gap-8">
-                <div className='w-fit px-4 md:px-8 flex items-center py-2 gap-[10] bg-secondary rounded-lg text-fg font-[inter] text-sm'>
+                <a href='https://marketplace.microsoft.com/en-us/partners/70e865db-baec-4dc4-bb01-cff52f7674af/overview' target='_blank' className='w-fit px-4 md:px-8 flex items-center py-2 gap-[10] bg-secondary rounded-lg text-fg font-[inter] text-sm'>
                     <Image src={"/assets/images/SVGs/microsoft.svg"} width={18} height={18} alt='' />
                     <span>Microsoft Certified Partner</span>
-                </div>
+                </a>
                 <div className='text-6xl px-4 md:px-8 md:text-8xl text-center text-fg font-[newake] w-full max-w-[960]'>
                     <h1 className='leading-none'>Unleash The Power of Finance Analytics with Business Central</h1>
                 </div>
