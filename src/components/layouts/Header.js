@@ -41,14 +41,35 @@ export const Header = () => {
                                     <li className='relative inline-block group'>
                                         <Link href="/#what-we-offer" scroll={true} className='hover:text-primary'>Services</Link>
                                         <div className='absolute hidden group-hover:block pt-2'>
-                                            <div className='bg-mainbg p-4 border-primary border rounded-md w-max flex flex-col gap-2'>
-                                                <Link href="/services/business-central-implementation">Business Central Implementation</Link>
-                                                <Link href="/services/business-central-consultancy">Business Central Consultancy</Link>
-                                                <Link href="/services/business-central-support">Business Central Support</Link>
-                                                <Link href="/services/business-central-training">Business Central Training</Link>
-                                                <Link href="/services/power-bi-and-analytics">Power BI & Analytics</Link>
-                                                <Link href="/services/nav-to-business-central-upgrade">Dynamics NAV to Business Central Upgrade</Link>
-                                                <Link href="/services/ls-central-transforms-business-central-into-a-complete-retail-powerhouse">LS Central For Retail</Link>
+                                            <div className='bg-mainbg py-4 border-primary border rounded-md w-max flex flex-col gap-2'>
+                                                <div className="relative inline-block group/item px-4">
+                                                    <div className='flex justify-between items-center gap-2'>
+                                                        <span>Microsoft Dynamics 365 Business Central </span>
+                                                        <IconWrapper icon="fa-solid fa-angle-right" color='var(--color-primary)' className={"w-3.5 h-3.5"} />
+                                                    </div>
+                                                    <div className='absolute hidden group-hover/item:block left-full -top-4'>
+                                                        <div className='bg-mainbg p-4 border-primary border rounded-md w-max flex flex-col gap-2'>
+                                                            <Link href="/services/business-central-implementation">Business Central Implementation</Link>
+                                                            <Link href="/services/business-central-consultancy">Business Central Consultancy</Link>
+                                                            <Link href="/services/business-central-support">Business Central Support</Link>
+                                                            <Link href="/services/business-central-training">Business Central Training</Link>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <Link href="/services/power-bi-and-analytics" className='px-4'>Power BI & Analytics</Link>
+                                                <div className="relative inline-block group/item px-4">
+                                                    <div className='flex justify-between items-center gap-2'>
+                                                        Microsoft Dynamics NAV
+                                                        <IconWrapper icon="fa-solid fa-angle-right" color='var(--color-primary)' className={"w-3.5 h-3.5"} />
+                                                    </div>
+                                                    <div className='absolute hidden group-hover/item:block left-full -top-4'>
+                                                        <div className='bg-mainbg p-4 border-primary border rounded-md w-max flex flex-col gap-2'>
+                                                            <Link href="/services/nav-to-business-central-upgrade">Dynamics Nav to Business Central Upgrade</Link>
+                                                            <Link href="/services/dynamics-nav-support">Dynamics Nav Support</Link>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <Link href="/services/ls-central-transforms-business-central-into-a-complete-retail-powerhouse" className='px-4'>LS Central For Retail</Link>
                                             </div>
                                         </div>
                                     </li>

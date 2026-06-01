@@ -64,7 +64,7 @@ export default async function Blogs() {
     const { data: Blogs, error } = await supabase
         .from('Blogs')
         .select('*')
-        .order('date', { ascending: false });
+        .order('date', { ascending: true });
 
     if(error) console.log(error);
 
