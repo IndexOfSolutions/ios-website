@@ -49,10 +49,10 @@ export const Header = () => {
                                                     </div>
                                                     <div className='absolute hidden group-hover/item:block left-full -top-4'>
                                                         <div className='bg-mainbg p-4 border-primary border rounded-md w-max flex flex-col gap-2'>
-                                                            <Link href="/services/business-central-implementation">Business Central Implementation</Link>
-                                                            <Link href="/services/business-central-consultancy">Business Central Consultancy</Link>
-                                                            <Link href="/services/business-central-support">Business Central Support</Link>
-                                                            <Link href="/services/business-central-training">Business Central Training</Link>
+                                                            <Link href="/services/business-central-implementation">Implementation</Link>
+                                                            <Link href="/services/business-central-consultancy">Consultancy</Link>
+                                                            <Link href="/services/business-central-support">Support</Link>
+                                                            <Link href="/services/business-central-training">Training</Link>
                                                         </div>
                                                     </div>
                                                 </div>
@@ -70,6 +70,7 @@ export const Header = () => {
                                                     </div>
                                                 </div>
                                                 <Link href="/services/ls-central-transforms-business-central-into-a-complete-retail-powerhouse" className='px-4'>LS Central For Retail</Link>
+                                                <Link href="/services/full-stack-hr-platform" className='px-4'>Full Stack HR Platform</Link>
                                             </div>
                                         </div>
                                     </li>

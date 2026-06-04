@@ -3,6 +3,7 @@
 import Link from 'next/link';
 import { useSearchParams, useRouter } from 'next/navigation';
 import { useState, useEffect, useRef } from 'react';
+import { format } from 'date-fns';
 
 function distributeIntoColumns(items, columnCount) {
     const columns = Array.from({ length: columnCount }, () => []);
@@ -30,7 +31,7 @@ function BlogCard({ blog }) {
                     <span className="font-[inter] font-black text-sm">
                         {blog.author || 'Unknown Author'}
                     </span>
-                    <span className="text-xs">{blog.date || 'No date'}</span>
+                    <span className="text-xs">{format(blog.date, 'dd-MM-yyyy') || 'No date'}</span>
                 </div>
                 <div className="text-xs px-1.5 py-1 h-fit leading-none bg-primary rounded-2xl">
                     <span className="capitalize">{blog.type || 'article'}</span>
