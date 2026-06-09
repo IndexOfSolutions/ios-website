@@ -42,6 +42,7 @@ export async function submitContactForm(_prevState, formData) {
       return {
         success: false,
         error: "Failed to send email. Please try again.",
+        consoleError: error,
       };
     }
 
@@ -54,6 +55,7 @@ export async function submitContactForm(_prevState, formData) {
     return {
       success: false,
       error: "Something went wrong. Please try again.",
+      consoleError: error,
     };
   }
 }

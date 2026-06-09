@@ -62,6 +62,7 @@ export const ContactUsForm = () => {
                     showToast.success(res.message ?? 'Message sent!', { position: 'top-center' })
                     contactUsForm.resetForm()
                 } else {
+                    console.error(res?.consoleError);
                     showToast.error(res?.error ?? 'Failed to send. Please try again.', { position: 'top-center' })
                 }
             } catch (err) {
