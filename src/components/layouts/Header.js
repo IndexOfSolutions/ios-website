@@ -85,6 +85,9 @@ export const Header = () => {
                                         </div>
                                     </li>
                                     <li>
+                                        <Link href="/price-calculator" scroll={true} className='hover:text-primary'>Price Estimator</Link>
+                                    </li>
+                                    <li>
                                         <Link href="/blogs" scroll={true} className='hover:text-primary'>Blogs</Link>
                                     </li>
                                     <li>
@@ -150,6 +153,9 @@ export const Header = () => {
                                     </div>
                                 </div>
                             </li>
+                            <li>
+                                        <Link href="/price-estimator" scroll={true} className='hover:text-primary'>Price Estimator</Link>
+                                    </li>
                             <li>
                                 <Link href="/blogs">Blogs</Link>
                             </li>

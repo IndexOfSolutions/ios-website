@@ -1,8 +1,7 @@
 'use client';
 
 import { useState, useEffect, useRef, useCallback } from 'react';
-import styles from './ChatbotModal.module.css';
-import Image from 'next/image';
+import styles from './priceCalculator.module.css';
 
 const TRANSLATIONS = {
   en: {
@@ -250,8 +249,7 @@ ALWAYS RETURN THIS EXACT JSON STRUCTURE:
   "NeedsCompanyInfo": false
 }`;
 
-export default function ChatbotModal({ ref }) {
-  const [isOpen, setIsOpen] = useState(false);
+export default function PriceCalculator() {
   const [messages, setMessages] = useState([]);
   const [currentLang, setCurrentLang] = useState('en');
   const [isLoading, setIsLoading] = useState(false);
@@ -263,7 +261,7 @@ export default function ChatbotModal({ ref }) {
   const t = TRANSLATIONS[currentLang];
 
   const scrollToBottom = useCallback(() => {
-    messagesEndRef.current?.scrollIntoView({ behavior: 'smooth' });
+    messagesEndRef.current?.scrollIntoView({ block: "center", behavior: 'smooth' });
   }, []);
 
   useEffect(() => {
@@ -500,27 +498,9 @@ export default function ChatbotModal({ ref }) {
     </div>`;
   }, [currentLang, t]);
 
-  if (!isOpen) {
-    return (
-      <button
-        id="trigger-btn"
-        className={styles.triggerBtn}
-        onClick={() => {
-            setIsOpen(true);
-        }}
-        aria-label="Open chatbot"
-        title="Ask about BC implementation estimate"
-      >
-        <Image src="/assets/images/chatbot-robot.webp" width="60" height="60" alt="Chatbot" />
-      </button>
-    );
-  }
-
   return (
-    <div data-lenis-prevent id="modal" className={styles.modalOverlay} onClick={() => {
-        setIsOpen(false)// Re-enable background scrolling when modal is closed
-    }}>
-      <div className={styles.modalContent} onClick={(e) => e.stopPropagation()}>
+    <div className={styles.pageContainer}>
+      <div className={styles.pageContent}>
         {/* Header */}
         <div className={styles.header}>
           <div className={styles.headerIcon}>IOS</div>
@@ -528,13 +508,6 @@ export default function ChatbotModal({ ref }) {
             <h1>{t.title}</h1>
             <p>{t.subtitle}</p>
           </div>
-          <button
-            className={styles.closeBtn}
-            onClick={() => setIsOpen(false)}
-            aria-label="Close chatbot"
-          >
-            ✕
-          </button>
         </div>
 
         {/* Messages */}
