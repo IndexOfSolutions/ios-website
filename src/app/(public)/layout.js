@@ -4,6 +4,7 @@ import localFont from "next/font/local";
 import { Footer } from "@/components/layouts/Footer";
 import { SmoothScrolling } from "@/components/animations/SmoothScrolling";
 import { SITE_NAME, DEFAULT_META_DESCRIPTION, META_KEYWORDS_STRING, SERVICES_KEYWORDS } from "@/constants/seo";
+import ChatbotModal from "@/components/ChatbotModal";
 
 const getSiteUrl = () => {
   const fromEnv =
@@ -145,6 +146,7 @@ export default function RootLayout({ children }) {
           <Header />
           {children}
           <Footer />
+          <ChatbotModal />
         </SmoothScrolling>
       </div>
   );

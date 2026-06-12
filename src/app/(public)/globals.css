@@ -50,6 +50,11 @@ body {
   background-color: var(--color-mainbg);
 }
 
+body #modal {
+  overflow: hidden;
+  scroll-behavior: unset;
+}
+
 .glow-line-left {
   height: 4px;
   background: linear-gradient(to left, rgba(59, 130, 246, 0) 0%, #3B82F6 100%);
