@@ -511,7 +511,7 @@ export default function ChatbotModal({ ref }) {
         aria-label="Open chatbot"
         title="Ask about BC implementation estimate"
       >
-        <Image src="/assets/images/chatbot-robot.webp" width="60" height="60" alt="Chatbot" />
+        <Image src="/assets/images/logo/chatbot-robot.webp" width="60" height="60" alt="Chatbot" />
       </button>
     );
   }
