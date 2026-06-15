@@ -1,6 +1,7 @@
 'use client';
 
 import { useState, useEffect, useRef, useCallback } from 'react';
+import { usePathname } from 'next/navigation'
 import styles from './ChatbotModal.module.css';
 import Image from 'next/image';
 
@@ -260,6 +261,10 @@ export default function ChatbotModal({ ref }) {
   const messagesEndRef = useRef(null);
   const inputRef = useRef(null);
 
+  const pathName = usePathname();
+
+  const isPriceEstimatorPage = pathName?.startsWith('/price-estimator');
+
   const t = TRANSLATIONS[currentLang];
 
   const scrollToBottom = useCallback(() => {
@@ -512,6 +517,10 @@ export default function ChatbotModal({ ref }) {
       <div class="cta-card">${t.cta}</div>
     </div>`;
   }, [currentLang, t]);
+
+  if (isPriceEstimatorPage) {
+    return null;
+  }
 
   if (!isOpen) {
     return (
