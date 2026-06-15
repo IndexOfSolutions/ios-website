@@ -331,6 +331,19 @@ export default function ChatbotModal({ ref }) {
             },
           ]);
         }
+
+        // After lead capture + email ready, send internal notification email
+        if (state?.LeadCaptured && state?.EmailReady) {
+          try {
+            await fetch('/api/send-estimate-email', {
+              method: 'POST',
+              headers: { 'Content-Type': 'application/json' },
+              body: JSON.stringify(state),
+            });
+          } catch (e) {
+            console.error('Failed to send estimate email:', e);
+          }
+        }
       } catch (err) {
         console.error('API call failed:', err);
         setMessages((prev) => [
@@ -488,7 +501,7 @@ export default function ChatbotModal({ ref }) {
       if (migAdjLow > 0)
         rows += `<div class="est-row est-sub"><span>↳ ${t.migLbl} (${s.HistoryMigration})</span><span>${rng(migAdjLow, migAdjHigh)}</span></div>`;
       rows += `<div class="est-row est-sub"><span>↳ ${t.trainLbl} (${depts} ${depts > 1 ? t.deptsP : t.depts})</span><span>${rng(trainAdjLow, trainAdjHigh)}</span></div>`;
-    }
+    } 
     rows += `<div class="est-subtotal"><span>${t.oneTimeSub}</span><span>${rng(oneTimeLow, oneTimeHigh)}</span></div>`;
 
     return `<div class="est-card">
