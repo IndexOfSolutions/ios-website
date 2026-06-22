@@ -3,8 +3,8 @@
 import { NextResponse } from 'next/server';
 import https from 'https';
 
-const TO_EMAIL = process.env.ESTIMATE_EMAIL_TO || 'youssefnasser14@gmail.com';
-const FROM_EMAIL = process.env.ESTIMATE_EMAIL_FROM || 'onboarding@resend.dev';
+const TO_EMAIL = process.env.CONTACT_TO;
+const FROM_EMAIL = process.env.RESEND_FROM;
 
 export async function OPTIONS() {
   return new NextResponse(null, {
@@ -123,6 +123,8 @@ export async function POST(request) {
       lsHigh +
       otherAdj(custHigh + migHigh + trainHigh);
 
+      console.log(val)
+
     const html = `<!DOCTYPE html><html><head><meta charset="UTF-8">
 <style>
   body { font-family: 'Segoe UI', sans-serif; background:#f8fafc; margin:0; padding:24px; color:#0f172a; }
@@ -186,9 +188,10 @@ export async function POST(request) {
 
     return NextResponse.json({ ok: true }, { status: 200, headers: { ...cors, 'Content-Type': 'application/json' } });
   } catch (err) {
+    console.error("[send-estimate-email]", err);
     return NextResponse.json(
-      { error: 'Failed to send email' },
-      { status: 502, headers: { 'Content-Type': 'application/json' } }
+      { error: "Failed to send email", detail: err?.message },
+      { status: 502, headers: { "Content-Type": "application/json" } }
     );
   }
 }

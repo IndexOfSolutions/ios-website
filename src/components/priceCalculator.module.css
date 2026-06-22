@@ -1,0 +1,583 @@
+/* chatbot.module.css
+ *
+ * Retheme pass: visual language (colors, borders, shadows, radii) now sourced
+ * from the same design tokens used in chatbotPage.module.css:
+ *   --color-mainbg, --color-primary, --color-fg, --color-edges,
+ *   --color-border-color, --inset-shadow-answer-bubble-card(-avatar),
+ *   --inset-shadow-question-bubble-card(-avatar)
+ *
+ * Class names are UNCHANGED from the original so the existing JSX
+ * (styles.pageHeader, styles.bbl, styles.av, etc.) keeps working with zero
+ * markup edits.
+ *
+ * Local CSS variables on .app are a thin alias layer: they let the rest of
+ * the file stay untouched if a token gets renamed upstream, and each one
+ * has a fallback so this still renders sanely if the theme provider hasn't
+ * mounted yet. Drop the fallbacks once you're confident the tokens are
+ * always defined at :root.
+ */
+
+.app {
+  --bg: var(--color-mainbg, #ffffff);
+  --bg-card: var(--color-mainbg, #ffffff);
+  --bg-input: var(--color-mainbg, #ffffff);
+  --border: var(--color-border-color, #e2e8f0);
+  --border-md: var(--color-border-color, #e2e8f0); /* same value as --border on purpose — doc3 doesn't distinguish subtle vs medium border colors, only border *width* differs by element */
+  --accent: var(--color-primary, #3b82f6);
+  --accent2: #2563eb; /* hardcoded in the source theme too — no dedicated "primary-hover" token exists yet */
+  --accent-glow: rgba(59, 130, 246, 0.3); /* NOTE: hardcoded RGB, not derived from --accent. If --color-primary ever changes, this drifts out of sync. Consider exposing --color-primary-rgb: 59,130,246 and using rgba(var(--color-primary-rgb), 0.3) instead. */
+  --green: #10b981; /* no semantic "success" token in the source theme — flagging as a gap worth adding (--color-success) */
+  --text: var(--color-fg, #0f172a);
+  --text-muted: var(--color-edges, #d1d9e6);
+  --text-dim: var(--color-edges, #64748b);
+
+  --shadow-bot-bubble: var(--inset-shadow-answer-bubble-card);
+  --shadow-bot-avatar: var(--inset-shadow-answer-bubble-card-avatar);
+  --shadow-user-bubble: var(--inset-shadow-question-bubble-card);
+  --shadow-user-avatar: var(--inset-shadow-question-bubble-card-avatar);
+
+  display: flex;
+  flex-direction: column;
+  min-height: calc(100dvh - 99px);
+  font-family: "Segoe UI", system-ui, -apple-system, sans-serif;
+  background: var(--bg);
+  color: var(--text);
+}
+
+.app * {
+  box-sizing: border-box;
+}
+
+/* ── Top header ── */
+.pageHeader {
+  background: var(--bg-card);
+  padding: 0 28px;
+  height: 60px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 14px;
+  flex-shrink: 0;
+  border-bottom: 1px solid var(--border);
+  text-align: center;
+}
+
+.headerIcon {
+  width: 34px;
+  height: 34px;
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  /* No background/radius here on purpose: the SVG itself already draws its
+     own rounded-square logo mark with a baked-in fill, unlike doc3's plain
+     colored-circle avatar. Stacking a circular bg behind it would clash. */
+}
+
+.headerIcon svg {
+  width: 28px;
+  height: 28px;
+}
+
+.hdrText h1 {
+  color: var(--text);
+  font-size: 15px;
+  font-weight: 600;
+  line-height: 1.2;
+  letter-spacing: -0.2px;
+  margin: 0;
+}
+
+.hdrText p {
+  color: var(--text-muted);
+  font-size: 11.5px;
+  margin-top: 2px;
+}
+
+.onlineDot {
+  width: 6px;
+  height: 6px;
+  background: var(--green);
+  border-radius: 50%;
+  display: inline-block;
+  margin-right: 5px;
+  vertical-align: middle;
+}
+
+/* ── Messages area ── */
+.messagesWrap {
+  flex: 1; 
+  scroll-behavior: smooth;
+  padding: 36px 16px 20px;
+}
+
+.messagesWrap::-webkit-scrollbar {
+  width: 8px;
+}
+
+.messagesWrap::-webkit-scrollbar-thumb {
+  background: var(--accent);
+  border-radius: 4px;
+}
+
+.messagesWrap::-webkit-scrollbar-thumb:hover {
+  background: var(--accent2);
+}
+
+.messages {
+  max-width: 780px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  gap: 22px;
+}
+
+/* ── Message rows ── */
+.msg {
+  display: flex;
+  gap: 12px;
+  animation: fadeUp 0.3s ease;
+}
+
+@keyframes fadeUp {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.msgBot {
+  /* kept as stretch (not doc3's flex-start) — bot bubbles render rich HTML
+     (estimate cards) via dangerouslySetInnerHTML and need to fill the row's
+     width to wrap/lay out correctly. flex-start would shrink-wrap them. */
+  align-self: stretch;
+}
+
+.msgUser {
+  flex-direction: row-reverse;
+  align-self: flex-end;
+  max-width: 85%;
+}
+
+.av {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  flex-shrink: 0;
+  margin-top: 2px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 10px;
+  font-weight: 700;
+  color: #ffffff;
+}
+
+.botAv {
+  /* background: var(--accent); */
+  box-shadow: var(--shadow-bot-avatar);
+}
+
+.userAv {
+  /* doc3 never set a background for the user avatar — just an inset shadow,
+     which renders invisible. Filling that gap deliberately here. */
+  /* background: var(--accent2); */
+  box-shadow: var(--shadow-user-avatar);
+}
+
+.bbl {
+  padding: 13px 17px;
+  border-radius: 8px; /* doc3 uses a tighter 8px radius than the original 16px */
+  font-size: 14px;
+  line-height: 1.7;
+  border: 2px solid var(--border); /* "card-like" elements get 2px per doc3's pattern; plain dividers stay 1px */
+}
+
+.msgBot .bbl {
+  background: var(--bg-card);
+  color: var(--text);
+  box-shadow: var(--shadow-bot-bubble);
+  border-top-left-radius: 4px;
+  flex: 1;
+}
+
+.msgUser .bbl {
+  /* doc3 also omitted a background here — same bug as the avatar. Fixed. */
+  color: #ffffff;
+  box-shadow: var(--shadow-user-bubble);
+  border-top-right-radius: 4px;
+}
+
+/* ── Typing indicator ── */
+.typing {
+  display: flex;
+  gap: 12px;
+  max-width: 780px;
+  margin: 22px auto 0;
+  width: 100%;
+}
+
+.typingBbl {
+  background: var(--bg-card);
+  border: 2px solid var(--border);
+  border-radius: 8px;
+  border-top-left-radius: 4px;
+  box-shadow: var(--shadow-bot-bubble);
+  padding: 14px 18px;
+  display: flex;
+  gap: 5px;
+  align-items: center;
+}
+
+.dot {
+  width: 6px;
+  height: 6px;
+  background: var(--accent); /* doc3 uses brand-colored typing dots, not muted gray */
+  border-radius: 50%;
+  opacity: 0.7;
+  animation: bounce 1.2s infinite;
+}
+
+.dot:nth-child(2) {
+  animation-delay: 0.2s;
+}
+
+.dot:nth-child(3) {
+  animation-delay: 0.4s;
+}
+
+@keyframes bounce {
+
+  0%,
+  60%,
+  100% {
+    transform: translateY(0);
+  }
+
+  30% {
+    transform: translateY(-5px);
+  }
+}
+
+/* ── Estimate card ── */
+.est-card {
+  background: var(--bg-card);
+  border: 2px solid var(--border);
+  border-radius: 14px;
+  padding: 18px;
+  margin-top: 6px;
+  font-size: 13px;
+  width: 100%;
+  box-shadow:
+    inset 0px -3px 3px -1px rgba(59, 130, 246, 0.1),
+    inset 0px -10px 10px -2.5px rgba(255, 255, 255, 0.1);
+}
+
+.est-card h4 {
+  font-size: 13.5px;
+  font-weight: 600;
+  color: var(--accent);
+  text-shadow: 0 0 8px rgba(59, 130, 246, 0.3);
+  margin-bottom: 14px;
+  padding-bottom: 12px;
+  border-bottom: 1px solid var(--border);
+}
+
+.est-row {
+  display: flex;
+  justify-content: space-between;
+  padding: 5px 0;
+  color: var(--color-fg);
+  font-size: 12.5px;
+}
+
+.est-row span:last-child {
+  color: var(--text);
+  font-weight: 500;
+}
+
+.est-sub {
+  padding-left: 14px;
+  font-size: 12px;
+}
+
+.est-section-label {
+  font-size: 11px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.6px;
+  color: var(--color-fg);
+  margin: 10px 0 6px;
+}
+
+.est-subtotal {
+  display: flex;
+  justify-content: space-between;
+  font-weight: 600;
+  font-size: 13px;
+  color: var(--text);
+  margin-top: 6px;
+  padding-top: 6px;
+  border-top: 1px solid var(--border);
+}
+
+.est-subtotal span:last-child {
+  color: var(--accent);
+  text-shadow: 0 0 8px rgba(59, 130, 246, 0.3);
+}
+
+.est-divider {
+  border: none;
+  border-top: 1px solid var(--border);
+  margin: 14px 0 4px;
+}
+
+.est-total {
+  display: flex;
+  justify-content: space-between;
+  font-weight: 700;
+  font-size: 15px;
+  color: var(--text);
+  margin-top: 12px;
+  padding-top: 12px;
+  border-top: 1px solid rgba(59, 130, 246, 0.3);
+}
+
+.est-total span:last-child {
+  color: var(--accent);
+  text-shadow: 0 0 8px rgba(59, 130, 246, 0.4);
+}
+
+.disclaimer {
+  background: rgba(245, 158, 11, 0.07);
+  border: 1px solid rgba(245, 158, 11, 0.2);
+  border-radius: 8px;
+  padding: 9px 12px;
+  font-size: 11.5px;
+  color: #fbbf24;
+  margin-top: 12px;
+  line-height: 1.5;
+}
+
+.cta-card {
+  background: var(--bg-card);
+  border: 2px solid var(--accent);
+  border-radius: 10px;
+  padding: 13px 15px;
+  margin-top: 12px;
+  color: var(--text);
+  font-size: 13px;
+  line-height: 1.5;
+  box-shadow: 0 0 12px rgba(59, 130, 246, 0.2);
+}
+
+.cta-card a {
+  color: var(--accent);
+  text-decoration: none;
+  font-weight: 600;
+  text-shadow: 0 0 8px rgba(59, 130, 246, 0.3);
+}
+
+.cta-card a:hover {
+  color: #60a5fa;
+  text-decoration: underline;
+}
+
+/* ── Input bar ── */
+.inputBar {
+  flex-shrink: 0;
+  background: var(--bg-card);
+  border-top: 1px solid var(--border);
+  padding: 14px 16px 10px;
+}
+
+.inputInner {
+  max-width: 780px;
+  margin: 0 auto;
+  display: flex;
+  gap: 10px;
+  align-items: flex-end;
+}
+
+.userInput {
+  flex: 1;
+  border: 2px solid var(--border-md);
+  border-radius: 12px;
+  padding: 12px 16px;
+  font-size: 14px;
+  font-family: inherit;
+  resize: none;
+  outline: none;
+  max-height: 140px;
+  min-height: 46px;
+  line-height: 1.5;
+  color: var(--text);
+  background: var(--bg-input);
+  transition: border-color 0.2s, box-shadow 0.2s;
+  overflow: hidden;
+}
+
+.userInput:focus {
+  border-color: var(--accent);
+  box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
+}
+
+.userInput::placeholder {
+  color: var(--text-muted);
+}
+
+.userInput:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+}
+
+.sendBtn {
+  width: 46px;
+  height: 46px;
+  flex-shrink: 0;
+  background: var(--accent);
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 0 12px rgba(59, 130, 246, 0.3);
+  transition: background 0.2s, transform 0.1s, box-shadow 0.2s;
+}
+
+.sendBtn:hover:not(:disabled) {
+  background: var(--accent2);
+  box-shadow: 0 0 16px rgba(59, 130, 246, 0.5);
+  transform: translateY(-1px);
+}
+
+.sendBtn:active:not(:disabled) {
+  transform: scale(0.95);
+}
+
+.sendBtn:disabled {
+  /* doc3 never defined a disabled state for this button at all — filled in. */
+  background: var(--border-md);
+  cursor: not-allowed;
+  box-shadow: none;
+}
+
+.sendBtn svg {
+  width: 18px;
+  height: 18px;
+  fill: white;
+}
+
+.inputHint {
+  /* doc3 doesn't style this class at all — carried forward with new tokens. */
+  text-align: center;
+  font-size: 11px;
+  color: var(--text-muted);
+  margin-top: 8px;
+  max-width: 780px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.inputHint a {
+  color: var(--text-muted);
+  text-decoration: none;
+}
+
+.inputHint a:hover {
+  color: var(--accent);
+}
+
+/* ── Language picker (in-chat) ── */
+.langPickWrap {
+  display: flex;
+  gap: 10px;
+  margin-top: 14px;
+  flex-wrap: wrap;
+}
+
+.langPickBtn {
+  background: var(--bg-input);
+  border: 2px solid var(--border-md);
+  color: var(--text);
+  border-radius: 10px;
+  padding: 9px 16px;
+  font-size: 13px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.15s;
+  font-family: inherit;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.langPickBtn:hover {
+  background: var(--accent);
+  border-color: var(--accent);
+  color: white;
+  transform: translateY(-1px);
+  box-shadow: 0 0 16px rgba(59, 130, 246, 0.4);
+}
+
+/* ── RTL support ──
+   Kept as attribute selectors (not doc3's .rtl class) because the JSX sets
+   dir="rtl"/"ltr" directly on the root element, not a class toggle. */
+.app[dir="rtl"] .msgBot {
+  flex-direction: row-reverse;
+}
+
+.app[dir="rtl"] .msgUser {
+  flex-direction: row;
+}
+
+.app[dir="rtl"] .msgBot .bbl {
+  border-top-left-radius: 8px;
+  border-top-right-radius: 4px;
+}
+
+.app[dir="rtl"] .msgUser .bbl {
+  border-top-right-radius: 8px;
+  border-top-left-radius: 4px;
+}
+
+.app[dir="rtl"] .est-card .est-sub {
+  /* fixed typo: doc2 had ".estCard .est-sub" here, which never matched
+     anything because the real class is hyphenated ".est-card" */
+  padding-left: 0;
+  padding-right: 14px;
+}
+
+.app[dir="rtl"] .sendBtn svg {
+  transform: scaleX(-1);
+}
+
+/* ── Responsive ── */
+@media (max-width: 640px) {
+  .pageHeader {
+    padding: 0 16px;
+    height: 54px;
+  }
+
+  .messagesWrap {
+    padding: 20px 12px 14px;
+  }
+
+  .inputBar {
+    padding: 12px 12px 8px;
+  }
+
+  .msgUser {
+    max-width: 90%;
+  }
+
+  .hdrText h1 {
+    font-size: 12px;
+  }
+}
