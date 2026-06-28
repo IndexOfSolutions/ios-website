@@ -5,7 +5,11 @@ import { notFound } from 'next/navigation'
 import { getSiteUrl } from '@/lib/site-url';
 
 export async function generateStaticParams() {
-    const supabase = await createClient();
+    const { createClient: createSupabaseClient } = await import('@supabase/supabase-js');
+    const supabase = createSupabaseClient(
+        process.env.SUPABASE_URL,
+        process.env.SUPABASE_PUBLISHABLE_DEFAULT_KEY
+    );
     const { data: blogs } = await supabase.from('Blogs').select('link');
     return (blogs ?? []).map((blog) => ({ slug: blog.link }));
 }
