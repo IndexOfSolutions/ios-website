@@ -5,13 +5,20 @@ import { notFound } from 'next/navigation'
 import { getSiteUrl } from '@/lib/site-url';
 
 export async function generateStaticParams() {
-    const { createClient: createSupabaseClient } = await import('@supabase/supabase-js');
-    const supabase = createSupabaseClient(
-        process.env.SUPABASE_URL,
-        process.env.SUPABASE_PUBLISHABLE_DEFAULT_KEY
-    );
-    const { data: blogs } = await supabase.from('Blogs').select('link');
-    return (blogs ?? []).map((blog) => ({ slug: blog.link }));
+    if (!process.env.SUPABASE_URL || !process.env.SUPABASE_PUBLISHABLE_DEFAULT_KEY) {
+        return [];
+    }
+    try {
+        const { createClient: createSupabaseClient } = await import('@supabase/supabase-js');
+        const supabase = createSupabaseClient(
+            process.env.SUPABASE_URL,
+            process.env.SUPABASE_PUBLISHABLE_DEFAULT_KEY
+        );
+        const { data: blogs } = await supabase.from('Blogs').select('link');
+        return (blogs ?? []).map((blog) => ({ slug: blog.link }));
+    } catch {
+        return [];
+    }
 }
 
 export async function generateMetadata({ params }) {
