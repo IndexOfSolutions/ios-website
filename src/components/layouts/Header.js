@@ -56,7 +56,6 @@ export const Header = () => {
                                                         </div>
                                                     </div>
                                                 </div>
-                                                <Link href="/services/power-bi-and-analytics" className='px-4'>Power BI & Analytics</Link>
                                                 <div className="relative inline-block group/item px-4">
                                                     <div className='flex justify-between items-center gap-2'>
                                                         Microsoft Dynamics NAV
@@ -69,6 +68,7 @@ export const Header = () => {
                                                         </div>
                                                     </div>
                                                 </div>
+                                                <Link href="/services/power-bi-and-analytics" className='px-4'>Micrososft Power BI & Analytics</Link>
                                                 <Link href="/services/ls-central-transforms-business-central-into-a-complete-retail-powerhouse" className='px-4'>LS Central For Retail</Link>
                                                 <Link href="/services/full-stack-hr-platform" className='px-4'>Full Stack HR Platform</Link>
                                             </div>
@@ -154,8 +154,8 @@ export const Header = () => {
                                 </div>
                             </li>
                             <li>
-                                        <Link href="/price-estimator" scroll={true} className='hover:text-primary'>Price Estimator</Link>
-                                    </li>
+                                <Link href="/price-estimator" scroll={true} className='hover:text-primary'>Price Estimator</Link>
+                            </li>
                             <li>
                                 <Link href="/blogs">Blogs</Link>
                             </li>

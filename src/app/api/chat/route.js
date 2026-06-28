@@ -70,7 +70,7 @@ export async function POST(req) {
 
   const requestBody = JSON.stringify({
     model: "claude-haiku-4-5-20251001",
-    max_tokens: 1500,
+    max_tokens: 2000,
     system: [
       {
         type: "text",
@@ -101,14 +101,28 @@ export async function POST(req) {
     try {
       state = JSON.parse(clean);
     } catch {
-      console.warn("JSON parse failed, returning fallback state.");
-      state = {
-        NextMessage:
-          "I'm sorry, I encountered an issue. Could you please try again?",
-        ReadyToEstimate: false,
-        LeadCaptured: false,
-        EmailReady: false,
-      };
+      // Recovery attempt 1: extract the outermost {...} block
+      const jsonMatch = clean.match(/\{[\s\S]*\}/);
+      if (jsonMatch) {
+        try {
+          // Recovery attempt 2: fix unescaped literal newlines inside JSON strings
+          const fixed = jsonMatch[0].replace(
+            /"((?:[^"\\]|\\.)*)"/g,
+            (_, inner) => `"${inner.replace(/\n/g, "\\n").replace(/\r/g, "")}"`
+          );
+          state = JSON.parse(fixed);
+        } catch {
+          console.warn("JSON parse failed after recovery, returning fallback state.");
+        }
+      }
+      if (!state) {
+        state = {
+          NextMessage: "Sorry, something went wrong on my end. Could you repeat that?",
+          ReadyToEstimate: false,
+          LeadCaptured: false,
+          EmailReady: false,
+        };
+      }
     }
 
     // If Claude flagged a company info request, answer from the knowledge base
