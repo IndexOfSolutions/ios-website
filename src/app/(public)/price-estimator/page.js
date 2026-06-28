@@ -238,7 +238,7 @@ export default function ChatWidget() {
               ) : m.kind === "html" ? (
                 <div className={styles.bbl} dangerouslySetInnerHTML={{ __html: m.content }} />
               ) : (
-                <div className={styles.bbl}>{m.content}</div>
+                <div className={styles.bbl} style={{whiteSpace: 'pre-wrap'}}>{m.content}</div>
               )}
             </div>
           ))}

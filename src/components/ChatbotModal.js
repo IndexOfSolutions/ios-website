@@ -367,7 +367,7 @@ export default function ChatbotModal({ ref }) {
                 ) : m.kind === "html" ? (
                   <div dangerouslySetInnerHTML={{ __html: m.content }} />
                 ) : (
-                  <p>{m.content}</p>
+                  <p style={{whiteSpace: 'pre-wrap'}}>{m.content}</p>
                 )}
               </div>
             </div>
