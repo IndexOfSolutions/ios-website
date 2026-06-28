@@ -111,39 +111,21 @@ export default function ChatbotModal({ ref }) {
           if (state.ContactCollected) {
             console.log("[IOS Estimator] ContactCollected", state)
             addMsg(state, "bot", "estimate");
-          }
 
-          // Build a clean human-readable transcript from the visible messages
-          const transcript = [
-            ...messages,
-            { role: "user", content: text, kind: "text" },
-          ]
-            .filter((m) => m.kind !== "estimate")
-            .map((m) => {
-              const speaker = m.role === "user" ? "USER" : "BOT";
-              const body =
-                m.kind === "html"
-                  ? String(m.content).replace(/<[^>]+>/g, " ").replace(/\s+/g, " ").trim()
-                  : String(m.content);
-              return `${speaker}: ${body}`;
-            })
-            .join("\n\n");
-            console.log("[IOS Estimator] transcript", transcript)
-          fetch("/api/send-estimate-email", {
-            method: "POST",
-            headers: { "Content-Type": "application/json" },
-            body: JSON.stringify(state),
-          }).catch((err) =>
-            console.warn("[IOS Estimator] Email send failed:", err)
-          );
+            fetch("/api/send-estimate-email", {
+              method: "POST",
+              headers: { "Content-Type": "application/json" },
+              body: JSON.stringify(state),
+            }).catch((err) =>
+              console.warn("[IOS Estimator] Email send failed:", err)
+            );
+          }
         }
       }
 
       if (state.LeadCaptured && state.EmailReady && !leadShownRef.current) {
-        console.log("[IOS Estimator] LeadCaptured and EmailReady", state, state.EmailReady)
-        console.log("[IOS Estimator] transcript", transcript)
+        console.log("[IOS Estimator] LeadCaptured and EmailReady", state)
         leadShownRef.current = true;
-        // Update email with captured email address
         fetch("/api/send-estimate-email", {
           method: "POST",
           headers: { "Content-Type": "application/json" },

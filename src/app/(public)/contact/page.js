@@ -78,7 +78,7 @@ export default function Contact() {
             <div className='flex flex-col gap-1 items-center justify-center'>
                 <div className="flex gap-8 items-center text-fg font-[newake] text-4xl mx-auto md:text-6xl">
                     <div className='hidden md:block glow-line-left w-72'></div>
-                    <h2>Contact Us</h2>
+                    <h1>Contact Us</h1>
                     <div className='hidden md:block glow-line-right w-72'></div>
                 </div>
                 <div className="w-full md:hidden glow-line"></div>
@@ -161,7 +161,7 @@ export default function Contact() {
                                 <IconWrapper icon={"fa-solid fa-location-dot"} color={"var(--color-primary)"} size="2x" className={"absolute top-1/2 left-1/2 -translate-1/2 mix-blend-plus-lighter blur-[10px]"} />
                                 <IconWrapper icon={"fa-solid fa-location-dot"} color={"var(--color-primary)"} size="2x" className={"absolute bg-transparent top-1/2 left-1/2 -translate-1/2"} />
                             </div>
-                            <span>Cornish al mazraa, Facing Liban Post, Sabah Center, Block B, 2nd floor, Beirut, Beirut 14-5703, LB</span>
+                            <span>Cornish al mazraa, Facing Liban Post, Sabbah Center, Block B, 2nd floor, Beirut, Beirut 14-5703, LB</span>
                         </Link>
                     </div>
                 </div>

@@ -26,6 +26,7 @@ export const metadata = {
     title: 'Microsoft Dynamics 365 Dynamics Nav Support | Index of Solutions',
     description:
       'Dynamics Nav support for Lebanese organizations: issue resolution, user guidance, performance monitoring, and Nav version updates/hotfixes with reliable response SLAs.',
+    images: [{ url: '/assets/images/pages/dynamics-nav-support.webp', alt: 'Dynamics NAV Support — Index of Solutions' }],
   },
   twitter: {
     card: 'summary_large_image',

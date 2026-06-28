@@ -26,6 +26,7 @@ export const metadata = {
     title: 'Microsoft Dynamics 365 Business Central Training | Index of Solutions',
     description:
       'Business Central training for SMB teams: role-based end-user, administrator, and power-user programs delivered in Arabic or English. Practical training tailored to your system configuration.',
+    images: [{ url: '/assets/images/pages/business-central-training.webp', alt: 'Business Central Training — Index of Solutions' }],
   },
   twitter: {
     card: 'summary_large_image',

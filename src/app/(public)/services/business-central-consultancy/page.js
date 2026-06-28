@@ -23,6 +23,7 @@ export const metadata = {
     canonical: '/services/business-central-consultancy',
   },
   openGraph: {
+    images: [{ url: '/assets/images/pages/business-central-consultancy.webp', alt: 'Business Central Consultancy — Index of Solutions' }],
     title: 'Microsoft Dynamics 365 Business Central Consultancy | Index of Solutions',
     description:
       'Business Central consultancy for Lebanese SMBs: system assessment, gap analysis, requirements definition, and a clear implementation roadmap designed to deliver real ROI.',

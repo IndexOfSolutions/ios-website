@@ -26,6 +26,7 @@ export const metadata = {
     title: 'Dynamics NAV to Business Central Upgrade | Index of Solutions',
     description:
       'Upgrade legacy Microsoft Dynamics NAV (Navision) to Dynamics 365 Business Central. We help you audit customizations, migrate data, map extensions, test in parallel, and go-live with minimal disruption.',
+    images: [{ url: '/assets/images/pages/nav-to-business-central-upgrade.webp', alt: 'NAV to Business Central Upgrade — Index of Solutions' }],
   },
   twitter: {
     card: 'summary_large_image',

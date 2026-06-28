@@ -1,18 +1,7 @@
 import IndustriesLayout from '@/components/layouts/Industries'
 import React from 'react'
 
-const getSiteUrl = () => {
-  const fromEnv =
-    process.env.NEXT_PUBLIC_SITE_URL ||
-    process.env.SITE_URL ||
-    process.env.VERCEL_PROJECT_PRODUCTION_URL;
-
-  if (fromEnv) {
-    return fromEnv.startsWith('http') ? fromEnv : `https://${fromEnv}`;
-  }
-
-  return 'https://indexofsolutions.com';
-};
+import { getSiteUrl } from '@/lib/site-url';
 
 const siteUrl = getSiteUrl();
 
@@ -39,6 +28,7 @@ export const metadata = {
     description:
       'Business Central ERP for distribution and wholesale businesses: multi-warehouse management, purchase orders, delivery scheduling, and supply chain visibility.',
     type: 'website',
+    images: [{ url: `${siteUrl}/assets/images/pages/business-central-for-distribution.webp`, alt: 'Business Central for Distribution — Index of Solutions' }],
   },
   twitter: {
     card: 'summary_large_image',

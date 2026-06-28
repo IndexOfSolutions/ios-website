@@ -1,6 +1,34 @@
 import React from 'react'
 import "../../../hrms.css";
 
+export const metadata = {
+  title: 'Full Stack HR Platform — IOS HRMS | Index of Solutions',
+  description:
+    'IOS HRMS: a full-stack HR platform covering attendance, payroll, recruitment, leave management, and performance reviews — available on iOS and web for growing organisations.',
+  alternates: {
+    canonical: '/services/full-stack-hr-platform',
+  },
+  openGraph: {
+    title: 'Full Stack HR Platform — IOS HRMS | Index of Solutions',
+    description:
+      'IOS HRMS covers attendance, payroll, recruitment, leave, and performance management in a single connected system for iOS and web.',
+    images: [{ url: '/assets/images/pages/about-index-of-solutions-microsoft-business-solution-partner.webp', alt: 'IOS HRMS Full Stack HR Platform' }],
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'Full Stack HR Platform — IOS HRMS',
+    description:
+      'IOS HRMS covers attendance, payroll, recruitment, leave, and performance management in a single connected system.',
+  },
+  keywords: [
+    'HR platform',
+    'HRMS Lebanon',
+    'payroll software',
+    'attendance management',
+    'HR software Lebanon',
+  ].join(', '),
+};
+
 export default function HRPlatform() {
   return (
     <>

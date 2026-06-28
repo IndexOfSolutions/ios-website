@@ -1,18 +1,7 @@
 import Image from 'next/image'
 import React from 'react'
 
-const getSiteUrl = () => {
-  const fromEnv =
-    process.env.NEXT_PUBLIC_SITE_URL ||
-    process.env.SITE_URL ||
-    process.env.VERCEL_PROJECT_PRODUCTION_URL;
-
-  if (fromEnv) {
-    return fromEnv.startsWith('http') ? fromEnv : `https://${fromEnv}`;
-  }
-
-  return 'https://indexofsolutions.com';
-};
+import { getSiteUrl } from '@/lib/site-url';
 
 const siteUrl = getSiteUrl();
 
@@ -39,6 +28,12 @@ export const metadata = {
     description:
       'Microsoft Certified Business Central partner with 12+ years of expertise, 50+ implementations, and a team of consultants and developers based in Beirut, Lebanon.',
     type: 'website',
+    images: [
+      {
+        url: `${siteUrl}/assets/images/pages/about-index-of-solutions-microsoft-business-solution-partner.webp`,
+        alt: 'About Index of Solutions — Microsoft Business Solution Partner',
+      },
+    ],
   },
   twitter: {
     card: 'summary_large_image',

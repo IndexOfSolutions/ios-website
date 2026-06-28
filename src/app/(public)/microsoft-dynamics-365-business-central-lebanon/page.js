@@ -4,18 +4,7 @@ import { QuestionBubbleCard } from '@/components/ui/QuestionBubbleCard'
 import Image from 'next/image'
 import React from 'react'
 
-const getSiteUrl = () => {
-  const fromEnv =
-    process.env.NEXT_PUBLIC_SITE_URL ||
-    process.env.SITE_URL ||
-    process.env.VERCEL_PROJECT_PRODUCTION_URL;
-
-  if (fromEnv) {
-    return fromEnv.startsWith('http') ? fromEnv : `https://${fromEnv}`;
-  }
-
-  return 'https://indexofsolutions.com';
-};
+import { getSiteUrl } from '@/lib/site-url';
 
 const siteUrl = getSiteUrl();
 
@@ -42,6 +31,7 @@ export const metadata = {
     description:
       'Microsoft Certified Business Central partner in Beirut, Lebanon with 12+ years of expertise helping SMBs implement modern ERP solutions.',
     type: 'website',
+    images: [{ url: `${siteUrl}/assets/images/pages/microsoft-dynamics-365-business-central-lebanon.webp`, alt: 'Microsoft Dynamics 365 Business Central in Lebanon' }],
   },
   twitter: {
     card: 'summary_large_image',

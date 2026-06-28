@@ -2,18 +2,7 @@ import BlogFilters from '@/components/BlogFilters';
 import { createClient } from '@/utils/supabase/server'
 import React from 'react'
 
-const getSiteUrl = () => {
-    const fromEnv =
-        process.env.NEXT_PUBLIC_SITE_URL ||
-        process.env.SITE_URL ||
-        process.env.VERCEL_PROJECT_PRODUCTION_URL
-
-    if (fromEnv) {
-        return fromEnv.startsWith('http') ? fromEnv : `https://${fromEnv}`
-    }
-
-    return 'https://indexofsolutions.com'
-}
+import { getSiteUrl } from '@/lib/site-url'
 
 const siteUrl = getSiteUrl()
 
@@ -39,6 +28,12 @@ export const metadata = {
         url: `${siteUrl}/blogs`,
         title: 'Blogs & Success Stories | Dynamics 365 Business Central | Index of Solutions',
         description: 'Blogs and success stories on Dynamics 365 BC, Dynamics NAV, ERP implementation and consultancy.',
+        images: [
+            {
+                url: `${siteUrl}/assets/images/pages/about-index-of-solutions-microsoft-business-solution-partner.webp`,
+                alt: 'Index of Solutions Blog — Microsoft Dynamics 365 Business Central',
+            },
+        ],
     },
     twitter: {
         title: 'Blogs | Dynamics 365 Business Central | Index of Solutions',

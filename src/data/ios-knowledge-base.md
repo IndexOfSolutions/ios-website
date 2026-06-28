@@ -11,7 +11,7 @@
 **Website:** https://www.indexofsolutions.com  
 **Type:** Microsoft Business Solution Partner  
 **Founded:** 2022  
-**Headquarters:** Cornish al Mazraa, Facing Liban Post, Sabah Center, Block B, 2nd Floor, Beirut, Lebanon 14-5703  
+**Headquarters:** Cornish al Mazraa, Facing Liban Post, Sabbah Center, Block B, 2nd Floor, Beirut, Lebanon 14-5703  
 **Markets Served:** Lebanon, Middle East (MENA/GCC), and globally (remote)  
 
 ### Contact Information

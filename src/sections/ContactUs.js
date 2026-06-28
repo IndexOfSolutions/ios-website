@@ -51,7 +51,7 @@ export const ContactUs = () => {
                                 <IconWrapper icon={"fa-solid fa-location-dot"} color={"var(--color-primary)"} size="2x" className={"absolute top-1/2 left-1/2 -translate-1/2 mix-blend-plus-lighter blur-[10px]"} />
                                 <IconWrapper icon={"fa-solid fa-location-dot"} color={"var(--color-primary)"} size="2x" className={"absolute bg-transparent top-1/2 left-1/2 -translate-1/2"} />
                             </div>
-                            <span>Cornish al mazraa, Facing Liban Post, Sabah Center, Block B, 2nd floor, Beirut, Beirut 14-5703, LB</span>
+                            <span>Cornish al mazraa, Facing Liban Post, Sabbah Center, Block B, 2nd floor, Beirut, Beirut 14-5703, LB</span>
                         </Link>
                     </div>
                 </div>

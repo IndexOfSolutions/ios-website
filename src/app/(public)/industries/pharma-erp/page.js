@@ -1,18 +1,7 @@
 import IndustriesLayout from '@/components/layouts/Industries'
 import React from 'react'
 
-const getSiteUrl = () => {
-  const fromEnv =
-    process.env.NEXT_PUBLIC_SITE_URL ||
-    process.env.SITE_URL ||
-    process.env.VERCEL_PROJECT_PRODUCTION_URL;
-
-  if (fromEnv) {
-    return fromEnv.startsWith('http') ? fromEnv : `https://${fromEnv}`;
-  }
-
-  return 'https://indexofsolutions.com';
-};
+import { getSiteUrl } from '@/lib/site-url';
 
 const siteUrl = getSiteUrl();
 
@@ -39,6 +28,7 @@ export const metadata = {
     description:
       'Business Central ERP for pharmaceutical distribution and pharmacies: lot and serial tracking, expiry management, compliance, and multi-warehouse inventory.',
     type: 'website',
+    images: [{ url: `${siteUrl}/assets/images/pages/business-central-for-pharma.webp`, alt: 'Business Central for Pharma — Index of Solutions' }],
   },
   twitter: {
     card: 'summary_large_image',

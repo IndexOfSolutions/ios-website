@@ -26,6 +26,7 @@ export const metadata = {
     title: 'Microsoft Dynamics 365 Business Central Support | Index of Solutions',
     description:
       'Business Central support for Lebanese organizations: issue resolution, user guidance, performance monitoring, and BC version updates/hotfixes with reliable response SLAs.',
+    images: [{ url: '/assets/images/pages/business-central-support.webp', alt: 'Business Central Support — Index of Solutions' }],
   },
   twitter: {
     card: 'summary_large_image',

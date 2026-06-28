@@ -2,6 +2,34 @@ import { IconWrapper } from '@/components/ui/IconWrapper'
 import Image from 'next/image'
 import React from 'react'
 
+export const metadata = {
+  title: 'Top Microsoft Dynamics 365 Business Central Partners in Lebanon | IOS',
+  description:
+    'Compare the top certified Microsoft Dynamics 365 Business Central partners in Lebanon. Find the right ERP partner for your business — including Index of Solutions, based in Beirut.',
+  alternates: {
+    canonical: '/top-microsoft-dynamics-business-central-partners-in-lebanon',
+  },
+  openGraph: {
+    title: 'Top Microsoft Dynamics 365 Business Central Partners in Lebanon',
+    description:
+      'Compare the top certified Microsoft Dynamics 365 Business Central partners in Lebanon. Find the right ERP partner for your business.',
+    images: [{ url: '/assets/images/pages/microsoft-dynamics-experts-in-lebanon.webp', alt: 'Microsoft Dynamics experts in Lebanon' }],
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'Top Microsoft Dynamics Business Central Partners in Lebanon',
+    description:
+      'Compare the top certified Microsoft Dynamics 365 Business Central partners in Lebanon.',
+  },
+  keywords: [
+    'Microsoft Dynamics partners Lebanon',
+    'Business Central partners Lebanon',
+    'ERP partners Lebanon',
+    'Microsoft Certified partners Beirut',
+    'Dynamics 365 consultants Lebanon',
+  ].join(', '),
+};
+
 export default function TopMicrosoftDynamicsPartnersInLebanon() {
   return (
     <section className='relative w-full h-full px-4 md:px-8 py-section-vertical-sm md:py-section-vertical'>

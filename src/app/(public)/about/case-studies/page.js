@@ -1,18 +1,7 @@
 import Image from 'next/image'
 import React from 'react'
 
-const getSiteUrl = () => {
-  const fromEnv =
-    process.env.NEXT_PUBLIC_SITE_URL ||
-    process.env.SITE_URL ||
-    process.env.VERCEL_PROJECT_PRODUCTION_URL;
-
-  if (fromEnv) {
-    return fromEnv.startsWith('http') ? fromEnv : `https://${fromEnv}`;
-  }
-
-  return 'https://indexofsolutions.com';
-};
+import { getSiteUrl } from '@/lib/site-url';
 
 const siteUrl = getSiteUrl();
 
@@ -39,6 +28,12 @@ export const metadata = {
     description:
       'Real-world case studies showing how we implemented Business Central for retail, pharmaceutical, and distribution companies in Lebanon.',
     type: 'website',
+    images: [
+      {
+        url: `${siteUrl}/assets/images/pages/business-central-case-studies-index-of-solutions.webp`,
+        alt: 'Business Central Implementation Case Studies — Index of Solutions',
+      },
+    ],
   },
   twitter: {
     card: 'summary_large_image',

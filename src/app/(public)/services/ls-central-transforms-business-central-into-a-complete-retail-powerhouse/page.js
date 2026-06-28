@@ -1,6 +1,35 @@
 import ServicesLayout from '@/components/layouts/Services'
 import React from 'react'
 
+export const metadata = {
+  title: 'LS Central for Retail — Business Central Retail Platform | Index of Solutions',
+  description:
+    'LS Central extends Microsoft Dynamics 365 Business Central into a complete unified commerce platform: POS, loyalty, replenishment, store operations, and eCommerce — all in one system.',
+  alternates: {
+    canonical: '/services/ls-central-transforms-business-central-into-a-complete-retail-powerhouse',
+  },
+  openGraph: {
+    title: 'LS Central for Retail — Business Central Retail Platform | Index of Solutions',
+    description:
+      'LS Central extends Business Central into a unified retail platform: POS, loyalty, replenishment, and store operations in one system.',
+    images: [{ url: '/assets/images/pages/business-central-for-retail.webp', alt: 'LS Central for Retail — Index of Solutions' }],
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'LS Central for Retail — Business Central Retail Platform',
+    description:
+      'LS Central extends Business Central into a unified retail platform: POS, loyalty, replenishment, and store operations in one system.',
+  },
+  keywords: [
+    'LS Central',
+    'LS Retail',
+    'Business Central retail',
+    'unified commerce',
+    'POS Business Central',
+    'retail ERP Lebanon',
+  ].join(', '),
+};
+
 export default function LSCentralTransformsBusinessCentralToRetailPowerhouse() {
   return (
     <ServicesLayout

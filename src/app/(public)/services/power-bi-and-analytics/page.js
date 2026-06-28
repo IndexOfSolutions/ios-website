@@ -24,6 +24,7 @@ export const metadata = {
     title: 'Power BI & Analytics for Business Central | Index of Solutions',
     description:
       'Build Power BI dashboards connected to your Business Central environment for real-time visibility into finance, sales, inventory, and operations—so decision-makers get answers faster.',
+    images: [{ url: '/assets/images/pages/power-bi-and-analytics.webp', alt: 'Power BI & Analytics for Business Central — Index of Solutions' }],
   },
   twitter: {
     card: 'summary_large_image',

@@ -25,6 +25,7 @@ export const metadata = {
     title: 'Microsoft Dynamics 365 Business Central Implementation | Index of Solutions',
     description:
       '12+ years implementing Microsoft Dynamics 365 Business Central for SMBs. We deliver full end-to-end implementations: discovery, configuration, data migration, user training, and post-launch support.',
+    images: [{ url: '/assets/images/pages/business-central-implementation.webp', alt: 'Business Central Implementation — Index of Solutions' }],
   },
   twitter: {
     card: 'summary_large_image',

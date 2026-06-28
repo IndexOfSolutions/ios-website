@@ -5,19 +5,7 @@ import { Footer } from "@/components/layouts/Footer";
 import { SmoothScrolling } from "@/components/animations/SmoothScrolling";
 import { SITE_NAME, DEFAULT_META_DESCRIPTION, META_KEYWORDS_STRING, SERVICES_KEYWORDS } from "@/constants/seo";
 import ChatbotModal from "@/components/ChatbotModal";
-
-const getSiteUrl = () => {
-  const fromEnv =
-    process.env.NEXT_PUBLIC_SITE_URL ||
-    process.env.SITE_URL ||
-    process.env.VERCEL_PROJECT_PRODUCTION_URL;
-
-  if (fromEnv) {
-    return fromEnv.startsWith("http") ? fromEnv : `https://${fromEnv}`;
-  }
-
-  return "https://indexofsolutions.com";
-};
+import { getSiteUrl } from "@/lib/site-url";
 
 const newake = localFont({
   src: "../../../public/assets/fonts/Newake.woff2",
@@ -70,6 +58,12 @@ export const metadata = {
     title: "Microsoft Dynamics 365 Business Central ERP Implementation | Index of Solutions",
     description: DEFAULT_META_DESCRIPTION,
     locale: "en_US",
+    images: [
+      {
+        url: `${siteUrl}/assets/images/pages/about-index-of-solutions-microsoft-business-solution-partner.webp`,
+        alt: "Index of Solutions — Microsoft Dynamics 365 Business Central Partner in Lebanon",
+      },
+    ],
   },
   twitter: {
     card: "summary_large_image",

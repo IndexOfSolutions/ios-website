@@ -3,18 +3,7 @@ import { AnswerBubbleCard } from '@/components/ui/AnswerBubbleCard'
 import { QuestionBubbleCard } from '@/components/ui/QuestionBubbleCard'
 import React from 'react'
 
-const getSiteUrl = () => {
-  const fromEnv =
-    process.env.NEXT_PUBLIC_SITE_URL ||
-    process.env.SITE_URL ||
-    process.env.VERCEL_PROJECT_PRODUCTION_URL;
-
-  if (fromEnv) {
-    return fromEnv.startsWith('http') ? fromEnv : `https://${fromEnv}`;
-  }
-
-  return 'https://indexofsolutions.com';
-};
+import { getSiteUrl } from '@/lib/site-url';
 
 const siteUrl = getSiteUrl();
 
@@ -41,6 +30,7 @@ export const metadata = {
     description:
       'Business Central ERP for multi-location retail businesses: inventory management, POS integration, real-time sales reporting, and customer management.',
     type: 'website',
+    images: [{ url: `${siteUrl}/assets/images/pages/business-central-for-retail.webp`, alt: 'Business Central for Retail — Index of Solutions' }],
   },
   twitter: {
     card: 'summary_large_image',

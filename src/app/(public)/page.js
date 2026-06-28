@@ -5,19 +5,7 @@ import { WhatWeOffer } from "@/sections/WhatWeOffer";
 import { WhyChooseIOS } from "@/sections/WhyChooseIOS";
 import { FAQs } from "@/constants/FAQs";
 import { DEFAULT_META_DESCRIPTION, META_KEYWORDS_STRING } from "@/constants/seo";
-
-const getSiteUrl = () => {
-  const fromEnv =
-    process.env.NEXT_PUBLIC_SITE_URL ||
-    process.env.SITE_URL ||
-    process.env.VERCEL_PROJECT_PRODUCTION_URL;
-
-  if (fromEnv) {
-    return fromEnv.startsWith("http") ? fromEnv : `https://${fromEnv}`;
-  }
-
-  return "https://indexofsolutions.com";
-};
+import { getSiteUrl } from "@/lib/site-url";
 
 const siteUrl = getSiteUrl();
 
@@ -32,6 +20,12 @@ export const metadata = {
     url: siteUrl,
     title: "Microsoft Dynamics 365 Business Central ERP Experts | Index of Solutions",
     description: DEFAULT_META_DESCRIPTION,
+    images: [
+      {
+        url: `${siteUrl}/assets/images/pages/about-index-of-solutions-microsoft-business-solution-partner.webp`,
+        alt: "Index of Solutions — Microsoft Dynamics 365 Business Central ERP Experts",
+      },
+    ],
   },
   twitter: {
     card: "summary_large_image",

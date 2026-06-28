@@ -2,22 +2,20 @@ import { createClient } from '@/utils/supabase/server';
 import Image from 'next/image'
 import React from 'react'
 import { notFound } from 'next/navigation'
+import { getSiteUrl } from '@/lib/site-url';
 
-const getSiteUrl = () => {
-    const fromEnv =
-        process.env.NEXT_PUBLIC_SITE_URL ||
-        process.env.SITE_URL ||
-        process.env.VERCEL_PROJECT_PRODUCTION_URL;
-    if (fromEnv) return fromEnv.startsWith('http') ? fromEnv : `https://${fromEnv}`;
-    return 'https://indexofsolutions.com';
-};
+export async function generateStaticParams() {
+    const supabase = await createClient();
+    const { data: blogs } = await supabase.from('Blogs').select('link');
+    return (blogs ?? []).map((blog) => ({ slug: blog.link }));
+}
 
 export async function generateMetadata({ params }) {
     const { slug } = await params;
     const supabase = await createClient();
     const { data: blog } = await supabase
         .from('Blogs')
-        .select('title, excerpt, author, date')
+        .select('title, excerpt, author, date, imageURL')
         .eq('link', slug)
         .single();
 
@@ -30,17 +28,16 @@ export async function generateMetadata({ params }) {
     return {
         title,
         icons: {
-    icon: [
-      { url: '/favicon.ico' },
-      { url: '/favicon-16x16.png', sizes: '16x16', type: 'image/png' },
-      { url: '/favicon-32x32.png', sizes: '32x32', type: 'image/png' },
-      { url: '/android-chrome-192x192.png', sizes: '192x192', type: 'image/png' },
-      { url: '/android-chrome-512x512.png', sizes: '512x512', type: 'image/png' },
-    ],
-    apple: '/apple-touch-icon.png',
-    shortcut: '/favicon.ico',
-
-  },
+            icon: [
+                { url: '/favicon.ico' },
+                { url: '/favicon-16x16.png', sizes: '16x16', type: 'image/png' },
+                { url: '/favicon-32x32.png', sizes: '32x32', type: 'image/png' },
+                { url: '/android-chrome-192x192.png', sizes: '192x192', type: 'image/png' },
+                { url: '/android-chrome-512x512.png', sizes: '512x512', type: 'image/png' },
+            ],
+            apple: '/apple-touch-icon.png',
+            shortcut: '/favicon.ico',
+        },
         description,
         alternates: { canonical: `${siteUrl}/blogs/${slug}` },
         openGraph: {
@@ -50,6 +47,9 @@ export async function generateMetadata({ params }) {
             type: 'article',
             publishedTime: blog.date,
             authors: blog.author ? [blog.author] : undefined,
+            images: blog.imageURL
+                ? [{ url: blog.imageURL, alt: title }]
+                : undefined,
         },
         twitter: {
             card: 'summary_large_image',
@@ -78,6 +78,7 @@ export default async function Page({ params }) {
         '@type': 'Article',
         headline: Blogs.title,
         description: Blogs.excerpt || Blogs.title,
+        image: Blogs.imageURL ? [Blogs.imageURL] : undefined,
         author: { '@type': 'Person', name: Blogs.author },
         datePublished: Blogs.date,
         publisher: { '@type': 'Organization', name: 'Index of Solutions', url: siteUrl },

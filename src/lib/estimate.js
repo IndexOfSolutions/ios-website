@@ -9,6 +9,7 @@
 
 export function estimateKey(s) {
   return JSON.stringify([
+    s.ContactCollected,
     s.FullUsers,
     s.EssentialUsers,
     s.PremiumUsers,
