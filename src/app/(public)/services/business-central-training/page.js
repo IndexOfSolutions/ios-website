@@ -2,21 +2,12 @@ import ServicesLayout from '@/components/layouts/Services'
 import { AnswerBubbleCard } from '@/components/ui/AnswerBubbleCard'
 import { QuestionBubbleCard } from '@/components/ui/QuestionBubbleCard'
 import React from 'react'
+import { getSiteUrl } from '@/lib/site-url'
+
+const siteUrl = getSiteUrl()
 
 export const metadata = {
   title: 'Microsoft Dynamics 365 Business Central Training | Index of Solutions',
-  icons: {
-    icon: [
-      { url: '/favicon.ico' },
-      { url: '/favicon-16x16.png', sizes: '16x16', type: 'image/png' },
-      { url: '/favicon-32x32.png', sizes: '32x32', type: 'image/png' },
-      { url: '/android-chrome-192x192.png', sizes: '192x192', type: 'image/png' },
-      { url: '/android-chrome-512x512.png', sizes: '512x512', type: 'image/png' },
-    ],
-    apple: '/apple-touch-icon.png',
-    shortcut: '/favicon.ico',
-
-  },
   description:
     'Business Central training for SMB teams: role-based end-user, administrator, and power-user programs delivered in Arabic or English. Practical training tailored to your system configuration.',
   alternates: {
@@ -43,9 +34,20 @@ export const metadata = {
   ].join(', '),
 };
 
+const serviceJsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'Service',
+  'name': 'Microsoft Dynamics 365 Business Central Training',
+  'description': 'Business Central training for SMB teams: role-based end-user, administrator, and power-user programs delivered in Arabic or English, tailored to your system configuration.',
+  'provider': { '@type': 'Organization', 'name': 'Index of Solutions', 'url': siteUrl },
+  'areaServed': { '@type': 'Country', 'name': 'Lebanon' },
+  'url': `${siteUrl}/services/business-central-training`,
+}
+
 export default function BusinessCentralTraining() {
   return (
     <ServicesLayout
+        jsonLd={serviceJsonLd}
         title={"Microsoft Dynamics 365 Business Central Training"}
         imageURL={"business-central-training"}
         imageAlt={"Microsoft Dynamics 365 Business Central Training"}

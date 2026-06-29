@@ -38,9 +38,20 @@ export const metadata = {
   },
 };
 
+const industryJsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'Service',
+  'name': 'Business Central ERP for Pharmaceutical',
+  'description': 'Microsoft Dynamics 365 Business Central for pharmaceutical distribution and pharmacy management: lot tracking, expiry management, compliance documentation, and multi-warehouse inventory.',
+  'provider': { '@type': 'Organization', 'name': 'Index of Solutions', 'url': siteUrl },
+  'areaServed': { '@type': 'Country', 'name': 'Lebanon' },
+  'url': `${siteUrl}/industries/pharma-erp`,
+}
+
 export default function PharmaERP() {
   return (
     <IndustriesLayout
+        jsonLd={industryJsonLd}
         title={"Microsoft Dynamics 365 Business Central for Pharmaceutical Businesses"}
         imageURL={"business-central-for-pharma"}
         imageAlt={"Microsoft Dynamics 365 Business Central for Pharmaceutical Businesses"}

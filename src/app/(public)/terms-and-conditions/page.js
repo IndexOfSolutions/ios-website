@@ -1,25 +1,23 @@
 import React from 'react'
+import { getSiteUrl } from '@/lib/site-url';
 
-const getSiteUrl = () => {
-  const fromEnv =
-    process.env.NEXT_PUBLIC_SITE_URL ||
-    process.env.SITE_URL ||
-    process.env.VERCEL_PROJECT_PRODUCTION_URL;
-
-  if (fromEnv) return fromEnv.startsWith('http') ? fromEnv : `https://${fromEnv}`;
-  return 'https://indexofsolutions.com';
-};
+const siteUrl = getSiteUrl();
 
 export const metadata = {
   title: 'Terms & Conditions | Index of Solutions',
   description:
-    'Terms and Conditions for Index of Solutions. Learn about our services, proposals, payment terms (after proposal/contract approval), and legal disclaimers for visitors in Lebanon.',
-  alternates: { canonical: '/terms-and-conditions' },
+    'Terms and Conditions for Index of Solutions. Learn about our services, proposals, payment terms, and legal disclaimers for visitors in Lebanon.',
+  keywords: 'terms and conditions, legal, Index of Solutions, service terms, payment terms',
+  alternates: { canonical: `${siteUrl}/terms-and-conditions` },
   openGraph: {
-    url: `${getSiteUrl()}/terms-and-conditions`,
+    url: `${siteUrl}/terms-and-conditions`,
     title: 'Terms & Conditions | Index of Solutions',
-    description:
-      'Terms and Conditions for Index of Solutions. Learn about our services, proposals, payment terms (after proposal/contract approval), and legal disclaimers.',
+    description: 'Terms and Conditions for Index of Solutions — services, payment terms, and legal disclaimers.',
+  },
+  twitter: {
+    card: 'summary',
+    title: 'Terms & Conditions | Index of Solutions',
+    description: 'Terms and Conditions for Index of Solutions — services, payment terms, and legal disclaimers.',
   },
 };
 

@@ -38,9 +38,20 @@ export const metadata = {
   },
 };
 
+const industryJsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'Service',
+  'name': 'Business Central ERP for Wholesale and Distribution',
+  'description': 'Microsoft Dynamics 365 Business Central for wholesale, distribution, and supply chain businesses: multi-warehouse inventory, purchase order management, delivery scheduling, and logistics integration.',
+  'provider': { '@type': 'Organization', 'name': 'Index of Solutions', 'url': siteUrl },
+  'areaServed': { '@type': 'Country', 'name': 'Lebanon' },
+  'url': `${siteUrl}/industries/distribution-erp`,
+}
+
 export default function DistributionERP() {
   return (
     <IndustriesLayout
+        jsonLd={industryJsonLd}
         title={"Microsoft Dynamics 365 Business Central for Wholesale and Distribution in Lebanon"}
         imageURL={"business-central-for-distribution"}
         imageAlt={"Microsoft Dynamics 365 Business Central for Wholesale and Distribution in Lebanon"}

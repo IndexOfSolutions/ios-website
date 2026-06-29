@@ -1,20 +1,11 @@
 import ServicesLayout from '@/components/layouts/Services'
 import React from 'react'
+import { getSiteUrl } from '@/lib/site-url'
+
+const siteUrl = getSiteUrl()
 
 export const metadata = {
   title: 'Power BI & Analytics for Business Central | Index of Solutions',
-  icons: {
-    icon: [
-      { url: '/favicon.ico' },
-      { url: '/favicon-16x16.png', sizes: '16x16', type: 'image/png' },
-      { url: '/favicon-32x32.png', sizes: '32x32', type: 'image/png' },
-      { url: '/android-chrome-192x192.png', sizes: '192x192', type: 'image/png' },
-      { url: '/android-chrome-512x512.png', sizes: '512x512', type: 'image/png' },
-    ],
-    apple: '/apple-touch-icon.png',
-    shortcut: '/favicon.ico',
-
-  },
   description:
     'Build Power BI dashboards connected to your Business Central environment for real-time visibility into finance, sales, inventory, and operations—so decision-makers get answers faster.',
   alternates: {
@@ -41,9 +32,20 @@ export const metadata = {
   ].join(', '),
 };
 
+const serviceJsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'Service',
+  'name': 'Power BI & Analytics for Business Central',
+  'description': 'Build Power BI dashboards connected to your Business Central environment for real-time visibility into finance, sales, inventory, and operations.',
+  'provider': { '@type': 'Organization', 'name': 'Index of Solutions', 'url': siteUrl },
+  'areaServed': { '@type': 'Country', 'name': 'Lebanon' },
+  'url': `${siteUrl}/services/power-bi-and-analytics`,
+}
+
 export default function PowerBIAndAnalytics() {
   return (
     <ServicesLayout
+        jsonLd={serviceJsonLd}
         title={"Power BI & Analytics for Business Central"}
         imageURL={"power-bi-and-analytics"}
         imageAlt={"Power BI & Analytics for Business Central"}

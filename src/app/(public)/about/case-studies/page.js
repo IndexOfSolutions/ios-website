@@ -43,9 +43,19 @@ export const metadata = {
   },
 };
 
+const caseStudiesJsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'CollectionPage',
+  'name': 'Business Central Implementation Case Studies',
+  'description': 'Real-world Business Central implementation case studies from Index of Solutions across retail, pharmaceutical, and distribution industries in Lebanon.',
+  'url': `${siteUrl}/about/case-studies`,
+  'provider': { '@type': 'Organization', 'name': 'Index of Solutions', 'url': siteUrl },
+}
+
 export default function page() {
     return (
         <section className='relative w-full h-full px-4 md:px-8 py-section-vertical-sm md:py-section-vertical'>
+            <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(caseStudiesJsonLd) }} />
             <div className="relative container flex flex-col gap-16 max-w-[1366px] mx-auto w-full">
                 <div className='flex flex-col gap-1 items-center text-center justify-center'>
                     <div className="flex gap-8 items-center text-fg font-[newake] text-4xl mx-auto md:text-6xl">

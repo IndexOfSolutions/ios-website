@@ -1,9 +1,10 @@
 import Image from 'next/image'
 import React from 'react'
 
-export default function IndustriesLayout({children, title, imageURL, imageAlt}) {
+export default function IndustriesLayout({children, title, imageURL, imageAlt, jsonLd}) {
   return (
     <section className='relative w-full h-full px-4 md:px-8 py-section-vertical-sm md:py-section-vertical'>
+            {jsonLd && <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />}
             <div className="relative container flex flex-col gap-16 max-w-[1366px] mx-auto w-full">
                 <div className='flex flex-col gap-1 items-center text-center justify-center'>
                     <div className="flex gap-8 items-center text-fg font-[newake] text-4xl mx-auto md:text-6xl">

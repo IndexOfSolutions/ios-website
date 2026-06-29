@@ -2,21 +2,12 @@ import ServicesLayout from '@/components/layouts/Services'
 import { AnswerBubbleCard } from '@/components/ui/AnswerBubbleCard'
 import { QuestionBubbleCard } from '@/components/ui/QuestionBubbleCard'
 import React from 'react'
+import { getSiteUrl } from '@/lib/site-url'
+
+const siteUrl = getSiteUrl()
 
 export const metadata = {
   title: 'Microsoft Dynamics 365 Business Central Support | Index of Solutions',
-  icons: {
-    icon: [
-      { url: '/favicon.ico' },
-      { url: '/favicon-16x16.png', sizes: '16x16', type: 'image/png' },
-      { url: '/favicon-32x32.png', sizes: '32x32', type: 'image/png' },
-      { url: '/android-chrome-192x192.png', sizes: '192x192', type: 'image/png' },
-      { url: '/android-chrome-512x512.png', sizes: '512x512', type: 'image/png' },
-    ],
-    apple: '/apple-touch-icon.png',
-    shortcut: '/favicon.ico',
-
-  },
   description:
     'Business Central support for Lebanese organizations: issue resolution, user guidance, performance monitoring, and BC version updates/hotfixes with reliable response SLAs.',
   alternates: {
@@ -43,9 +34,20 @@ export const metadata = {
   ].join(', '),
 };
 
+const serviceJsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'Service',
+  'name': 'Microsoft Dynamics 365 Business Central Support',
+  'description': 'Business Central support for Lebanese organizations: issue resolution, user guidance, performance monitoring, and BC version updates with reliable response SLAs.',
+  'provider': { '@type': 'Organization', 'name': 'Index of Solutions', 'url': siteUrl },
+  'areaServed': { '@type': 'Country', 'name': 'Lebanon' },
+  'url': `${siteUrl}/services/business-central-support`,
+}
+
 export default function BusinessCentralSupport() {
   return (
     <ServicesLayout
+        jsonLd={serviceJsonLd}
         title={"Microsoft Dynamics 365 Business Central Support"}
         imageURL={"business-central-support"}
         imageAlt={"Microsoft Dynamics 365 Business Central Support"}

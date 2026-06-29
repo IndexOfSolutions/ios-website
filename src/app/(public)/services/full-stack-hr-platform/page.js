@@ -1,5 +1,18 @@
 import React from 'react'
 import "../../../hrms.css";
+import { getSiteUrl } from '@/lib/site-url'
+
+const siteUrl = getSiteUrl()
+
+const serviceJsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'Service',
+  'name': 'Full Stack HR Platform — IOS HRMS',
+  'description': 'IOS HRMS: a full-stack HR platform covering attendance, payroll, recruitment, leave management, and performance reviews — available on iOS and web for growing organisations.',
+  'provider': { '@type': 'Organization', 'name': 'Index of Solutions', 'url': siteUrl },
+  'areaServed': { '@type': 'Country', 'name': 'Lebanon' },
+  'url': `${siteUrl}/services/full-stack-hr-platform`,
+}
 
 export const metadata = {
   title: 'Full Stack HR Platform — IOS HRMS | Index of Solutions',
@@ -32,6 +45,7 @@ export const metadata = {
 export default function HRPlatform() {
   return (
     <>
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(serviceJsonLd) }} />
 <section className="hero">
         <div style={{ position: 'relative', zIndex: 1, textAlign: 'center' }}>
           <div className="hero-badge">

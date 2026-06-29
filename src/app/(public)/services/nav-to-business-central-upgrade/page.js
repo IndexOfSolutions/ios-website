@@ -2,21 +2,12 @@ import ServicesLayout from '@/components/layouts/Services'
 import { AnswerBubbleCard } from '@/components/ui/AnswerBubbleCard'
 import { QuestionBubbleCard } from '@/components/ui/QuestionBubbleCard'
 import React from 'react'
+import { getSiteUrl } from '@/lib/site-url'
+
+const siteUrl = getSiteUrl()
 
 export const metadata = {
   title: 'Dynamics NAV to Business Central Upgrade | Index of Solutions',
-  icons: {
-    icon: [
-      { url: '/favicon.ico' },
-      { url: '/favicon-16x16.png', sizes: '16x16', type: 'image/png' },
-      { url: '/favicon-32x32.png', sizes: '32x32', type: 'image/png' },
-      { url: '/android-chrome-192x192.png', sizes: '192x192', type: 'image/png' },
-      { url: '/android-chrome-512x512.png', sizes: '512x512', type: 'image/png' },
-    ],
-    apple: '/apple-touch-icon.png',
-    shortcut: '/favicon.ico',
-
-  },
   description:
     'Upgrade legacy Microsoft Dynamics NAV (Navision) to Dynamics 365 Business Central. We help you audit customizations, migrate data, map extensions, test in parallel, and go-live with minimal disruption.',
   alternates: {
@@ -43,9 +34,20 @@ export const metadata = {
   ].join(', '),
 };
 
+const serviceJsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'Service',
+  'name': 'Dynamics NAV to Business Central Upgrade',
+  'description': 'Upgrade legacy Microsoft Dynamics NAV to Dynamics 365 Business Central. We audit customizations, migrate data, map extensions, test in parallel, and go-live with minimal disruption.',
+  'provider': { '@type': 'Organization', 'name': 'Index of Solutions', 'url': siteUrl },
+  'areaServed': { '@type': 'Country', 'name': 'Lebanon' },
+  'url': `${siteUrl}/services/nav-to-business-central-upgrade`,
+}
+
 export default function NavToBusinessCentralUpgrade() {
   return (
     <ServicesLayout
+        jsonLd={serviceJsonLd}
         title={"Dynamics NAV to Business Central Upgrade"}
         imageURL={"nav-to-business-central-upgrade"}
         imageAlt={"Dynamics NAV to Business Central Upgrade"}

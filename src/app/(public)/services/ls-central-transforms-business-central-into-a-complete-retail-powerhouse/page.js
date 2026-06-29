@@ -1,5 +1,8 @@
 import ServicesLayout from '@/components/layouts/Services'
 import React from 'react'
+import { getSiteUrl } from '@/lib/site-url'
+
+const siteUrl = getSiteUrl()
 
 export const metadata = {
   title: 'LS Central for Retail — Business Central Retail Platform | Index of Solutions',
@@ -30,9 +33,20 @@ export const metadata = {
   ].join(', '),
 };
 
+const serviceJsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'Service',
+  'name': 'LS Central for Retail — Business Central Retail Platform',
+  'description': 'LS Central extends Microsoft Dynamics 365 Business Central into a complete unified commerce platform: POS, loyalty, replenishment, store operations, and eCommerce — all in one system.',
+  'provider': { '@type': 'Organization', 'name': 'Index of Solutions', 'url': siteUrl },
+  'areaServed': { '@type': 'Country', 'name': 'Lebanon' },
+  'url': `${siteUrl}/services/ls-central-transforms-business-central-into-a-complete-retail-powerhouse`,
+}
+
 export default function LSCentralTransformsBusinessCentralToRetailPowerhouse() {
   return (
     <ServicesLayout
+            jsonLd={serviceJsonLd}
             title={"How LS Central Transforms Business Central into a Complete Retail Powerhouse"}
             
         >

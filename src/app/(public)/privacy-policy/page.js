@@ -1,22 +1,22 @@
 import React from 'react'
+import { getSiteUrl } from '@/lib/site-url';
 
-const getSiteUrl = () => {
-    const fromEnv =
-        process.env.NEXT_PUBLIC_SITE_URL ||
-        process.env.SITE_URL ||
-        process.env.VERCEL_PROJECT_PRODUCTION_URL;
-    if (fromEnv) return fromEnv.startsWith('http') ? fromEnv : `https://${fromEnv}`;
-    return 'https://indexofsolutions.com';
-};
+const siteUrl = getSiteUrl();
 
 export const metadata = {
-    title: 'Privacy Policy | KSA ZATCA E-Invoicing & Dynamics 365 Business Central',
-    description: 'Privacy policy for Index of Solutions and the KSA ZATCA Integration with Flick for E-Invoicing extension for Microsoft Dynamics 365 Business Central. Data handling and security.',
-    alternates: { canonical: '/privacy-policy' },
+    title: 'Privacy Policy | Index of Solutions',
+    description: 'Privacy policy for Index of Solutions. Learn how we collect, use, and protect your data when using our services and Microsoft Dynamics 365 Business Central extensions.',
+    keywords: 'privacy policy, data protection, Index of Solutions, GDPR, data handling',
+    alternates: { canonical: `${siteUrl}/privacy-policy` },
     openGraph: {
-        url: `${getSiteUrl()}/privacy-policy`,
+        url: `${siteUrl}/privacy-policy`,
         title: 'Privacy Policy | Index of Solutions',
-        description: 'Privacy policy for KSA ZATCA E-Invoicing and Dynamics 365 Business Central extension.',
+        description: 'Learn how Index of Solutions collects, uses, and protects your data.',
+    },
+    twitter: {
+        card: 'summary',
+        title: 'Privacy Policy | Index of Solutions',
+        description: 'Learn how Index of Solutions collects, uses, and protects your data.',
     },
 };
 

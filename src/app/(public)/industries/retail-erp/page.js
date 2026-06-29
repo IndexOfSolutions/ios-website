@@ -40,9 +40,20 @@ export const metadata = {
   },
 };
 
+const industryJsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'Service',
+  'name': 'Business Central ERP for Retail',
+  'description': 'Microsoft Dynamics 365 Business Central for retail businesses: multi-location inventory management, POS integration, real-time sales reporting, and customer loyalty management.',
+  'provider': { '@type': 'Organization', 'name': 'Index of Solutions', 'url': siteUrl },
+  'areaServed': { '@type': 'Country', 'name': 'Lebanon' },
+  'url': `${siteUrl}/industries/retail-erp`,
+}
+
 export default function RetailERP() {
   return (
     <IndustriesLayout
+        jsonLd={industryJsonLd}
         title={"Business Central For Retail"}
         imageURL={"business-central-for-retail"}
         imageAlt={"business-central-for-retail"}

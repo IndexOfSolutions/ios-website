@@ -73,8 +73,29 @@ export default function Contact() {
         }
     })
 
+    const contactJsonLd = {
+      '@context': 'https://schema.org',
+      '@type': 'ContactPage',
+      'name': 'Contact Index of Solutions',
+      'description': 'Get in touch with our Microsoft Certified Business Central team in Beirut, Lebanon.',
+      'url': 'https://www.indexofsolutions.com/contact',
+      'mainEntity': {
+        '@type': 'Organization',
+        'name': 'Index of Solutions',
+        'telephone': '+961-3-865174',
+        'email': 'y.nasser@indexofsolutions.com',
+        'address': {
+          '@type': 'PostalAddress',
+          'streetAddress': 'Cornish al Mazraa, Sabbah Center, Block B, 2nd Floor',
+          'addressLocality': 'Beirut',
+          'addressCountry': 'LB',
+        },
+      },
+    }
+
     return (
         <section id='why-choose-us' className='w-full px-4 md:px-8 py-section-vertical-sm md:py-section-vertical overflow-x-hidden'>
+            <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(contactJsonLd) }} />
             <div className='flex flex-col gap-1 items-center justify-center'>
                 <div className="flex gap-8 items-center text-fg font-[newake] text-4xl mx-auto md:text-6xl">
                     <div className='hidden md:block glow-line-left w-72'></div>
@@ -86,7 +107,7 @@ export default function Contact() {
             </div>
             <div className='relative container max-w-[1366] mx-auto flex flex-col lg:flex-row md:justify-between gap-16 lg:8 pt-16'>
                 <div className="flex flex-col gap-4 text-fg font-[inter] w-full max-w-[786]">
-                    <h2 className='text-5xl font-[inter] font-bold'>Contact Us</h2>
+                    <h2 className='text-5xl font-[inter] font-bold'>Send Us a Message</h2>
                     <form onSubmit={contactUsForm.handleSubmit} className='w-full grid grid-cols-1 md:grid-cols-2 gap-4'>
                         <div className="flex flex-col gap-2">
                             <label htmlFor="name">Full Name</label>

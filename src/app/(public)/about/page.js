@@ -43,9 +43,33 @@ export const metadata = {
   },
 };
 
+const aboutJsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'AboutPage',
+  'name': 'About Index of Solutions',
+  'description': 'Index of Solutions is a Microsoft Certified Business Central partner based in Beirut, Lebanon, with 12+ years of Dynamics expertise and 50+ completed implementations.',
+  'url': `${siteUrl}/about`,
+  'mainEntity': {
+    '@type': 'Organization',
+    'name': 'Index of Solutions',
+    'url': siteUrl,
+    'foundingDate': '2012',
+    'address': {
+      '@type': 'PostalAddress',
+      'addressLocality': 'Beirut',
+      'addressCountry': 'LB',
+    },
+    'areaServed': [
+      { '@type': 'Country', 'name': 'Lebanon' },
+      { '@type': 'AdministrativeArea', 'name': 'MENA' },
+    ],
+  },
+}
+
 export default function About() {
     return (
         <section className='relative w-full h-full px-4 md:px-8 py-section-vertical-sm md:py-section-vertical'>
+            <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(aboutJsonLd) }} />
             <div className="relative container flex flex-col gap-16 max-w-[1366px] mx-auto w-full">
                 <div className='flex flex-col gap-1 items-center text-center justify-center'>
                     <div className="flex gap-8 items-center text-fg font-[newake] text-4xl mx-auto md:text-6xl">
