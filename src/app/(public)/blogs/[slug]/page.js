@@ -1,19 +1,22 @@
-import { createClient } from '@/utils/supabase/server';
+import { createClient as createSupabaseClient } from '@supabase/supabase-js';
 import Image from 'next/image'
 import React from 'react'
 import { notFound } from 'next/navigation'
 import { getSiteUrl } from '@/lib/site-url';
+
+function getSupabase() {
+    return createSupabaseClient(
+        process.env.SUPABASE_URL,
+        process.env.SUPABASE_PUBLISHABLE_DEFAULT_KEY
+    );
+}
 
 export async function generateStaticParams() {
     if (!process.env.SUPABASE_URL || !process.env.SUPABASE_PUBLISHABLE_DEFAULT_KEY) {
         return [];
     }
     try {
-        const { createClient: createSupabaseClient } = await import('@supabase/supabase-js');
-        const supabase = createSupabaseClient(
-            process.env.SUPABASE_URL,
-            process.env.SUPABASE_PUBLISHABLE_DEFAULT_KEY
-        );
+        const supabase = getSupabase();
         const { data: blogs } = await supabase.from('Blogs').select('link');
         return (blogs ?? []).map((blog) => ({ slug: blog.link }));
     } catch {
@@ -24,7 +27,10 @@ export async function generateStaticParams() {
 export async function generateMetadata({ params }) {
     try {
         const { slug } = await params;
-        const supabase = await createClient();
+        if (!process.env.SUPABASE_URL || !process.env.SUPABASE_PUBLISHABLE_DEFAULT_KEY) {
+            return { title: 'Blog | Index of Solutions' };
+        }
+        const supabase = getSupabase();
         const { data: blog } = await supabase
             .from('Blogs')
             .select('title, excerpt, author, date, imageURL')
@@ -77,7 +83,11 @@ export async function generateMetadata({ params }) {
 export default async function Page({ params }) {
     const { slug } = await params;
 
-    const supabase = await createClient();
+    if (!process.env.SUPABASE_URL || !process.env.SUPABASE_PUBLISHABLE_DEFAULT_KEY) {
+        notFound();
+    }
+
+    const supabase = getSupabase();
 
     const { data: Blogs, error } = await supabase
       .from("Blogs")
