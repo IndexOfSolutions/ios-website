@@ -1,18 +1,23 @@
 import { NextResponse } from 'next/server';
-import { createHash } from 'crypto';
 
-function getSessionToken() {
-  return createHash('sha256')
-    .update(process.env.ADMIN_PASSWORD + process.env.SUPABASE_PUBLISHABLE_DEFAULT_KEY)
-    .digest('hex');
+// Web Crypto API — available in the Edge Runtime (unlike Node's 'crypto' module)
+async function getSessionToken() {
+  const encoder = new TextEncoder();
+  const data = encoder.encode(process.env.ADMIN_PASSWORD + process.env.SUPABASE_PUBLISHABLE_DEFAULT_KEY);
+  const hashBuffer = await crypto.subtle.digest('SHA-256', data);
+  return Array.from(new Uint8Array(hashBuffer))
+    .map(b => b.toString(16).padStart(2, '0'))
+    .join('');
 }
 
-function isAdminAuthenticated(request) {
+async function isAdminAuthenticated(request) {
+  if (!process.env.ADMIN_PASSWORD) return false;
   const session = request.cookies.get('admin-session')?.value;
-  return !!process.env.ADMIN_PASSWORD && session === getSessionToken();
+  if (!session) return false;
+  return session === await getSessionToken();
 }
 
-export function middleware(request) {
+export async function middleware(request) {
   const { pathname, search } = request.nextUrl;
 
   // Public URL lowercasing (skip admin, API, _next, static files)
@@ -34,7 +39,7 @@ export function middleware(request) {
 
   // Admin auth protection
   if (pathname.startsWith('/admin')) {
-    const authenticated = isAdminAuthenticated(request);
+    const authenticated = await isAdminAuthenticated(request);
 
     if (pathname === '/admin/login') {
       // Already logged in — go to dashboard

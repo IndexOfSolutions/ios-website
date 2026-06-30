@@ -39,11 +39,6 @@ export async function signOut() {
   redirect('/admin/login');
 }
 
-export function isAuthenticated(request) {
-  const session = request.cookies.get('admin-session')?.value;
-  return session === getSessionToken();
-}
-
 export async function addBlog(formData) {
   const supabase = await createClient();
 
