@@ -51,7 +51,6 @@ export default async function Dashboard({ searchParams }) {
 
       <main className='max-w-6xl mx-auto px-6 py-10 flex flex-col gap-8'>
 
-        {/* Flash messages */}
         {success && (
           <div className='bg-green-500/10 border border-green-500/30 rounded-lg px-4 py-3'>
             <p className='text-green-400 text-sm font-[inter]'>{decodeURIComponent(success)}</p>
@@ -65,10 +64,8 @@ export default async function Dashboard({ searchParams }) {
           </div>
         )}
 
-        {/* Add blog button / form */}
         <AddBlogForm />
 
-        {/* Blog list */}
         <div className='flex flex-col gap-4'>
           <div className='flex items-center justify-between'>
             <h2 className='text-2xl font-[newake]'>Blog Posts</h2>
@@ -92,10 +89,10 @@ export default async function Dashboard({ searchParams }) {
                   </tr>
                 </thead>
                 <tbody>
-                  {blogs.map((blog, i) => (
+                  {blogs.map((blog) => (
                     <tr
                       key={blog.id}
-                      className={`border-b border-[#3f3f46] last:border-0 hover:bg-[#18181b]/50 transition-colors`}
+                      className='border-b border-[#3f3f46] last:border-0 hover:bg-[#18181b]/50 transition-colors'
                     >
                       <td className='px-4 py-3'>
                         <div>

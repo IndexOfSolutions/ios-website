@@ -23,7 +23,7 @@ export default function AddBlogForm() {
       <button
         type='button'
         onClick={() => setOpen(true)}
-        className='px-6 py-3 bg-[linear-gradient(90deg,#3B82F6_0%,#619DFF_50%,#3B82F6_100%)] rounded-lg text-[#F1F1F1] font-[inter] font-medium cursor-pointer'
+        className='px-6 py-3 bg-[linear-gradient(90deg,#3B82F6_0%,#619DFF_50%,#3B82F6_100%)] rounded-lg text-[#F1F1F1] font-[inter] font-medium cursor-pointer w-fit'
       >
         + Add New Blog
       </button>
