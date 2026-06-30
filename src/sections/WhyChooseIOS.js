@@ -8,7 +8,7 @@ const stats = [
     { value: '50+', label: 'Implementations Delivered' },
     { value: '30+', label: 'Active Clients' },
     { value: '7', label: 'Countries Served' },
-    { value: '6', label: 'Clients Switched to IOS in 2 Years' },
+    { value: '6', label: 'Clients changed partners to IOS in 2 Years' },
     { value: '95%', label: 'Customer Retention Rate' },
 ]
 
