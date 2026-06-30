@@ -148,7 +148,7 @@ export default function MicrosoftCopilotForBusinessCentral() {
         </div>
         <div className='flex flex-col gap-4'>
           <QuestionBubbleCard question='Is our data safe when using Copilot?' />
-          <AnswerBubbleCard answer='Yes. Copilot in Business Central runs entirely within Microsoft's secure cloud infrastructure. Your data never leaves your tenant, is never used to train public AI models, and is protected by the same enterprise-grade security and compliance standards that apply to the rest of your Microsoft 365 environment.' />
+          <AnswerBubbleCard answer="Yes. Copilot in Business Central runs entirely within Microsoft's secure cloud infrastructure. Your data never leaves your tenant, is never used to train public AI models, and is protected by the same enterprise-grade security and compliance standards that apply to the rest of your Microsoft 365 environment." />
         </div>
         <div className='flex flex-col gap-4'>
           <QuestionBubbleCard question='Which version of Business Central do I need?' />

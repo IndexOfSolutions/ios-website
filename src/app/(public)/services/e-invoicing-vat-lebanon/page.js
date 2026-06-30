@@ -127,7 +127,7 @@ export default function EInvoicingVATLebanon() {
         <h2 className='text-4xl font-[newake]'>Common Questions</h2>
         <div className='flex flex-col gap-4'>
           <QuestionBubbleCard question='Is e-invoicing mandatory in Lebanon yet?' />
-          <AnswerBubbleCard answer='As of mid-2026, Lebanon has not yet mandated e-invoicing for all businesses. However, businesses that export to Saudi Arabia, the UAE, or Egypt must comply with those countries\' e-invoicing requirements for invoices issued to customers there. We monitor regulatory developments and will notify clients when Lebanese e-invoicing legislation is confirmed.' />
+          <AnswerBubbleCard answer="As of mid-2026, Lebanon has not yet mandated e-invoicing for all businesses. However, businesses that export to Saudi Arabia, the UAE, or Egypt must comply with those countries' e-invoicing requirements for invoices issued to customers there. We monitor regulatory developments and will notify clients when Lebanese e-invoicing legislation is confirmed." />
         </div>
         <div className='flex flex-col gap-4'>
           <QuestionBubbleCard question='We currently generate invoices in Word or Excel. What would a Business Central transition involve?' />

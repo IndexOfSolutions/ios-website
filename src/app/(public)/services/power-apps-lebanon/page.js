@@ -142,7 +142,7 @@ export default function PowerAppsLebanon() {
         </div>
         <div className='flex flex-col gap-4'>
           <QuestionBubbleCard question='Can our team maintain the app after you build it?' />
-          <AnswerBubbleCard answer='That is one of Power Apps' strongest advantages. After delivery, we provide training so your internal team can make minor changes — adding fields, adjusting layouts, updating lists — without needing a developer. We remain available for more complex changes or new builds.' />
+          <AnswerBubbleCard answer="That is one of Power Apps' strongest advantages. After delivery, we provide training so your internal team can make minor changes — adding fields, adjusting layouts, updating lists — without needing a developer. We remain available for more complex changes or new builds." />
         </div>
       </div>
 

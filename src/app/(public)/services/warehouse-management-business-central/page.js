@@ -145,11 +145,11 @@ export default function WarehouseManagementBusinessCentral() {
         <h2 className='text-4xl font-[newake]'>Common Questions</h2>
         <div className='flex flex-col gap-4'>
           <QuestionBubbleCard question='Do I need a separate WMS system if I use Business Central?' />
-          <AnswerBubbleCard answer='For most Lebanese SMBs and mid-market distributors, Business Central's built-in warehouse module covers everything needed — bin management, directed pick and put-away, barcode scanning, lot tracking, and cycle counting. A separate WMS is typically only needed for very large, highly automated warehouses with conveyor systems or robotic picking. We assess your operation during discovery and advise honestly.' />
+          <AnswerBubbleCard answer="For most Lebanese SMBs and mid-market distributors, Business Central's built-in warehouse module covers everything needed — bin management, directed pick and put-away, barcode scanning, lot tracking, and cycle counting. A separate WMS is typically only needed for very large, highly automated warehouses with conveyor systems or robotic picking. We assess your operation during discovery and advise honestly." />
         </div>
         <div className='flex flex-col gap-4'>
           <QuestionBubbleCard question='What hardware do warehouse staff need?' />
-          <AnswerBubbleCard answer='Business Central's warehouse module works with standard Android or Windows-based handheld scanners (like Zebra or Honeywell devices), tablets, or even smartphones. We recommend devices based on your warehouse environment — cold storage, outdoor use, or high-drop risk all have different hardware requirements.' />
+          <AnswerBubbleCard answer="Business Central's warehouse module works with standard Android or Windows-based handheld scanners (like Zebra or Honeywell devices), tablets, or even smartphones. We recommend devices based on your warehouse environment — cold storage, outdoor use, or high-drop risk all have different hardware requirements." />
         </div>
         <div className='flex flex-col gap-4'>
           <QuestionBubbleCard question='Can Business Central handle multiple warehouses in different locations?' />
