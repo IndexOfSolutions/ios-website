@@ -22,52 +22,56 @@ export async function generateStaticParams() {
 }
 
 export async function generateMetadata({ params }) {
-    const { slug } = await params;
-    const supabase = await createClient();
-    const { data: blog } = await supabase
-        .from('Blogs')
-        .select('title, excerpt, author, date, imageURL')
-        .eq('link', slug)
-        .single();
+    try {
+        const { slug } = await params;
+        const supabase = await createClient();
+        const { data: blog } = await supabase
+            .from('Blogs')
+            .select('title, excerpt, author, date, imageURL')
+            .eq('link', slug)
+            .single();
 
-    if (!blog) return { title: 'Blog | Index of Solutions' };
+        if (!blog) return { title: 'Blog | Index of Solutions' };
 
-    const siteUrl = getSiteUrl();
-    const description = blog.excerpt || `Read ${blog.title} by Index of Solutions. Microsoft Dynamics 365 Business Central ERP experts.`;
-    const title = blog.title;
+        const siteUrl = getSiteUrl();
+        const description = blog.excerpt || `Read ${blog.title} by Index of Solutions. Microsoft Dynamics 365 Business Central ERP experts.`;
+        const title = blog.title;
 
-    return {
-        title,
-        icons: {
-            icon: [
-                { url: '/favicon.ico' },
-                { url: '/favicon-16x16.png', sizes: '16x16', type: 'image/png' },
-                { url: '/favicon-32x32.png', sizes: '32x32', type: 'image/png' },
-                { url: '/android-chrome-192x192.png', sizes: '192x192', type: 'image/png' },
-                { url: '/android-chrome-512x512.png', sizes: '512x512', type: 'image/png' },
-            ],
-            apple: '/apple-touch-icon.png',
-            shortcut: '/favicon.ico',
-        },
-        description,
-        alternates: { canonical: `${siteUrl}/blogs/${slug}` },
-        openGraph: {
-            url: `${siteUrl}/blogs/${slug}`,
-            title: `${title} | Index of Solutions`,
+        return {
+            title,
+            icons: {
+                icon: [
+                    { url: '/favicon.ico' },
+                    { url: '/favicon-16x16.png', sizes: '16x16', type: 'image/png' },
+                    { url: '/favicon-32x32.png', sizes: '32x32', type: 'image/png' },
+                    { url: '/android-chrome-192x192.png', sizes: '192x192', type: 'image/png' },
+                    { url: '/android-chrome-512x512.png', sizes: '512x512', type: 'image/png' },
+                ],
+                apple: '/apple-touch-icon.png',
+                shortcut: '/favicon.ico',
+            },
             description,
-            type: 'article',
-            publishedTime: blog.date,
-            authors: blog.author ? [blog.author] : undefined,
-            images: blog.imageURL
-                ? [{ url: blog.imageURL, alt: title }]
-                : undefined,
-        },
-        twitter: {
-            card: 'summary_large_image',
-            title: `${title} | Index of Solutions`,
-            description,
-        },
-    };
+            alternates: { canonical: `${siteUrl}/blogs/${slug}` },
+            openGraph: {
+                url: `${siteUrl}/blogs/${slug}`,
+                title: `${title} | Index of Solutions`,
+                description,
+                type: 'article',
+                publishedTime: blog.date,
+                authors: blog.author ? [blog.author] : undefined,
+                images: blog.imageURL
+                    ? [{ url: blog.imageURL, alt: title }]
+                    : undefined,
+            },
+            twitter: {
+                card: 'summary_large_image',
+                title: `${title} | Index of Solutions`,
+                description,
+            },
+        };
+    } catch {
+        return { title: 'Blog | Index of Solutions' };
+    }
 }
 
 export default async function Page({ params }) {

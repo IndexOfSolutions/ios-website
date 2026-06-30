@@ -44,7 +44,7 @@ export const Header = () => {
                                             <div className='bg-mainbg py-4 border-primary border rounded-md w-max flex flex-col gap-2'>
                                                 <div className="relative inline-block group/item px-4">
                                                     <div className='flex justify-between items-center gap-2'>
-                                                        <span>Microsoft Dynamics 365 Business Central </span>
+                                                        <span>Microsoft Dynamics 365 Business Central</span>
                                                         <IconWrapper icon="fa-solid fa-angle-right" color='var(--color-primary)' className={"w-3.5 h-3.5"} />
                                                     </div>
                                                     <div className='absolute hidden group-hover/item:block left-full -top-4'>
@@ -68,14 +68,22 @@ export const Header = () => {
                                                         </div>
                                                     </div>
                                                 </div>
-                                                <Link href="/services/power-bi-and-analytics" className='px-4'>Microsoft Power BI & Analytics</Link>
-                                                <Link href="/services/microsoft-copilot-for-business-central" className='px-4'>Microsoft Copilot</Link>
-                                                <Link href="/services/power-apps-lebanon" className='px-4'>Power Apps</Link>
-                                                <Link href="/services/microsoft-fabric-lebanon" className='px-4'>Microsoft Fabric</Link>
-                                                <Link href="/services/warehouse-management-business-central" className='px-4'>Warehouse Management</Link>
-                                                <Link href="/services/whatsapp-business-central-integration" className='px-4'>WhatsApp Integration</Link>
-                                                <Link href="/services/e-invoicing-vat-lebanon" className='px-4'>e-Invoicing & VAT</Link>
+                                                <div className="relative inline-block group/item px-4">
+                                                    <div className='flex justify-between items-center gap-2'>
+                                                        Microsoft Dynamics BC/NAV Apps & Add-ONS
+                                                        <IconWrapper icon="fa-solid fa-angle-right" color='var(--color-primary)' className={"w-3.5 h-3.5"} />
+                                                    </div>
+                                                    <div className='absolute hidden group-hover/item:block left-full -top-4'>
+                                                        <div className='bg-mainbg p-4 border-primary border rounded-md w-max flex flex-col gap-2'>
+                                                            <Link href="/services/e-invoicing-vat-lebanon">e-Invoicing & VAT</Link>
+                                                            <Link href="/services/warehouse-management-business-central">Warehouse Management</Link>
+                                                            <Link href="/services/whatsapp-business-central-integration">WhatsApp Integration</Link>
+                                                        </div>
+                                                    </div>
+                                                </div>
                                                 <Link href="/services/ls-central-transforms-business-central-into-a-complete-retail-powerhouse" className='px-4'>LS Central For Retail</Link>
+                                                <Link href="/services/power-bi-and-analytics" className='px-4'>Microsoft Power BI & Fabric</Link>
+                                                <Link href="/services/microsoft-copilot-for-business-central" className='px-4'>Microsoft Copilot</Link>
                                                 <Link href="/services/full-stack-hr-platform" className='px-4'>Full Stack HR Platform</Link>
                                             </div>
                                         </div>
