@@ -18,12 +18,15 @@ export const Hero = () => {
                 <div className='text-base px-4 md:px-8 text-fg font-[inter] text-center w-full max-w-[660] z-1'>
                     <p>Serving businesses accross Lebanon, the Middle East and beyond, we deliver high-performance ERP ecosystems engineered on <b className="font-[interItalic] font-black">Microsoft Dynamics 365 Business Central</b> and <b className="font-interItalic font-black">Power BI</b>. We fortify your infrastructure for aggressive local and global expansion.</p>
                 </div>
-                <div className='relative flex justify-center text-fg w-full'>
+                <div className='relative flex flex-col sm:flex-row justify-center items-center gap-4 text-fg w-full'>
                     <div className="absolute top-1/2 -translate-y-1/2 w-full">
                         <HeroLightEffect />
                     </div>
                     <Link href={'/#contact-us'} className='px-6 py-3 bg-[linear-gradient(90deg,#3B82F6_0%,#619DFF_50%,#3B82F6_100%)] rounded-lg border-primary-button-border shadow-primary-button-shadow z-1'>
                         Upgrade to Business Central
+                    </Link>
+                    <Link href={'/assets/PDFs/IOSDesign16.pdf'} target='_blank' rel='noopener noreferrer' className='px-6 py-3 rounded-lg border border-border-color text-fg font-[inter] hover:border-primary transition-colors z-1'>
+                        Download Brochure
                     </Link>
                 </div>
             </div>

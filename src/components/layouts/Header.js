@@ -68,7 +68,13 @@ export const Header = () => {
                                                         </div>
                                                     </div>
                                                 </div>
-                                                <Link href="/services/power-bi-and-analytics" className='px-4'>Micrososft Power BI & Analytics</Link>
+                                                <Link href="/services/power-bi-and-analytics" className='px-4'>Microsoft Power BI & Analytics</Link>
+                                                <Link href="/services/microsoft-copilot-for-business-central" className='px-4'>Microsoft Copilot</Link>
+                                                <Link href="/services/power-apps-lebanon" className='px-4'>Power Apps</Link>
+                                                <Link href="/services/microsoft-fabric-lebanon" className='px-4'>Microsoft Fabric</Link>
+                                                <Link href="/services/warehouse-management-business-central" className='px-4'>Warehouse Management</Link>
+                                                <Link href="/services/whatsapp-business-central-integration" className='px-4'>WhatsApp Integration</Link>
+                                                <Link href="/services/e-invoicing-vat-lebanon" className='px-4'>e-Invoicing & VAT</Link>
                                                 <Link href="/services/ls-central-transforms-business-central-into-a-complete-retail-powerhouse" className='px-4'>LS Central For Retail</Link>
                                                 <Link href="/services/full-stack-hr-platform" className='px-4'>Full Stack HR Platform</Link>
                                             </div>
@@ -81,6 +87,19 @@ export const Header = () => {
                                                 <Link href="/industries/pharma-erp" scroll={true}>Business Central For Pharma</Link>
                                                 <Link href="/industries/retail-erp" scroll={true}>Business Central For Retail</Link>
                                                 <Link href="/industries/distribution-erp" scroll={true}>Business Central Distribution</Link>
+                                                <Link href="/industries/food-and-beverage-erp" scroll={true}>Business Central For Food & Beverage</Link>
+                                                <Link href="/industries/construction-erp-lebanon" scroll={true}>Business Central For Construction</Link>
+                                                <Link href="/industries/ngo-erp-lebanon" scroll={true}>ERP for NGOs & Non-Profits</Link>
+                                            </div>
+                                        </div>
+                                    </li>
+                                    <li className='relative inline-block group'>
+                                        <span className='hover:text-primary'>Compare</span>
+                                        <div className='absolute hidden group-hover:block pt-2'>
+                                            <div className='bg-mainbg p-4 border-primary border rounded-md w-max flex flex-col gap-2'>
+                                                <Link href="/business-central-pricing-lebanon" scroll={true}>BC Pricing Guide</Link>
+                                                <Link href="/compare/business-central-vs-sap" scroll={true}>Business Central vs SAP</Link>
+                                                <Link href="/compare/business-central-vs-odoo" scroll={true}>Business Central vs Odoo</Link>
                                             </div>
                                         </div>
                                     </li>
@@ -138,20 +157,38 @@ export const Header = () => {
                                         <Link href="/services/business-central-support">Business Central Support</Link>
                                         <Link href="/services/business-central-training">Business Central Training</Link>
                                         <Link href="/services/power-bi-and-analytics">Power BI & Analytics</Link>
+                                        <Link href="/services/microsoft-copilot-for-business-central">Microsoft Copilot</Link>
+                                        <Link href="/services/power-apps-lebanon">Power Apps</Link>
+                                        <Link href="/services/microsoft-fabric-lebanon">Microsoft Fabric</Link>
+                                        <Link href="/services/warehouse-management-business-central">Warehouse Management</Link>
+                                        <Link href="/services/whatsapp-business-central-integration">WhatsApp Integration</Link>
+                                        <Link href="/services/e-invoicing-vat-lebanon">e-Invoicing & VAT</Link>
                                         <Link href="/services/nav-to-business-central-upgrade">Dynamics NAV to Business Central Upgrade</Link>
                                         <Link href="/services/ls-central-transforms-business-central-into-a-complete-retail-powerhouse">LS Central For Retail</Link>
                                     </div>
                                 </div>
                             </li>
                             <li className='relative inline-block group w-full text-center'>
-                                <span className='hover:Industriesmary' onClick={() => { setIndustriesMenuOpen(!industriesMenuOpen) }}>Industries</span>
+                                <span className='hover:text-primary' onClick={() => { setIndustriesMenuOpen(!industriesMenuOpen) }}>Industries</span>
                                 <div className={`w-full mx-auto absolute ${industriesMenuOpen ? 'block' : 'hidden'} pt-2 z-10 text-xl`}>
                                     <div className='bg-mainbg p-4 border-primary border rounded-md w-full flex flex-col gap-2'>
                                         <Link href="/industries/retail-erp">Business Central For Retail</Link>
                                         <Link href="/industries/distribution-erp">Business Central Distribution</Link>
                                         <Link href="/industries/pharma-erp">Business Central For Pharma</Link>
+                                        <Link href="/industries/food-and-beverage-erp">Business Central For Food & Beverage</Link>
+                                        <Link href="/industries/construction-erp-lebanon">Business Central For Construction</Link>
+                                        <Link href="/industries/ngo-erp-lebanon">ERP for NGOs & Non-Profits</Link>
                                     </div>
                                 </div>
+                            </li>
+                            <li>
+                                <Link href="/business-central-pricing-lebanon">BC Pricing Guide</Link>
+                            </li>
+                            <li>
+                                <Link href="/compare/business-central-vs-sap">BC vs SAP</Link>
+                            </li>
+                            <li>
+                                <Link href="/compare/business-central-vs-odoo">BC vs Odoo</Link>
                             </li>
                             <li>
                                 <Link href="/price-estimator" scroll={true} className='hover:text-primary'>Price Estimator</Link>

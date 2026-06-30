@@ -1,8 +1,16 @@
 import { BoxLightEffet } from '@/components/SVGs/BoxLightEffet'
-import { SeparaterLightEffect } from '@/components/SVGs/SeparaterLightEffect'
-import { HorizontalMarquee } from '@/components/animations/HorizontalMarquee'
 import { IconWrapper } from '@/components/ui/IconWrapper'
+import Link from 'next/link'
 import React from 'react'
+
+const stats = [
+    { value: '15+', label: 'Years of ERP Expertise' },
+    { value: '50+', label: 'Implementations Delivered' },
+    { value: '30+', label: 'Active Clients' },
+    { value: '7', label: 'Countries Served' },
+    { value: '6', label: 'Clients Switched to IOS in 2 Years' },
+    { value: '95%', label: 'Customer Retention Rate' },
+]
 
 export const WhyChooseIOS = () => {
     return (
@@ -26,7 +34,7 @@ export const WhyChooseIOS = () => {
                 <div className="relative w-full bg-secondary/50 flex flex-col gap-2 border-2 p-6 border-border-color rounded-lg backdrop-blur-125 text-fg">
                     <h2 className='font-[newake] text-5xl md:text-8xl'>Our Mission</h2>
                     <p>
-                        At Index of Solutions, we understand the critical role your mission plays. Our mission-focused <strong>Microsoft Dynamics NAV</strong> and <strong>Dynamics 365 Business Central</strong> ERP services are tailored to your unique needs—implementation, consultancy, customization, development, support and training—optimizing your operations, enhancing transparency, and maximizing your impact. With over 12 years of experience and a Microsoft Certified team, we help small and medium businesses thrive. Elevate your mission with IOS.
+                        At Index of Solutions, we understand the critical role your mission plays. Our mission-focused <strong>Microsoft Dynamics NAV</strong> and <strong>Dynamics 365 Business Central</strong> ERP services are tailored to your unique needs—implementation, consultancy, customization, development, support and training—optimizing your operations, enhancing transparency, and maximizing your impact. With a Microsoft Certified team, we help small and medium businesses thrive. Elevate your mission with IOS.
                     </p>
                 </div>
                 <div className=" relative w-full bg-secondary/50 flex flex-col gap-2 border-2 p-6 border-border-color rounded-lg backdrop-blur-125 text-fg">
@@ -36,29 +44,30 @@ export const WhyChooseIOS = () => {
                     </p>
                 </div>
             </div>
-            <div className='relative container max-w-[1366] mx-auto flex flex-col gap-8 justify-center items-center pt-[60] md:flex-row text-fg text-2xl font-[inter] font-semibold'>
-                <h4>12+ Years <br></br> of Experience</h4>
-                <div className="hidden md:block">
-                    <SeparaterLightEffect direction={"vertical"} />
+
+            {/* Stats grid */}
+            <div className='relative container max-w-[1366] mx-auto pt-[60]'>
+                <div className='grid grid-cols-2 md:grid-cols-3 gap-4'>
+                    {stats.map(({ value, label }) => (
+                        <div key={label} className='flex flex-col gap-1 items-center justify-center text-center bg-secondary/50 border border-border-color rounded-lg p-6'>
+                            <span className='font-[newake] text-5xl md:text-6xl text-primary'>{value}</span>
+                            <span className='font-[inter] text-fg text-sm md:text-base'>{label}</span>
+                        </div>
+                    ))}
                 </div>
-                <div className="md:hidden">
-                    <SeparaterLightEffect direction={"horizontal"} />
-                </div>
-                <h4>50+ Completed <br></br>Projects</h4>
-                <div className="hidden md:block">
-                    <SeparaterLightEffect direction={"vertical"} />
-                </div>
-                <div className="md:hidden">
-                    <SeparaterLightEffect direction={"horizontal"} />
-                </div>
-                <h4>50+ Satisfied <br></br>Clients</h4>
-                <div className="hidden md:block">
-                    <SeparaterLightEffect direction={"vertical"} />
-                </div>
-                <div className="md:hidden">
-                    <SeparaterLightEffect direction={"horizontal"} />
-                </div>
-                <h4>Microsoft Certified <br></br>Team Members</h4>
+            </div>
+
+            {/* Team banner */}
+            <div className='relative container max-w-[1366] mx-auto pt-[40]'>
+                <Link href='/about' className='group flex flex-col md:flex-row items-center justify-between gap-6 bg-secondary/50 border border-border-color rounded-lg p-8 hover:border-primary transition-colors'>
+                    <div className='flex flex-col gap-2 text-center md:text-left'>
+                        <span className='font-[newake] text-fg text-4xl md:text-5xl'>15 Microsoft Certified Professionals</span>
+                        <span className='font-[inter] text-fg/70 text-base'>Every consultant on our team holds active Microsoft certifications — no generalists, no juniors on critical projects.</span>
+                    </div>
+                    <span className='shrink-0 px-6 py-3 bg-[linear-gradient(90deg,#3B82F6_0%,#619DFF_50%,#3B82F6_100%)] rounded-lg border-primary-button-border shadow-primary-button-shadow font-[inter] font-bold text-fg whitespace-nowrap'>
+                        Meet the Team →
+                    </span>
+                </Link>
             </div>
             <div className='relative container max-w-[1366] mx-auto flex flex-col gap-8 pt-[60] md:flex-row text-fg'>
                 <div className='flex flex-col w-72 gap-4 sticky top-4 left-0'>

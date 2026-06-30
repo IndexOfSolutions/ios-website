@@ -27,10 +27,26 @@ export default async function sitemap() {
     { path: '/about', priority: 0.8, changeFrequency: 'monthly' },
     { path: '/about/case-studies', priority: 0.75, changeFrequency: 'monthly' },
 
+    // New service pages
+    { path: '/services/microsoft-copilot-for-business-central', priority: 0.75, changeFrequency: 'weekly' },
+    { path: '/services/power-apps-lebanon', priority: 0.7, changeFrequency: 'weekly' },
+    { path: '/services/warehouse-management-business-central', priority: 0.75, changeFrequency: 'weekly' },
+    { path: '/services/e-invoicing-vat-lebanon', priority: 0.75, changeFrequency: 'weekly' },
+    { path: '/services/microsoft-fabric-lebanon', priority: 0.65, changeFrequency: 'monthly' },
+    { path: '/services/whatsapp-business-central-integration', priority: 0.65, changeFrequency: 'monthly' },
+
     // Industry landing pages
     { path: '/industries/retail-erp', priority: 0.7, changeFrequency: 'weekly' },
     { path: '/industries/distribution-erp', priority: 0.7, changeFrequency: 'weekly' },
     { path: '/industries/pharma-erp', priority: 0.7, changeFrequency: 'weekly' },
+    { path: '/industries/food-and-beverage-erp', priority: 0.7, changeFrequency: 'weekly' },
+    { path: '/industries/construction-erp-lebanon', priority: 0.7, changeFrequency: 'weekly' },
+    { path: '/industries/ngo-erp-lebanon', priority: 0.65, changeFrequency: 'monthly' },
+
+    // Pricing guide + comparison pages
+    { path: '/business-central-pricing-lebanon', priority: 0.85, changeFrequency: 'monthly' },
+    { path: '/compare/business-central-vs-sap', priority: 0.75, changeFrequency: 'monthly' },
+    { path: '/compare/business-central-vs-odoo', priority: 0.75, changeFrequency: 'monthly' },
 
     // Other indexable pages
     { path: '/blogs', priority: 0.6, changeFrequency: 'weekly' },
