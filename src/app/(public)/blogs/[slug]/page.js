@@ -104,7 +104,9 @@ export default async function Page({ params }) {
             />
           <div className="relative container max-w-[1366] mx-auto w-full">
             <div className="relative flex flex-col justify-center gap-16 xl:flex-row">
-              <Image src={Blogs.imageURL} alt={Blogs.imageALT || 'Blog image'} width={100} height={100} className='xl:sticky xl:top-[116] w-full xl:max-w-96 object-contain self-start'/>
+              {Blogs.imageURL && (
+                <Image src={Blogs.imageURL} alt={Blogs.imageALT || Blogs.title || 'Blog image'} width={600} height={400} className='xl:sticky xl:top-[116] w-full xl:max-w-96 object-contain self-start'/>
+              )}
               <div className='grid grid-cols-1 md:grid-cols-[1fr_auto] md:grid-rows-[min-content_min-content] gap-8'>
                 <h1 className='font-[newake] text-fg text-5xl md:max-w-[684] max-h-fit'>{Blogs.title}</h1>
                 <div className="w-full md:max-w-60 h-full md:row-span-2 flex flex-col gap-4 text-fg border-l-3 border-secondary pl-4">
@@ -114,7 +116,7 @@ export default async function Page({ params }) {
                     <span>{Blogs.date}</span>
                   </div>
                 </div>
-                <div className="w-full max-w-[684] mx-auto h-fit break-inside-avoid leading-relaxed text-fg" dangerouslySetInnerHTML={{ __html: Blogs.body }}></div>
+                <div className="w-full max-w-[684] mx-auto h-fit break-inside-avoid leading-relaxed text-fg" dangerouslySetInnerHTML={{ __html: Blogs.body || '' }}></div>
               </div>
             </div>
           </div>
