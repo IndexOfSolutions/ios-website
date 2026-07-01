@@ -15,9 +15,10 @@ function getSessionToken() {
 
 // Service role client — bypasses RLS for all admin writes
 function getAdminClient() {
+  const key = process.env.SUPABASE_SERVICE_ROLE_KEY || process.env.SUPABASE_PUBLISHABLE_DEFAULT_KEY;
   return createSupabaseClient(
     process.env.SUPABASE_URL,
-    process.env.SUPABASE_SERVICE_ROLE_KEY,
+    key,
     { auth: { autoRefreshToken: false, persistSession: false } }
   );
 }
@@ -69,6 +70,16 @@ export async function signOut() {
 
 export async function addBlog(formData) {
   const adminClient = getAdminClient();
+  const link = formData.get('link');
+
+  // Guard: prevent duplicate slug (catches double-submissions)
+  const { data: existing } = await adminClient
+    .from('Blogs')
+    .select('id')
+    .eq('link', link)
+    .maybeSingle();
+
+  if (existing) return { error: `A blog post with the slug "${link}" already exists.` };
 
   const imageFile = formData.get('imageFile');
   const imageURL = await uploadImage(imageFile);
@@ -78,7 +89,7 @@ export async function addBlog(formData) {
     type: formData.get('type'),
     excerpt: formData.get('excerpt'),
     body: formData.get('body'),
-    link: formData.get('link'),
+    link,
     imageURL: imageURL,
     imageALT: formData.get('imageALT') || null,
     author: formData.get('author'),
