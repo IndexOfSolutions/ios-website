@@ -1,17 +1,45 @@
 'use server';
 
-import { createClient } from '@/utils/supabase/server';
+import { createClient as createSupabaseClient } from '@supabase/supabase-js';
 import { cookies } from 'next/headers';
 import { redirect } from 'next/navigation';
 import { revalidatePath } from 'next/cache';
 import { createHash } from 'crypto';
 
-// Derives a stable session token from the admin password + anon key as a salt.
-// Changing ADMIN_PASSWORD instantly invalidates all existing sessions.
+// Session token — derived server-side using Node crypto (not Edge Runtime)
 function getSessionToken() {
   return createHash('sha256')
     .update(process.env.ADMIN_PASSWORD + process.env.SUPABASE_PUBLISHABLE_DEFAULT_KEY)
     .digest('hex');
+}
+
+// Service role client — bypasses RLS for all admin writes
+function getAdminClient() {
+  return createSupabaseClient(
+    process.env.SUPABASE_URL,
+    process.env.SUPABASE_SERVICE_ROLE_KEY,
+    { auth: { autoRefreshToken: false, persistSession: false } }
+  );
+}
+
+async function uploadImage(imageFile) {
+  if (!imageFile || imageFile.size === 0) return null;
+
+  const adminClient = getAdminClient();
+  const ext = imageFile.name.split('.').pop().toLowerCase();
+  const fileName = `${Date.now()}-${Math.random().toString(36).slice(2)}.${ext}`;
+
+  const { error } = await adminClient.storage
+    .from('BlogsImages')
+    .upload(fileName, imageFile, { contentType: imageFile.type, upsert: false });
+
+  if (error) return null;
+
+  const { data: { publicUrl } } = adminClient.storage
+    .from('BlogsImages')
+    .getPublicUrl(fileName);
+
+  return publicUrl;
 }
 
 export async function signIn(formData) {
@@ -26,7 +54,7 @@ export async function signIn(formData) {
     httpOnly: true,
     secure: process.env.NODE_ENV === 'production',
     sameSite: 'lax',
-    maxAge: 60 * 60 * 8, // 8 hours
+    maxAge: 60 * 60 * 8,
     path: '/',
   });
 
@@ -40,7 +68,10 @@ export async function signOut() {
 }
 
 export async function addBlog(formData) {
-  const supabase = await createClient();
+  const adminClient = getAdminClient();
+
+  const imageFile = formData.get('imageFile');
+  const imageURL = await uploadImage(imageFile);
 
   const blog = {
     title: formData.get('title'),
@@ -48,13 +79,13 @@ export async function addBlog(formData) {
     excerpt: formData.get('excerpt'),
     body: formData.get('body'),
     link: formData.get('link'),
-    imageURL: formData.get('imageURL') || null,
+    imageURL: imageURL,
     imageALT: formData.get('imageALT') || null,
     author: formData.get('author'),
     date: formData.get('date'),
   };
 
-  const { error } = await supabase.from('Blogs').insert([blog]);
+  const { error } = await adminClient.from('Blogs').insert([blog]);
 
   if (error) {
     redirect('/admin/dashboard?error=' + encodeURIComponent(error.message));
@@ -65,9 +96,41 @@ export async function addBlog(formData) {
   redirect('/admin/dashboard?success=Blog+added+successfully');
 }
 
+export async function updateBlog(id, formData) {
+  const adminClient = getAdminClient();
+
+  // Upload a new image if one was selected; otherwise keep the existing URL
+  let imageURL = formData.get('existingImageURL') || null;
+  const imageFile = formData.get('imageFile');
+  const newUrl = await uploadImage(imageFile);
+  if (newUrl) imageURL = newUrl;
+
+  const updates = {
+    title: formData.get('title'),
+    type: formData.get('type'),
+    excerpt: formData.get('excerpt'),
+    body: formData.get('body'),
+    link: formData.get('link'),
+    imageURL,
+    imageALT: formData.get('imageALT') || null,
+    author: formData.get('author'),
+    date: formData.get('date'),
+  };
+
+  const { error } = await adminClient.from('Blogs').update(updates).eq('id', id);
+
+  if (error) {
+    redirect('/admin/dashboard?error=' + encodeURIComponent(error.message));
+  }
+
+  revalidatePath('/admin/dashboard');
+  revalidatePath('/blogs');
+  redirect('/admin/dashboard?success=Blog+updated+successfully');
+}
+
 export async function deleteBlog(id) {
-  const supabase = await createClient();
-  const { error } = await supabase.from('Blogs').delete().eq('id', id);
+  const adminClient = getAdminClient();
+  const { error } = await adminClient.from('Blogs').delete().eq('id', id);
 
   if (error) {
     redirect('/admin/dashboard?error=' + encodeURIComponent(error.message));

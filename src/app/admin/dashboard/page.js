@@ -4,6 +4,7 @@ import Image from 'next/image';
 import Link from 'next/link';
 import DeleteButton from './DeleteButton';
 import AddBlogForm from './AddBlogForm';
+import EditBlogModal from './EditBlogModal';
 
 export const metadata = {
   title: 'Admin Dashboard | Index of Solutions',
@@ -16,13 +17,12 @@ export default async function Dashboard({ searchParams }) {
   const supabase = await createClient();
   const { data: blogs, error: fetchError } = await supabase
     .from('Blogs')
-    .select('id, title, type, author, date, link')
+    .select('*')
     .order('date', { ascending: false });
 
   return (
     <div className='min-h-screen bg-[#18181b] text-[#F1F1F1]'>
 
-      {/* Header */}
       <header className='sticky top-0 bg-[#18181b]/90 backdrop-blur-xl border-b border-[#3f3f46] z-10'>
         <div className='max-w-6xl mx-auto px-6 h-16 flex items-center justify-between'>
           <div className='flex items-center gap-3'>
@@ -30,18 +30,11 @@ export default async function Dashboard({ searchParams }) {
             <span className='font-[newake] text-lg'>Admin Panel</span>
           </div>
           <div className='flex items-center gap-4'>
-            <Link
-              href='/'
-              target='_blank'
-              className='text-sm text-[#71717a] hover:text-[#F1F1F1] font-[inter] transition-colors'
-            >
+            <Link href='/' target='_blank' className='text-sm text-[#71717a] hover:text-[#F1F1F1] font-[inter] transition-colors'>
               View Site ↗
             </Link>
             <form action={signOut}>
-              <button
-                type='submit'
-                className='px-4 py-2 text-sm font-[inter] border border-[#3f3f46] rounded-lg hover:border-[#71717a] transition-colors cursor-pointer'
-              >
+              <button type='submit' className='px-4 py-2 text-sm font-[inter] border border-[#3f3f46] rounded-lg hover:border-[#71717a] transition-colors cursor-pointer'>
                 Sign Out
               </button>
             </form>
@@ -90,10 +83,7 @@ export default async function Dashboard({ searchParams }) {
                 </thead>
                 <tbody>
                   {blogs.map((blog) => (
-                    <tr
-                      key={blog.id}
-                      className='border-b border-[#3f3f46] last:border-0 hover:bg-[#18181b]/50 transition-colors'
-                    >
+                    <tr key={blog.id} className='border-b border-[#3f3f46] last:border-0 hover:bg-[#18181b]/50 transition-colors'>
                       <td className='px-4 py-3'>
                         <div>
                           <p className='text-[#F1F1F1] font-medium leading-tight'>{blog.title}</p>
@@ -101,9 +91,7 @@ export default async function Dashboard({ searchParams }) {
                         </div>
                       </td>
                       <td className='px-4 py-3 text-[#71717a] hidden md:table-cell'>
-                        <span className='px-2 py-1 bg-[#18181b] border border-[#3f3f46] rounded text-xs'>
-                          {blog.type}
-                        </span>
+                        <span className='px-2 py-1 bg-[#18181b] border border-[#3f3f46] rounded text-xs'>{blog.type}</span>
                       </td>
                       <td className='px-4 py-3 text-[#71717a] hidden lg:table-cell'>{blog.author}</td>
                       <td className='px-4 py-3 text-[#71717a] hidden md:table-cell'>{blog.date}</td>
@@ -116,6 +104,7 @@ export default async function Dashboard({ searchParams }) {
                           >
                             View
                           </Link>
+                          <EditBlogModal blog={blog} />
                           <DeleteButton id={blog.id} title={blog.title} />
                         </div>
                       </td>
