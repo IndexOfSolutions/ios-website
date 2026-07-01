@@ -1,7 +1,7 @@
 'use client';
 
 import { addBlog } from '../actions';
-import { useState } from 'react';
+import { useState, useRef } from 'react';
 import { useRouter } from 'next/navigation';
 
 const inputClass = 'w-full px-4 py-3 bg-[#18181b] border border-[#3f3f46] rounded-lg text-[#F1F1F1] font-[inter] placeholder-[#52525b] outline-none focus:border-[#3b82f6] transition-colors text-sm';
@@ -9,6 +9,7 @@ const labelClass = 'text-[#F1F1F1] text-sm font-[inter] font-medium';
 
 export default function AddBlogForm() {
   const router = useRouter();
+  const submittingRef = useRef(false);
   const [open, setOpen] = useState(false);
   const [pending, setPending] = useState(false);
   const [preview, setPreview] = useState(null);
@@ -18,11 +19,13 @@ export default function AddBlogForm() {
     setOpen(false);
     setPreview(null);
     setError(null);
+    submittingRef.current = false;
   }
 
   async function handleSubmit(e) {
     e.preventDefault();
-    if (pending) return;
+    if (submittingRef.current) return;
+    submittingRef.current = true;
     setPending(true);
     setError(null);
 
@@ -32,6 +35,7 @@ export default function AddBlogForm() {
     if (result?.error) {
       setError(result.error);
       setPending(false);
+      submittingRef.current = false;
     } else {
       handleClose();
       router.refresh();
