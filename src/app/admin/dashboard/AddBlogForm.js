@@ -2,21 +2,40 @@
 
 import { addBlog } from '../actions';
 import { useState } from 'react';
+import { useRouter } from 'next/navigation';
 
 const inputClass = 'w-full px-4 py-3 bg-[#18181b] border border-[#3f3f46] rounded-lg text-[#F1F1F1] font-[inter] placeholder-[#52525b] outline-none focus:border-[#3b82f6] transition-colors text-sm';
 const labelClass = 'text-[#F1F1F1] text-sm font-[inter] font-medium';
 
 export default function AddBlogForm() {
+  const router = useRouter();
   const [open, setOpen] = useState(false);
   const [pending, setPending] = useState(false);
   const [preview, setPreview] = useState(null);
+  const [error, setError] = useState(null);
+
+  function handleClose() {
+    setOpen(false);
+    setPreview(null);
+    setError(null);
+  }
 
   async function handleSubmit(e) {
     e.preventDefault();
+    if (pending) return;
     setPending(true);
+    setError(null);
+
     const formData = new FormData(e.target);
-    await addBlog(formData);
-    setPending(false);
+    const result = await addBlog(formData);
+
+    if (result?.error) {
+      setError(result.error);
+      setPending(false);
+    } else {
+      handleClose();
+      router.refresh();
+    }
   }
 
   if (!open) {
@@ -35,8 +54,14 @@ export default function AddBlogForm() {
     <div className='bg-[#27272a] border border-[#3f3f46] rounded-xl p-6'>
       <div className='flex items-center justify-between mb-6'>
         <h2 className='text-xl font-[newake] text-[#F1F1F1]'>Add New Blog Post</h2>
-        <button type='button' onClick={() => { setOpen(false); setPreview(null); }} className='text-[#71717a] hover:text-[#F1F1F1] transition-colors text-xl cursor-pointer'>✕</button>
+        <button type='button' onClick={handleClose} className='text-[#71717a] hover:text-[#F1F1F1] transition-colors text-xl cursor-pointer'>✕</button>
       </div>
+
+      {error && (
+        <div className='mb-4 bg-red-500/10 border border-red-500/30 rounded-lg px-4 py-3'>
+          <p className='text-red-400 text-sm font-[inter]'>{error}</p>
+        </div>
+      )}
 
       <form onSubmit={handleSubmit} className='flex flex-col gap-5'>
         <div className='grid grid-cols-1 md:grid-cols-2 gap-4'>
@@ -99,7 +124,7 @@ export default function AddBlogForm() {
           <button type='submit' disabled={pending} className='px-6 py-3 bg-[linear-gradient(90deg,#3B82F6_0%,#619DFF_50%,#3B82F6_100%)] rounded-lg text-[#F1F1F1] font-[inter] font-medium disabled:opacity-50 cursor-pointer'>
             {pending ? 'Publishing…' : 'Publish Blog'}
           </button>
-          <button type='button' onClick={() => { setOpen(false); setPreview(null); }} className='px-6 py-3 border border-[#3f3f46] rounded-lg text-[#F1F1F1] font-[inter] hover:border-[#71717a] transition-colors cursor-pointer'>
+          <button type='button' onClick={handleClose} className='px-6 py-3 border border-[#3f3f46] rounded-lg text-[#F1F1F1] font-[inter] hover:border-[#71717a] transition-colors cursor-pointer'>
             Cancel
           </button>
         </div>

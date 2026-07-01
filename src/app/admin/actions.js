@@ -87,19 +87,16 @@ export async function addBlog(formData) {
 
   const { error } = await adminClient.from('Blogs').insert([blog]);
 
-  if (error) {
-    redirect('/admin/dashboard?error=' + encodeURIComponent(error.message));
-  }
+  if (error) return { error: error.message };
 
   revalidatePath('/admin/dashboard');
   revalidatePath('/blogs');
-  redirect('/admin/dashboard?success=Blog+added+successfully');
+  return { success: true };
 }
 
 export async function updateBlog(id, formData) {
   const adminClient = getAdminClient();
 
-  // Upload a new image if one was selected; otherwise keep the existing URL
   let imageURL = formData.get('existingImageURL') || null;
   const imageFile = formData.get('imageFile');
   const newUrl = await uploadImage(imageFile);
@@ -119,24 +116,20 @@ export async function updateBlog(id, formData) {
 
   const { error } = await adminClient.from('Blogs').update(updates).eq('id', id);
 
-  if (error) {
-    redirect('/admin/dashboard?error=' + encodeURIComponent(error.message));
-  }
+  if (error) return { error: error.message };
 
   revalidatePath('/admin/dashboard');
   revalidatePath('/blogs');
-  redirect('/admin/dashboard?success=Blog+updated+successfully');
+  return { success: true };
 }
 
 export async function deleteBlog(id) {
   const adminClient = getAdminClient();
   const { error } = await adminClient.from('Blogs').delete().eq('id', id);
 
-  if (error) {
-    redirect('/admin/dashboard?error=' + encodeURIComponent(error.message));
-  }
+  if (error) return { error: error.message };
 
   revalidatePath('/admin/dashboard');
   revalidatePath('/blogs');
-  redirect('/admin/dashboard?success=Blog+deleted+successfully');
+  return { success: true };
 }
