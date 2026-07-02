@@ -102,7 +102,7 @@ export async function addBlog(formData) {
   if (error) return { error: error.message };
 
   revalidatePath('/admin/dashboard');
-  revalidatePath('/blogs');
+  revalidatePath('/blogs', 'layout');
   return { success: true };
 }
 
@@ -132,7 +132,7 @@ export async function updateBlog(id, formData) {
   if (error) return { error: error.message };
 
   revalidatePath('/admin/dashboard');
-  revalidatePath('/blogs');
+  revalidatePath('/blogs', 'layout');
   return { success: true };
 }
 
