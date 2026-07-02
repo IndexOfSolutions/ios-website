@@ -24,7 +24,7 @@ function getAdminClient() {
 }
 
 async function uploadImage(imageFile) {
-  if (!imageFile || imageFile.size === 0) return null;
+  if (!imageFile || imageFile.size === 0) return { url: null, error: null };
 
   const adminClient = getAdminClient();
   const ext = imageFile.name.split('.').pop().toLowerCase();
@@ -34,13 +34,13 @@ async function uploadImage(imageFile) {
     .from('BlogsImages')
     .upload(fileName, imageFile, { contentType: imageFile.type, upsert: false });
 
-  if (error) return null;
+  if (error) return { url: null, error: error.message };
 
   const { data: { publicUrl } } = adminClient.storage
     .from('BlogsImages')
     .getPublicUrl(fileName);
 
-  return publicUrl;
+  return { url: publicUrl, error: null };
 }
 
 export async function signIn(formData) {
@@ -82,7 +82,8 @@ export async function addBlog(formData) {
   if (existing) return { error: `A blog post with the slug "${link}" already exists.` };
 
   const imageFile = formData.get('imageFile');
-  const imageURL = await uploadImage(imageFile);
+  const { url: imageURL, error: imageError } = await uploadImage(imageFile);
+  if (imageError) return { error: `Image upload failed: ${imageError}` };
 
   const blog = {
     title: formData.get('title'),
@@ -90,7 +91,7 @@ export async function addBlog(formData) {
     excerpt: formData.get('excerpt'),
     body: formData.get('body'),
     link,
-    imageURL: imageURL,
+    imageURL,
     imageALT: formData.get('imageALT') || null,
     author: formData.get('author'),
     date: formData.get('date'),
@@ -110,7 +111,8 @@ export async function updateBlog(id, formData) {
 
   let imageURL = formData.get('existingImageURL') || null;
   const imageFile = formData.get('imageFile');
-  const newUrl = await uploadImage(imageFile);
+  const { url: newUrl, error: imageError } = await uploadImage(imageFile);
+  if (imageError) return { error: `Image upload failed: ${imageError}` };
   if (newUrl) imageURL = newUrl;
 
   const updates = {
