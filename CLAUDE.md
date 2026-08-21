@@ -368,3 +368,97 @@ Set all environment variables as **Application Settings** in the Azure App Servi
 - **Primary services:** Business Central implementation, consultancy, support, training, NAV-to-BC upgrades, Power BI, LS Central for retail, Full Stack HR Platform  
 - **Industries served:** Retail, Pharma, Distribution, Manufacturing, F&B, Services  
 - **Brochure:** `/assets/PDFs/IOSDesign16.pdf`
+
+---
+
+## Opinly Blog (`/insights`)
+
+A second, AI-authored blog powered by [Opinly](https://opinly.ai), independent of
+the Supabase blog at `/blogs`. Content is written in the Opinly dashboard and
+pulled at build/request time — there is nothing to edit in this repo to publish a
+post.
+
+### Packages
+
+`@opinly/backend` (data client) · `@opinly/react` (Tiptap renderer) ·
+`@opinly/next` (Next glue) · `@opinly/shared` (URL/SEO/sitemap builders) ·
+`svix` (webhook signature verification).
+
+### Configuration
+
+`withOpinlyConfig(...)` wraps the export in `next.config.mjs`. It injects the
+`OPINLY_*` env vars the SDK reads at runtime and adds a rewrite from `/images/*`
+to `https://cdn.opinly.ai/iTODrjyxXpvtRpc5gYuCP/*`.
+
+**Change blogPath / imagesPath / companyName / siteUrl in `next.config.mjs` only** —
+never as environment variables, or the two will disagree.
+
+| Env var | Where |
+|---|---|
+| `OPINLY_API_KEY` | Secret `sk-` key. Server-only, read by `createOpinlyClient`. Must be present **at build time** for prerendering and the sitemap. |
+| `OPINLY_WEBHOOK_SIGNING_SECRET` | Svix secret for `/api/opinly`. |
+
+The analytics pixel's `pk-` key is publishable and write-only, so it is inlined
+in `src/app/layout.js` rather than kept in the environment.
+
+### Files
+
+| File | Role |
+|---|---|
+| `src/clients/opinly.js` | Lazily-built, memoized clients. **Lazy on purpose** — `createOpinlyClient` throws when `OPINLY_API_KEY` is unset, and at module scope that fails the build for every route that merely imports it. `getOpinly()` tags every fetch `'opinly'`; `getOpinlyEvents()` is `no-store` for writes. |
+| `src/app/(public)/insights/[[...slug]]/page.js` | The whole blog. Routes by first URL segment to the matching typed endpoint, then a `switch` on the result. Handles home, post, category, **tag**, author and authors. |
+| `src/components/opinly/` | The page UI — index, post, category, tag, author views, and `PostContent` wrapping `<OpinlyContent>`. |
+| `src/components/opinly/config.js` | Render config + per-node Tailwind classes, derived from `opinlyConfig`. |
+| `src/app/(public)/insights/rss.xml/route.js` | RSS feed. |
+| `src/app/api/opinly/route.js` | `content.routes-changed` webhook. |
+| `src/app/(public)/sitemap.js` | Existing sitemap, with Opinly's `routes()` merged in. |
+
+### Cache invalidation — both halves are required
+
+The webhook must do **two** things, because there are two caches:
+
+1. `revalidateTag('opinly', { expire: 0 })` — the data cache. On Next 16+ the
+   second argument is **required and behavioural**: `{ expire: 0 }` drops the
+   responses now, whereas a named profile like `'max'` would keep serving stale
+   posts for up to a year. Works for static and dynamic routes alike.
+2. `revalidatePath(...)` for each changed route — the rendered HTML/RSC.
+
+`revalidatePath` alone is not enough: on a self-hosted deployment (this site is
+`output: 'standalone'` on Azure) it is a **silent no-op** for dynamically-rendered
+routes, because the tag→path mapping is only seeded for prerendered routes at
+build time. That is also why `generateStaticParams` prerenders every known route.
+
+### Gotchas
+
+- `routes()` includes **tag** routes. The route must handle them or the sitemap
+  will advertise URLs that 404. (The upstream docs' sample omits this.)
+- `middleware.js` skips `/images` in its lowercase redirect — Opinly CDN file
+  keys are mixed-case nanoids and lowercasing one breaks the image silently.
+- Post slugs are **flat**: `/insights/my-post`, never nested under a category.
+
+---
+
+## Opinly Analytics
+
+The pixel in `src/app/layout.js` captures page views (including App Router
+client-side navigations), clicks, form submissions, and auto-identifies visitors
+from recognisable email fields. Most signal needs no code.
+
+| File | Role |
+|---|---|
+| `src/lib/opinly-browser.js` | Client helpers: `getOpinlyAnonId()`, `identifyOpinlyVisitor()`, `trackOpinlyEvent()`. All no-op safely if the pixel hasn't loaded. |
+| `src/lib/opinly-events.js` | Server-side events: `trackLead()`, `trackContactRequest()`, `trackPurchase()`. `server-only`; all errors swallowed. |
+| `src/lib/opinly-estimator.js` | Shared POST helper so ChatbotModal and /price-estimator wire attribution identically. |
+
+**Conversions wired:** `generate_lead` from the contact form
+(`src/components/emails/Action.js`) and from the price estimator
+(`src/app/api/send-estimate-email/route.js`). Both send `anonId` **and** `email`
+— the ID attributes exactly, the email is the fallback when the ID never made it.
+Without either, the lead is recorded but attributed to "direct".
+
+**No purchase events.** This site has no checkout, orders or payments — deals
+close offline. `trackPurchase()` exists and is documented but nothing calls it.
+Do **not** feed it price-estimator totals: Opinly counts `purchase` value as
+gross revenue *earned*, so quoting pipeline as revenue would corrupt every
+report. Call it from a CRM webhook when a deal actually closes, with the real
+contract value and order number.

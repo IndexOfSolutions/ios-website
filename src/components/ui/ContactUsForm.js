@@ -4,6 +4,7 @@ import { useFormik } from 'formik'
 import { showToast } from 'nextjs-toast-notify'
 import React from 'react'
 import { submitContactForm } from '../emails/Action'
+import { getOpinlyAnonId, identifyOpinlyVisitor } from '@/lib/opinly-browser'
 
 export const ContactUsForm = () => {
 
@@ -55,6 +56,18 @@ export const ContactUsForm = () => {
                 formData.append('name', values.name)
                 formData.append('phoneNumber', values.phoneNumber)
                 formData.append('email', values.email)
+
+                // Link this browser visitor to the person filling the form. The
+                // pixel auto-identifies from recognisable email fields, but the
+                // input below is type='text', so identify explicitly rather
+                // than relying on that.
+                identifyOpinlyVisitor({ email: values.email })
+
+                // Carry the anonymous ID to the server so the lead it records
+                // attaches to this visit — and therefore to the campaign that
+                // brought them here — instead of landing as "direct".
+                const anonId = getOpinlyAnonId()
+                if (anonId) formData.append('opinlyAnonId', anonId)
 
                 const res = await submitContactForm(undefined, formData)
 

@@ -1,4 +1,8 @@
+import { buildSitemapEntries } from '@opinly/shared';
+import { opinlyConfig } from '@opinly/next';
+
 import { createClient } from '@/utils/supabase/server';
+import { getOpinly, isOpinlyConfigured } from '@/clients/opinly';
 import { getSiteUrl } from '@/lib/site-url';
 
 export default async function sitemap() {
@@ -79,10 +83,33 @@ export default async function sitemap() {
   const allRoutes = [...staticRoutes, ...blogRoutes];
   const toUrl = (path) => (path === '/' ? `${siteUrl}/` : `${siteUrl}${path}`);
 
-  return allRoutes.map(({ path, priority, changeFrequency, lastModified: customLastModified }) => ({
-    url: toUrl(path),
-    lastModified: customLastModified || lastModified,
-    changeFrequency,
-    priority,
-  }));
+  const siteEntries = allRoutes.map(
+    ({ path, priority, changeFrequency, lastModified: customLastModified }) => ({
+      url: toUrl(path),
+      lastModified: customLastModified || lastModified,
+      changeFrequency,
+      priority,
+    })
+  );
+
+  // Opinly's /insights tree. One routes() call covers every addressable route —
+  // the index, posts, categories, tags and authors — and buildSitemapEntries
+  // turns each into an absolute URL using the prefixes configured in
+  // next.config.mjs, so there is no URL building to keep in sync here.
+  let opinlyEntries = [];
+  if (isOpinlyConfigured()) {
+    try {
+      const routes = await getOpinly().routes();
+      opinlyEntries = buildSitemapEntries(routes, opinlyConfig).map((entry) => ({
+        url: entry.url,
+        lastModified: new Date(entry.lastModified),
+        changeFrequency: 'weekly',
+        priority: 0.6,
+      }));
+    } catch (err) {
+      console.warn('⚠️ Could not fetch Opinly routes for sitemap:', err?.message);
+    }
+  }
+
+  return [...siteEntries, ...opinlyEntries];
 }

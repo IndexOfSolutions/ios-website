@@ -56,6 +56,7 @@ export const Footer = () => {
                             <ul className="flex flex-col gap-2 ml-4">
                                 <li className="list-disc hover:text-primary">
                                     <Link href="/blogs">Blogs</Link>
+                                    <Link href="/insights">Insights</Link>
                                 </li>
                                 <li className="list-disc hover:text-primary">
                                     <Link href="/privacy-policy">Privacy Policy</Link>

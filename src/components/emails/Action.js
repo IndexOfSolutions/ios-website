@@ -2,6 +2,7 @@
 
 import { Resend } from "resend";
 import LeadContactEmail from "./ContactTemplate";
+import { trackLead } from "@/lib/opinly-events";
 
 const resend = new Resend(process.env.RESEND_API_KEY);
 
@@ -16,6 +17,12 @@ export async function submitContactForm(_prevState, formData) {
       phoneNumber: String(formData.get("phoneNumber") ?? "").trim(),
       email: String(formData.get("email") ?? "").trim(),
     };
+
+    // The visitor's Opinly anonymous ID, read from the pixel in the browser and
+    // passed through with the submission. It is what attributes this lead to
+    // the campaign that produced it, so it is deliberately not part of `data`
+    // (nothing to validate, and it must not block the send if it is missing).
+    const anonId = String(formData.get("opinlyAnonId") ?? "").trim();
 
     // Minimal server-side validation (don’t rely on client only)
     const missing = Object.entries(data)
@@ -45,6 +52,26 @@ export async function submitContactForm(_prevState, formData) {
         consoleError: error,
       };
     }
+
+    // Record the conversion server-side, after the email actually sent. Sending
+    // both anonId and email is the belt-and-braces move: the ID attributes
+    // exactly, and the email is the fallback for when the ID never made it.
+    // `trackLead` swallows its own errors, so this cannot fail the submission.
+    await trackLead({
+      email: data.email,
+      anonId,
+      source: "contact_form",
+      // Dedup key: a double-submit from the same person in the same minute
+      // collapses into one lead rather than counting twice.
+      externalEventId: `contact:${data.email}:${new Date()
+        .toISOString()
+        .slice(0, 16)}`,
+      properties: {
+        company_name: data.companyName,
+        type_of_business: data.typeOfBusiness,
+        service: data.service,
+      },
+    });
 
     return {
       success: true,

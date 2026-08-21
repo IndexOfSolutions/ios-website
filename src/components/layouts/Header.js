@@ -116,6 +116,7 @@ export const Header = () => {
                                     </li>
                                     <li>
                                         <Link href="/blogs" scroll={true} className='hover:text-primary'>Blogs</Link>
+                                        <Link href="/insights" scroll={true} className='hover:text-primary'>Insights</Link>
                                     </li>
                                     <li>
                                         <Link href="/contact" scroll={true} className='hover:text-primary'>Contact</Link>
@@ -203,6 +204,7 @@ export const Header = () => {
                             </li>
                             <li>
                                 <Link href="/blogs">Blogs</Link>
+                                <Link href="/insights">Insights</Link>
                             </li>
                             <li>
                                 <Link href="/contact">Contact</Link>

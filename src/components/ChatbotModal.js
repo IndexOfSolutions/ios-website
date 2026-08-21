@@ -8,6 +8,7 @@ import { TRANSLATIONS } from "@/lib/translations";
 import { SYSTEM_PROMPT_BASE } from "@/lib/system-prompt";
 import { buildEstimateHTML, estimateKey } from "@/lib/estimate";
 import EstimateCard from "@/components/EstimateCard";
+import { postEstimate } from "@/lib/opinly-estimator";
 
 const PROXY_URL = "/api/chat";
 
@@ -112,11 +113,7 @@ export default function ChatbotModal({ ref }) {
             console.log("[IOS Estimator] ContactCollected", state)
             addMsg(state, "bot", "estimate");
 
-            fetch("/api/send-estimate-email", {
-              method: "POST",
-              headers: { "Content-Type": "application/json" },
-              body: JSON.stringify(state),
-            }).catch((err) =>
+            postEstimate(state).catch((err) =>
               console.warn("[IOS Estimator] Email send failed:", err)
             );
           }
@@ -126,11 +123,7 @@ export default function ChatbotModal({ ref }) {
       if (state.LeadCaptured && state.EmailReady && !leadShownRef.current) {
         console.log("[IOS Estimator] LeadCaptured and EmailReady", state)
         leadShownRef.current = true;
-        fetch("/api/send-estimate-email", {
-          method: "POST",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify(state),
-        }).catch((err) =>
+        postEstimate(state).catch((err) =>
           console.warn("[IOS Estimator] Email update failed:", err)
         );
       }

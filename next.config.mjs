@@ -1,3 +1,5 @@
+import { withOpinlyConfig } from '@opinly/next';
+
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   output: 'standalone',
@@ -55,4 +57,17 @@ const nextConfig = {
   },
 };
 
-export default nextConfig;
+// Injects the OPINLY_* env vars the SDK reads at runtime, and rewrites
+// /images/* to the Opinly CDN so post images are served from our own domain.
+// Existing redirects()/headers() are left untouched; we have no rewrites() of
+// our own, so nothing is being wrapped or overridden here.
+export default withOpinlyConfig({
+  blogPath: '/insights',
+  imagesPath: '/images',
+  companyName: 'Index of Solutions',
+  cdnNamespace: 'iTODrjyxXpvtRpc5gYuCP',
+  siteUrl: 'https://www.indexofsolutions.com',
+  // The site already sets images.unoptimized globally (Azure has no image
+  // optimizer); keep Opinly consistent with that.
+  unoptimizedImages: true,
+})(nextConfig);

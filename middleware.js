@@ -21,11 +21,16 @@ export async function middleware(request) {
   const { pathname, search } = request.nextUrl;
 
   // Public URL lowercasing (skip admin, API, _next, static files)
+  //
+  // /images is excluded because it is rewritten to the Opinly CDN and its file
+  // keys are mixed-case nanoids. Lowercasing one would 301 to a key the CDN
+  // has never heard of, breaking every post image with no error to explain it.
   if (
     pathname !== pathname.toLowerCase() &&
     !pathname.startsWith('/_next') &&
     !pathname.startsWith('/api') &&
     !pathname.startsWith('/admin') &&
+    !pathname.startsWith('/images') &&
     !pathname.includes('.')
   ) {
     const lowercaseUrl = new URL(pathname.toLowerCase() + search, request.url);

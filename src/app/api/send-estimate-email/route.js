@@ -3,6 +3,8 @@
 import { NextResponse } from 'next/server';
 import https from 'https';
 
+import { trackLead } from '@/lib/opinly-events';
+
 const TO_EMAIL = process.env.CONTACT_TO;
 const FROM_EMAIL = process.env.RESEND_FROM;
 
@@ -185,6 +187,33 @@ export async function POST(request) {
     });
 
     await sendViaResend(apiKey, payload);
+
+    // The estimator's conversion. Only fire once the visitor has actually left
+    // contact details — the estimate itself is browsing, not a lead.
+    //
+    // The estimate range is attached as plain properties, NOT as `value` on a
+    // purchase: Opinly counts purchase value as gross revenue earned, and a
+    // quote is pipeline, not money. Recording it as revenue would overstate
+    // every report on the dashboard.
+    if (s.CustomerEmail) {
+      await trackLead({
+        email: s.CustomerEmail,
+        anonId: s.OpinlyAnonId,
+        source: 'price_estimator',
+        // Same lead re-submitting a tweaked estimate collapses into one event.
+        externalEventId: `estimate:${s.CustomerEmail}`,
+        properties: {
+          company_name: s.CompanyName ?? null,
+          industry: s.Industry ?? null,
+          employee_count: s.EmployeeCount ?? null,
+          complexity: s.Complexity ?? null,
+          needs_ls_central: Boolean(s.NeedsLSCentral),
+          estimate_low: grandLow,
+          estimate_high: grandHigh,
+          estimate_currency: 'USD',
+        },
+      });
+    }
 
     return NextResponse.json({ ok: true }, { status: 200, headers: { ...cors, 'Content-Type': 'application/json' } });
   } catch (err) {
