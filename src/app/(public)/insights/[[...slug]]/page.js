@@ -26,6 +26,20 @@ const tagPrefix = opinlyConfig.tagPrefix ?? 'tag';
  * cached fetches, so resolving twice per request costs nothing.
  */
 const loadRoute = async (slug) => {
+  // Without a key there is no content to serve. Render the index as an empty
+  // state and 404 everything below it, rather than letting the SDK throw and
+  // turn a not-yet-configured blog into a public 500.
+  //
+  // Deliberately scoped to the *unconfigured* case only: a transient Opinly API
+  // failure is still allowed to throw. A 500 tells a crawler to come back,
+  // whereas silently 404ing a real post invites it to deindex the post.
+  if (!isOpinlyConfigured()) {
+    console.warn('[opinly] OPINLY_API_KEY is not set — /insights has no content');
+    return slug.length === 0
+      ? { type: 'home', data: { posts: [], categories: [] } }
+      : { type: 'not-found' };
+  }
+
   const opinly = getOpinly();
 
   if (slug.length === 0) {

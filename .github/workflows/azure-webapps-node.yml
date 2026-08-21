@@ -26,6 +26,16 @@ jobs:
           NODE_ENV: production
           # Add your NEXT_PUBLIC_ vars here if you have any
 
+          # Opinly needs its key at BUILD time, not just at runtime: the blog's
+          # generateStaticParams and the sitemap both call the API here. Azure's
+          # Application Settings are runtime-only and this build doesn't run on
+          # Azure, so the key has to come from a GitHub Actions secret too.
+          #
+          # Without it the build still succeeds — posts just fall back to
+          # on-demand rendering, which quietly costs you the webhook's
+          # revalidatePath (it only works for routes prerendered at build time).
+          OPINLY_API_KEY: ${{ secrets.OPINLY_API_KEY }}
+
       - name: Prepare standalone deployment package
         run: |
           cp -r .next/standalone/. ./deploy
