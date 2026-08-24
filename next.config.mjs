@@ -38,6 +38,13 @@ const nextConfig = {
 
   async redirects() {
     return [
+      // AppSource listings and app documentation reference /privacy; the policy
+      // itself lives at /privacy-policy. Redirect rather than duplicate it.
+      {
+        source: '/privacy',
+        destination: '/privacy-policy',
+        permanent: true,
+      },
       {
         source: '/industries/business-central-for-retail',
         destination: '/industries/retail-erp',

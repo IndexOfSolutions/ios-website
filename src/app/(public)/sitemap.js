@@ -59,6 +59,7 @@ export default async function sitemap() {
     { path: '/price-estimator', priority: 0.5, changeFrequency: 'monthly' },
     { path: '/privacy-policy', priority: 0.2, changeFrequency: 'monthly' },
     { path: '/terms-and-conditions', priority: 0.2, changeFrequency: 'monthly' },
+    { path: '/eula', priority: 0.2, changeFrequency: 'monthly' },
   ];
 
   // Fetch dynamic blog posts from Supabase

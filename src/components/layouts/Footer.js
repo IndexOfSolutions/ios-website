@@ -66,6 +66,9 @@ export const Footer = () => {
                                 <li className="list-disc hover:text-primary">
                                     <Link href="/terms-and-conditions">Terms & Conditions</Link>
                                 </li>
+                                <li className="list-disc hover:text-primary">
+                                    <Link href="/eula">EULA</Link>
+                                </li>
                             </ul>
                         </div>
                     </div>
