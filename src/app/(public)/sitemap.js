@@ -4,6 +4,7 @@ import { opinlyConfig } from '@opinly/next';
 import { createClient } from '@/utils/supabase/server';
 import { getOpinly, isOpinlyConfigured } from '@/clients/opinly';
 import { getSiteUrl } from '@/lib/site-url';
+import { PRIVACY_POLICIES } from '@/constants/privacyPolicies';
 
 export default async function sitemap() {
   const rawSiteUrl = getSiteUrl();
@@ -80,7 +81,14 @@ export default async function sitemap() {
     console.warn('⚠️ Could not fetch blogs for sitemap:', err);
   }
 
-  const allRoutes = [...staticRoutes, ...blogRoutes];
+  // Per-app privacy policies — static pages driven by src/constants/privacyPolicies.js
+  const policyRoutes = PRIVACY_POLICIES.map((policy) => ({
+    path: `/privacy-policy/${policy.slug}`,
+    priority: 0.2,
+    changeFrequency: 'monthly',
+  }));
+
+  const allRoutes = [...staticRoutes, ...policyRoutes, ...blogRoutes];
   const toUrl = (path) => (path === '/' ? `${siteUrl}/` : `${siteUrl}${path}`);
 
   const siteEntries = allRoutes.map(
