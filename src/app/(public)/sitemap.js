@@ -49,6 +49,9 @@ export default async function sitemap() {
     { path: '/industries/food-and-beverage-erp', priority: 0.7, changeFrequency: 'weekly' },
     { path: '/industries/construction-erp-lebanon', priority: 0.7, changeFrequency: 'weekly' },
     { path: '/industries/ngo-erp-lebanon', priority: 0.65, changeFrequency: 'monthly' },
+    { path: '/industries/education-erp-lebanon', priority: 0.7, changeFrequency: 'weekly' },
+    { path: '/industries/fashion-erp-lebanon', priority: 0.7, changeFrequency: 'weekly' },
+    { path: '/industries/oil-and-gas-erp-lebanon', priority: 0.7, changeFrequency: 'weekly' },
 
     // Pricing guide + comparison pages
     { path: '/business-central-pricing-lebanon', priority: 0.85, changeFrequency: 'monthly' },

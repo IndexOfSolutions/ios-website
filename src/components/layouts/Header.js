@@ -94,10 +94,13 @@ export const Header = () => {
                                             <div className='bg-mainbg p-4 border-primary border rounded-md w-max flex flex-col gap-2'>
                                                 <Link href="/industries/pharma-erp" scroll={true}>Business Central For Pharma</Link>
                                                 <Link href="/industries/retail-erp" scroll={true}>Business Central For Retail</Link>
-                                                <Link href="/industries/distribution-erp" scroll={true}>Business Central Distribution</Link>
+                                                <Link href="/industries/distribution-erp" scroll={true}>Business Central For Distribution</Link>
                                                 <Link href="/industries/food-and-beverage-erp" scroll={true}>Business Central For Food & Beverage</Link>
                                                 <Link href="/industries/construction-erp-lebanon" scroll={true}>Business Central For Construction</Link>
-                                                <Link href="/industries/ngo-erp-lebanon" scroll={true}>ERP for NGOs & Non-Profits</Link>
+                                                <Link href="/industries/ngo-erp-lebanon" scroll={true}>Business Central For NGOs & Non-Profits</Link>
+                                                <Link href="/industries/education-erp-lebanon" scroll={true}>Business Central For Education</Link>
+                                                <Link href="/industries/fashion-erp-lebanon" scroll={true}>Business Central For Fashion</Link>
+                                                <Link href="/industries/oil-and-gas-erp-lebanon" scroll={true}>Business Central For Oil & Gas</Link>
                                             </div>
                                         </div>
                                     </li>
@@ -192,6 +195,9 @@ export const Header = () => {
                                         <Link href="/industries/food-and-beverage-erp">Business Central For Food & Beverage</Link>
                                         <Link href="/industries/construction-erp-lebanon">Business Central For Construction</Link>
                                         <Link href="/industries/ngo-erp-lebanon">ERP for NGOs & Non-Profits</Link>
+                                        <Link href="/industries/education-erp-lebanon">Business Central For Education</Link>
+                                        <Link href="/industries/fashion-erp-lebanon">Business Central For Fashion</Link>
+                                        <Link href="/industries/oil-and-gas-erp-lebanon">Business Central For Oil & Gas</Link>
                                     </div>
                                 </div>
                             </li>
