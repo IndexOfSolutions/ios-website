@@ -22,7 +22,7 @@ const jsonLd = {
 }
 
 export const metadata = {
-  title: 'Index HR vs Zoho People, BambooHR, Rippling, Jisr, MenaITech & ZenHR | Index of Solutions',
+  title: { absolute: 'Index HR vs Zoho People, BambooHR, Rippling, Jisr, MenaITech & ZenHR' },
   description,
   keywords: [
     'Zoho People alternative', 'BambooHR alternative', 'Rippling alternative', 'Jisr alternative', 'ZenHR alternative',

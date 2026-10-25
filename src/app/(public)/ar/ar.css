@@ -1,0 +1,14 @@
+/* Newake, Inter and JetBrains Mono have no Arabic glyphs, so Arabic pages
+   use IBM Plex Sans Arabic everywhere inside the RTL wrapper. */
+.ar-root,
+.ar-root * {
+  font-family: var(--font-arabic), system-ui, sans-serif !important;
+  letter-spacing: normal !important;
+}
+
+.ar-root h1,
+.ar-root h2,
+.ar-root h3 {
+  font-weight: 700;
+  line-height: 1.35;
+}

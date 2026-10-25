@@ -440,6 +440,20 @@ A: Depends on business requirements, scope, customization, and support needs. IO
 | Index HR | /services/full-stack-hr-platform |
 | Index HR Pricing | /services/full-stack-hr-platform/pricing |
 | Index HR vs Other HR Software | /compare/index-hr-vs-hr-software |
+| Best HR Software in the Middle East | /best-hr-software/middle-east |
+| HR Software UAE | /hr-software/uae |
+| HR Software Lebanon | /hr-software/lebanon |
+| Best HR Systems in Lebanon | /best-hr-software/lebanon |
+| Best HR System in Lebanon (Arabic) | /ar/best-hr-system-lebanon |
+| UAE Salary Payment Rules 2026 | /guides/uae-salary-payment-rules |
+| Index HR (Arabic) | /ar/hr-system |
+| End-of-Service Calculator KSA (Arabic) | /ar/tools/end-of-service-calculator |
+| Overtime Calculator KSA (Arabic) | /ar/tools/overtime-calculator |
+| Payroll & WPS Software (Arabic) | /ar/payroll-software |
+| Wage Protection System Guide (Arabic) | /ar/guides/wage-protection-system |
+| Probation Period Guide (Arabic) | /ar/guides/probation-period |
+| Mission Allowance Guide (Arabic) | /ar/guides/mission-allowance |
+| Jisr Alternative (Arabic) | /ar/compare/jisr-alternative |
 | Retail Industry | /industries/business-central-for-retail |
 | Distribution Industry | /industries/business-central-for-distribution |
 | Pharma Industry | /industries/business-central-pharma (404) |

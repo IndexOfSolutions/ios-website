@@ -5,6 +5,7 @@ import { createClient } from '@/utils/supabase/server';
 import { getOpinly, isOpinlyConfigured } from '@/clients/opinly';
 import { getSiteUrl } from '@/lib/site-url';
 import { PRIVACY_POLICIES } from '@/constants/privacyPolicies';
+import { HR_SEO_PATHS } from '@/data/hrSeoPages';
 
 export default async function sitemap() {
   const rawSiteUrl = getSiteUrl();
@@ -91,7 +92,10 @@ export default async function sitemap() {
     changeFrequency: 'monthly',
   }));
 
-  const allRoutes = [...staticRoutes, ...policyRoutes, ...blogRoutes];
+  // Index HR landing pages, guides and calculators (English and Arabic)
+  const hrSeoRoutes = HR_SEO_PATHS.map((path) => ({ path, priority: 0.7, changeFrequency: 'monthly' }));
+
+  const allRoutes = [...staticRoutes, ...hrSeoRoutes, ...policyRoutes, ...blogRoutes];
   const toUrl = (path) => (path === '/' ? `${siteUrl}/` : `${siteUrl}${path}`);
 
   const siteEntries = allRoutes.map(

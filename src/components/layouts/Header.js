@@ -110,6 +110,7 @@ export const Header = () => {
                                                 <Link href="/compare/business-central-vs-odoo" scroll={true}>Business Central vs Odoo</Link>
                                                 <Link href="/compare/index-hr-vs-hr-software" scroll={true}>Index HR vs Other HR Software</Link>
                                                 <Link href="/services/full-stack-hr-platform/pricing" scroll={true}>Index HR Pricing</Link>
+                                                <Link href="/best-hr-software/middle-east" scroll={true}>Best HR Software in the Middle East</Link>
                                             </div>
                                         </div>
                                     </li>
@@ -208,6 +209,9 @@ export const Header = () => {
                             </li>
                             <li>
                                 <Link href="/services/full-stack-hr-platform/pricing">Index HR Pricing</Link>
+                            </li>
+                            <li>
+                                <Link href="/best-hr-software/middle-east">Best HR Software in the Middle East</Link>
                             </li>
                             <li>
                                 <Link href="/price-estimator" scroll={true} className='hover:text-primary'>Price Estimator</Link>

@@ -106,7 +106,7 @@ export function CtaBand({ title, text, primary, secondary }) {
         <p className='font-[inter] text-fg/70 text-lg max-w-2xl'>{text}</p>
         <div className='flex flex-wrap justify-center gap-4'>
           <Link href={primary.href} className={PRIMARY_BUTTON}>
-            {primary.label} <ArrowRight className='size-4' aria-hidden='true' />
+            {primary.label} <ArrowRight className='size-4 rtl:-scale-x-100' aria-hidden='true' />
           </Link>
           {secondary && (
             <Link href={secondary.href} className={SECONDARY_BUTTON}>
@@ -116,5 +116,73 @@ export function CtaBand({ title, text, primary, secondary }) {
         </div>
       </div>
     </PageSection>
+  )
+}
+
+export function Breadcrumbs({ items }) {
+  return (
+    <nav aria-label='Breadcrumb' className='font-[inter] text-sm text-fg/50'>
+      <ol className='flex flex-wrap items-center gap-2'>
+        {items.map(({ label, href }, i) => (
+          <li key={label} className='flex items-center gap-2'>
+            {i > 0 && <span aria-hidden='true'>/</span>}
+            {href ? <Link href={href} className='hover:text-primary'>{label}</Link> : <span aria-current='page' className='text-fg/75'>{label}</span>}
+          </li>
+        ))}
+      </ol>
+    </nav>
+  )
+}
+
+export function breadcrumbJsonLd(siteUrl, items) {
+  return {
+    '@context': 'https://schema.org',
+    '@type': 'BreadcrumbList',
+    itemListElement: items.map(({ label, href }, i) => ({
+      '@type': 'ListItem',
+      position: i + 1,
+      name: label,
+      ...(href ? { item: `${siteUrl}${href}` } : {}),
+    })),
+  }
+}
+
+// Long-form article body: headings, paragraphs, lists and tables from plain JSX.
+export function Prose({ children }) {
+  return (
+    <div className='font-[inter] text-fg/80 text-lg leading-relaxed flex flex-col gap-5
+      [&_h2]:font-[newake] [&_h2]:text-fg [&_h2]:text-3xl [&_h2]:md:text-4xl [&_h2]:mt-8 [&_h2]:scroll-mt-28
+      [&_h3]:font-[newake] [&_h3]:text-fg [&_h3]:text-2xl [&_h3]:mt-4
+      [&_strong]:text-fg [&_a]:text-primary [&_a:hover]:underline
+      [&_ul]:flex [&_ul]:flex-col [&_ul]:gap-2 [&_ul]:list-disc [&_ul]:ps-6 [&_ol]:flex [&_ol]:flex-col [&_ol]:gap-2 [&_ol]:list-decimal [&_ol]:ps-6
+      [&_table]:w-full [&_table]:text-base [&_table]:border-collapse [&_th]:bg-secondary [&_th]:text-fg [&_th]:text-start [&_th]:p-3 [&_th]:border [&_th]:border-border-color
+      [&_td]:p-3 [&_td]:border [&_td]:border-border-color [&_td]:align-top'>
+      {children}
+    </div>
+  )
+}
+
+export function Callout({ title, children }) {
+  return (
+    <aside className='rounded-2xl border border-primary/40 bg-primary/5 p-6 flex flex-col gap-2 font-[inter]'>
+      {title && <p className='font-semibold text-fg'>{title}</p>}
+      <div className='text-fg/75 leading-relaxed'>{children}</div>
+    </aside>
+  )
+}
+
+export function RelatedLinks({ title, links }) {
+  return (
+    <div className='flex flex-col gap-5'>
+      <h2 className='font-[newake] text-fg text-3xl'>{title}</h2>
+      <div className='grid gap-4 md:grid-cols-2 lg:grid-cols-3'>
+        {links.map(({ href, label, text }) => (
+          <Link key={href} href={href} className='group rounded-2xl border border-border-color bg-secondary/30 p-5 flex flex-col gap-2 hover:border-primary/60 transition-colors'>
+            <span className='font-[inter] font-semibold text-fg group-hover:text-primary'>{label}</span>
+            {text && <span className='font-[inter] text-sm text-fg/60'>{text}</span>}
+          </Link>
+        ))}
+      </div>
+    </div>
   )
 }

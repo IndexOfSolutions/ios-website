@@ -32,7 +32,7 @@ const productJsonLd = {
 }
 
 export const metadata = {
-  title: 'Index HR Pricing — HR & Payroll Software Plans | Index of Solutions',
+  title: { absolute: 'Index HR Pricing — HR & Payroll Software Plans | Index of Solutions' },
   description,
   keywords: ['Index HR pricing', 'HR software pricing', 'HRMS price', 'payroll software cost', 'attendance software price'].join(', '),
   alternates: { canonical: INDEX_HR_PRICING },

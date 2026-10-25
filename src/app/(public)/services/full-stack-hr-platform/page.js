@@ -7,8 +7,9 @@ import {
   INTEGRATIONS, MOBILE_FEATURES, MODULE_GROUPS, PRICING_BANDS, SCREENSHOTS,
 } from '@/data/indexHr'
 import {
-  CheckList, CtaBand, Eyebrow, FaqList, PageSection, PhoneShot, PRIMARY_BUTTON, SECONDARY_BUTTON, SectionHeading, faqJsonLd,
+  CheckList, CtaBand, Eyebrow, FaqList, PageSection, PhoneShot, PRIMARY_BUTTON, RelatedLinks, SECONDARY_BUTTON, SectionHeading, faqJsonLd,
 } from '@/components/index-hr/IndexHrUi'
+import { AR_PAGES, EN_PAGES } from '@/data/hrSeoPages'
 
 const siteUrl = getSiteUrl()
 const ICONS = { Users, Clock, CalendarDays, Wallet, Plane, Package, Briefcase, Target, Sparkles }
@@ -29,13 +30,13 @@ const softwareJsonLd = {
 }
 
 export const metadata = {
-  title: 'Index HR — HR, Attendance & Payroll Software | Index of Solutions',
+  title: { absolute: 'Index HR — HR, Attendance & Payroll Software | Index of Solutions' },
   description,
   keywords: [
     'Index HR', 'HR software', 'HRMS', 'HR software Lebanon', 'HR software Saudi Arabia', 'attendance software',
     'geofenced clock-in', 'payroll software', 'shift scheduling', 'Business Central HR integration',
   ].join(', '),
-  alternates: { canonical: INDEX_HR_BASE },
+  alternates: { canonical: INDEX_HR_BASE, languages: { en: INDEX_HR_BASE, ar: AR_PAGES.hrSystem.href } },
   openGraph: {
     title: 'Index HR — Every HR process, one platform',
     description,
@@ -312,6 +313,14 @@ export default function IndexHrPage() {
             <span className='font-[inter] text-primary flex items-center gap-2'>Read the comparison <ArrowRight className='size-4 transition-transform group-hover:translate-x-1' aria-hidden='true' /></span>
           </Link>
         </div>
+      </PageSection>
+
+      {/* Resources */}
+      <PageSection className='!pt-0'>
+        <RelatedLinks
+          title='Guides, tools and regional pages'
+          links={[EN_PAGES.bestMiddleEast, EN_PAGES.uae, EN_PAGES.lebanon, EN_PAGES.uaeSalaryRules, AR_PAGES.hrSystem, AR_PAGES.eosCalculator]}
+        />
       </PageSection>
 
       {/* FAQ */}
