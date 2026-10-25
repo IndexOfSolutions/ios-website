@@ -1,536 +1,333 @@
 import React from 'react'
-import "../../../hrms.css";
+import Link from 'next/link'
+import { ArrowRight, Briefcase, CalendarDays, Clock, Languages, Package, Plane, Plug, Smartphone, Sparkles, Target, Users, Wallet } from 'lucide-react'
 import { getSiteUrl } from '@/lib/site-url'
+import {
+  APP_LANGUAGES, HR_FAQS, IMPLEMENTATION_STEPS, INDEX_HR_BASE, INDEX_HR_COMPARE, INDEX_HR_PRICING,
+  INTEGRATIONS, MOBILE_FEATURES, MODULE_GROUPS, PRICING_BANDS, SCREENSHOTS,
+} from '@/data/indexHr'
+import {
+  CheckList, CtaBand, Eyebrow, FaqList, PageSection, PhoneShot, PRIMARY_BUTTON, SECONDARY_BUTTON, SectionHeading, faqJsonLd,
+} from '@/components/index-hr/IndexHrUi'
 
 const siteUrl = getSiteUrl()
+const ICONS = { Users, Clock, CalendarDays, Wallet, Plane, Package, Briefcase, Target, Sparkles }
 
-const serviceJsonLd = {
+const description =
+  'Index HR is a complete HR, time & attendance and payroll platform: geofenced clock-in, shift rosters, leave, payroll, recruitment, performance and assets, with an employee app in 8 languages and a native Business Central connector.'
+
+const softwareJsonLd = {
   '@context': 'https://schema.org',
-  '@type': 'Service',
-  'name': 'Full Stack HR Platform — IOS HRMS',
-  'description': 'IOS HRMS: a full-stack HR platform covering attendance, payroll, recruitment, leave management, and performance reviews — available on iOS and web for growing organisations.',
-  'provider': { '@type': 'Organization', 'name': 'Index of Solutions', 'url': siteUrl },
-  'areaServed': { '@type': 'Country', 'name': 'Lebanon' },
-  'url': `${siteUrl}/services/full-stack-hr-platform`,
+  '@type': 'SoftwareApplication',
+  name: 'Index HR',
+  applicationCategory: 'BusinessApplication',
+  operatingSystem: 'iOS, Android, Web',
+  description,
+  url: `${siteUrl}${INDEX_HR_BASE}`,
+  publisher: { '@type': 'Organization', name: 'Index of Solutions', url: siteUrl },
+  offers: { '@type': 'Offer', price: String(PRICING_BANDS[0].monthly), priceCurrency: 'USD', url: `${siteUrl}${INDEX_HR_PRICING}` },
 }
 
 export const metadata = {
-  title: 'Full Stack HR Platform — IOS HRMS | Index of Solutions',
-  description:
-    'IOS HRMS: a full-stack HR platform covering attendance, payroll, recruitment, leave management, and performance reviews — available on iOS and web for growing organisations.',
-  alternates: {
-    canonical: '/services/full-stack-hr-platform',
-  },
+  title: 'Index HR — HR, Attendance & Payroll Software | Index of Solutions',
+  description,
+  keywords: [
+    'Index HR', 'HR software', 'HRMS', 'HR software Lebanon', 'HR software Saudi Arabia', 'attendance software',
+    'geofenced clock-in', 'payroll software', 'shift scheduling', 'Business Central HR integration',
+  ].join(', '),
+  alternates: { canonical: INDEX_HR_BASE },
   openGraph: {
-    title: 'Full Stack HR Platform — IOS HRMS | Index of Solutions',
-    description:
-      'IOS HRMS covers attendance, payroll, recruitment, leave, and performance management in a single connected system for iOS and web.',
-    images: [{ url: '/assets/images/pages/about-index-of-solutions-microsoft-business-solution-partner.webp', alt: 'IOS HRMS Full Stack HR Platform' }],
+    title: 'Index HR — Every HR process, one platform',
+    description,
+    images: [{ url: SCREENSHOTS.arabicTablet.src, alt: 'Index HR app' }],
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'Full Stack HR Platform — IOS HRMS',
-    description:
-      'IOS HRMS covers attendance, payroll, recruitment, leave, and performance management in a single connected system.',
+    title: 'Index HR — HR, Attendance & Payroll Software',
+    description,
   },
-  keywords: [
-    'HR platform',
-    'HRMS Lebanon',
-    'payroll software',
-    'attendance management',
-    'HR software Lebanon',
-  ].join(', '),
-};
+}
 
-export default function HRPlatform() {
+const stats = [
+  { value: '9', label: 'Integrated modules' },
+  { value: '8', label: 'App languages' },
+  { value: '3', label: 'Platforms: iOS, Android & web' },
+  { value: `$${PRICING_BANDS[0].monthly}`, label: 'Per month, all modules' },
+]
+
+const pillars = [
+  { Icon: Clock, title: 'Built for shift-based teams', text: 'Rosters, overnight shifts, geofenced punches, missions and overtime approval that real operations need.' },
+  { Icon: Languages, title: 'Every employee, their language', text: 'Arabic, English, French, Hindi, Bengali, Urdu, Malayalam and Tamil, so the whole workforce actually uses it.' },
+  { Icon: Plug, title: 'Connected to your finance', text: 'Payroll posts to Dynamics 365 Business Central as a journal, mapped to your accounts and dimensions.' },
+]
+
+export default function IndexHrPage() {
   return (
     <>
-      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(serviceJsonLd) }} />
-<section className="hero">
-        <div style={{ position: 'relative', zIndex: 1, textAlign: 'center' }}>
-          <div className="hero-badge">
-            ✦ &nbsp; Full-stack HR Platform
+      <script type='application/ld+json' dangerouslySetInnerHTML={{ __html: JSON.stringify(softwareJsonLd) }} />
+      <script type='application/ld+json' dangerouslySetInnerHTML={{ __html: JSON.stringify(faqJsonLd(HR_FAQS)) }} />
+
+      {/* Hero */}
+      <PageSection className='overflow-hidden'>
+        <div className='pointer-events-none absolute -top-32 left-1/2 -translate-x-1/2 h-[480px] w-[900px] max-w-full rounded-full bg-primary/20 blur-[120px]' aria-hidden='true' />
+        <div className='relative grid gap-12 lg:grid-cols-[1.1fr_0.9fr] lg:items-center'>
+          <div className='flex flex-col gap-6 items-start'>
+            <Eyebrow>Index HR · HR, Attendance & Payroll</Eyebrow>
+            <h1 className='font-[newake] text-fg text-5xl md:text-7xl leading-[1.05]'>
+              Every HR process.<br /><span className='text-primary'>One platform.</span>
+            </h1>
+            <p className='font-[inter] text-fg/75 text-lg md:text-xl leading-relaxed max-w-xl'>
+              From the first job post to the last payslip: attendance, shifts, leave, payroll, recruitment, performance and assets in one system, with a mobile app your whole workforce can use in their own language.
+            </p>
+            <div className='flex flex-wrap gap-4'>
+              <Link href='/contact' className={PRIMARY_BUTTON}>Book a demo <ArrowRight className='size-4' aria-hidden='true' /></Link>
+              <Link href={INDEX_HR_PRICING} className={SECONDARY_BUTTON}>See pricing</Link>
+            </div>
+            <ul className='flex flex-wrap gap-x-6 gap-y-2 font-[inter] text-sm text-fg/60'>
+              <li className='flex items-center gap-2'><Smartphone className='size-4 text-primary' aria-hidden='true' />iOS, Android & web</li>
+              <li className='flex items-center gap-2'><Languages className='size-4 text-primary' aria-hidden='true' />8 app languages</li>
+              <li className='flex items-center gap-2'><Plug className='size-4 text-primary' aria-hidden='true' />Business Central connector</li>
+            </ul>
           </div>
-          <h1>
-            Every HR process.<br/>
-            <span>One platform.</span>
-          </h1>
-          <p>
-            IOS HRMS brings together attendance, payroll, recruitment, leave, performance, and more into a single connected system built for growing organisations.
-          </p>
-          <div className="hero-cta">
-            <a href="https://www.indexofsolutions.com/contact" className="btn-primary">Get Started Free</a>
-            <a href="#modules" className="btn-secondary">Explore Features ↓</a>
+          <div className='relative mx-auto flex w-full max-w-md items-end justify-center gap-4'>
+            <PhoneShot shot={SCREENSHOTS.clockIn} className='w-1/2 translate-y-8 hidden sm:block' />
+            <PhoneShot shot={SCREENSHOTS.home} className='w-2/3 sm:w-1/2' priority />
           </div>
         </div>
-      </section>
+      </PageSection>
 
-      <div className="stats-bar">
-        <div className="stats-grid">
-          <div className="stat-item">
-            <div className="stat-number">12+</div>
-            <div className="stat-label">Integrated Modules</div>
-          </div>
-          <div className="stat-item">
-            <div className="stat-number">Multi</div>
-            <div className="stat-label">Company Profiles</div>
-          </div>
-          <div className="stat-item">
-            <div className="stat-number">Multi</div>
-            <div className="stat-label">Currency Support</div>
-          </div>
-          <div className="stat-item">
-            <div className="stat-number">iOS + Web</div>
-            <div className="stat-label">Mobile &amp; Desktop</div>
-          </div>
+      {/* Stats */}
+      <div className='px-4 md:px-8'>
+        <div className='max-w-[1366px] mx-auto grid grid-cols-2 lg:grid-cols-4 gap-px overflow-hidden rounded-2xl border border-border-color bg-border-color'>
+          {stats.map(({ value, label }) => (
+            <div key={label} className='bg-[#1f1f23] p-6 text-center'>
+              <div className='font-[newake] text-3xl md:text-4xl text-primary'>{value}</div>
+              <div className='font-[inter] text-sm text-fg/60 mt-1'>{label}</div>
+            </div>
+          ))}
         </div>
       </div>
 
-      <section id="modules" style={{ background: '#fff' }}>
-        <div className="container text-center">
-          <span className="section-label">Platform Modules</span>
-          <h2>Everything your HR team needs</h2>
-          <p className="section-subtitle">From the first job posting to an employee&apos;s last day, through every payslip in between, IOS HRMS handles it all.</p>
-
-          <div className="modules-grid">
-
-            <div className="module-card">
-              <div className="module-icon" style={{ background: '#EFF6FF' }}>📊</div>
-              <h3>Attendance &amp; Payroll Calculation</h3>
-              <p>Process attendance from Excel uploads or punching machine clock records. Calculate payroll with a detailed per-element breakdown that supports multiple currencies in a single run.</p>
-              <div className="module-tags">
-                <span className="tag">Clock Records</span>
-                <span className="tag">Excel Import</span>
-                <span className="tag">Multi-currency</span>
-                <span className="tag">OT / Undertime</span>
+      {/* Why Index HR */}
+      <PageSection>
+        <div className='grid gap-6 md:grid-cols-3'>
+          {pillars.map(({ Icon, title, text }) => (
+            <div key={title} className='rounded-2xl border border-border-color bg-secondary/30 p-8 flex flex-col gap-4'>
+              <div className='size-12 rounded-xl bg-primary/15 border border-primary/30 flex items-center justify-center'>
+                <Icon className='size-6 text-primary' aria-hidden='true' />
               </div>
+              <h3 className='font-[newake] text-2xl text-fg'>{title}</h3>
+              <p className='font-[inter] text-fg/70 leading-relaxed'>{text}</p>
             </div>
+          ))}
+        </div>
+      </PageSection>
 
-            <div className="module-card">
-              <div className="module-icon" style={{ background: '#F0FDF4' }}>💰</div>
-              <h3>Payroll Elements Engine</h3>
-              <p>Build any salary structure using flexible payroll elements: fixed amounts, daily rates, dependent-based allowances, and tiered tax brackets. Fully configurable with no technical knowledge required.</p>
-              <div className="module-tags">
-                <span className="tag">Basic Salary</span>
-                <span className="tag">Allowances</span>
-                <span className="tag">Tax Brackets</span>
-                <span className="tag">Family Allowance</span>
-              </div>
-            </div>
-
-            <div className="module-card">
-              <div className="module-icon" style={{ background: '#FFF7ED' }}>👥</div>
-              <h3>Employee Management</h3>
-              <p>Complete employee profiles covering personal details, employment history, documents, assets, training, performance, payroll elements, dependents, and location assignments in one card.</p>
-              <div className="module-tags">
-                <span className="tag">Full Profile</span>
-                <span className="tag">Audit Log</span>
-                <span className="tag">Org Chart</span>
-              </div>
-            </div>
-
-            <div className="module-card">
-              <div className="module-icon" style={{ background: '#F5F3FF' }}>🌴</div>
-              <h3>Leave Management</h3>
-              <p>Configurable leave profiles with accrual rules, carry-over policies, balance ledger, and multi-approver workflows. Approvals feed directly into the payroll calculation.</p>
-              <div className="module-tags">
-                <span className="tag">Leave Profiles</span>
-                <span className="tag">Accrual</span>
-                <span className="tag">Ledger</span>
-                <span className="tag">Approvals</span>
-              </div>
-            </div>
-
-            <div className="module-card">
-              <div className="module-icon" style={{ background: '#FFF1F2' }}>🎯</div>
-              <h3>Recruitment (ATS)</h3>
-              <p>End-to-end hiring pipeline covering job postings, kanban candidate tracking, interview scheduling, offer letters, and a branded careers portal with LinkedIn job posting integration.</p>
-              <div className="module-tags">
-                <span className="tag">Kanban Pipeline</span>
-                <span className="tag">Career Portal</span>
-                <span className="tag">LinkedIn</span>
-                <span className="tag">Interviews</span>
-              </div>
-            </div>
-
-            <div className="module-card">
-              <div className="module-icon" style={{ background: '#F0FDF4' }}>📈</div>
-              <h3>Performance Management</h3>
-              <p>A 360-degree performance ecosystem covering goals and OKRs, reviews, competency frameworks, PIP tracking, peer feedback, check-ins, badges, and recognitions to keep teams engaged.</p>
-              <div className="module-tags">
-                <span className="tag">Goals / OKRs</span>
-                <span className="tag">360 Reviews</span>
-                <span className="tag">PIP</span>
-                <span className="tag">Badges</span>
-              </div>
-            </div>
-
-            <div className="module-card">
-              <div className="module-icon" style={{ background: '#EFF6FF' }}>🕐</div>
-              <h3>Shift Management</h3>
-              <p>Define shifts and assign them to employees or departments. Handle overnight and rotating schedules, and let employees submit shift swap requests all managed from one screen.</p>
-              <div className="module-tags">
-                <span className="tag">Rotating Shifts</span>
-                <span className="tag">Overnight</span>
-                <span className="tag">Shift Swaps</span>
-              </div>
-            </div>
-
-            <div className="module-card">
-              <div className="module-icon" style={{ background: '#FDF4FF' }}>📦</div>
-              <h3>Asset Management</h3>
-              <p>Track every company asset including laptops, phones, and equipment with type categorisation, serial numbers, and full assignment history. Assign to employees directly from their profile card.</p>
-              <div className="module-tags">
-                <span className="tag">Asset Catalogue</span>
-                <span className="tag">Assignments</span>
-                <span className="tag">Return Tracking</span>
-              </div>
-            </div>
-
-            <div className="module-card">
-              <div className="module-icon" style={{ background: '#FFFBEB' }}>⏱️</div>
-              <h3>Timesheets</h3>
-              <p>Activity-based timesheets with cost-centre allocation. Employees log time against projects or activity types and managers review and approve with full export capability.</p>
-              <div className="module-tags">
-                <span className="tag">Cost Centres</span>
-                <span className="tag">Approvals</span>
-                <span className="tag">Export</span>
-              </div>
-            </div>
-
-            <div className="module-card">
-              <div className="module-icon" style={{ background: '#F0FDF4' }}>📍</div>
-              <h3>Geofenced Clock-In</h3>
-              <p>Define GPS locations and link them to cost centres. Employees can only clock in when physically within the approved radius, eliminating buddy punching and location fraud.</p>
-              <div className="module-tags">
-                <span className="tag">GPS Fencing</span>
-                <span className="tag">Mobile App</span>
-                <span className="tag">Cost Centre</span>
-              </div>
-            </div>
-
-            <div className="module-card">
-              <div className="module-icon" style={{ background: '#EFF6FF' }}>🤝</div>
-              <h3>Onboarding &amp; Offboarding</h3>
-              <p>Structured checklists for joining and leaving employees. Ensure nothing is missed from equipment handover to system access, with status tracking for HR and managers throughout the process.</p>
-              <div className="module-tags">
-                <span className="tag">Checklists</span>
-                <span className="tag">Tasks</span>
-                <span className="tag">Status Tracking</span>
-              </div>
-            </div>
-
-            <div className="module-card">
-              <div className="module-icon" style={{ background: '#FFF7ED' }}>🖥️</div>
-              <h3>Punching Machine Sync</h3>
-              <p>Real-time sync with physical time-attendance devices including ZKTeco and compatible hardware. Unmatched records are queued for manual resolution so no attendance data is ever lost.</p>
-              <div className="module-tags">
-                <span className="tag">ZKTeco</span>
-                <span className="tag">Real-time</span>
-                <span className="tag">Auto-recovery</span>
-              </div>
-            </div>
-
+      {/* Modules */}
+      <PageSection id='modules' className='!pt-0'>
+        <div className='flex flex-col gap-14'>
+          <SectionHeading
+            eyebrow='Platform modules'
+            title='Everything your HR team needs'
+            subtitle='Nine modules that share one employee record, one approval engine and one payroll. Every module is included in every plan.'
+          />
+          <div className='grid gap-6 md:grid-cols-2 xl:grid-cols-3'>
+            {MODULE_GROUPS.map(({ id, icon, title, summary, features }) => {
+              const Icon = ICONS[icon]
+              return (
+                <article key={id} id={id} className='group rounded-2xl border border-border-color bg-secondary/30 p-7 flex flex-col gap-5 transition-colors hover:border-primary/50 hover:bg-secondary/50'>
+                  <div className='flex items-center gap-4'>
+                    <div className='size-11 shrink-0 rounded-xl bg-primary/15 border border-primary/30 flex items-center justify-center'>
+                      <Icon className='size-5 text-primary' aria-hidden='true' />
+                    </div>
+                    <h3 className='font-[newake] text-2xl text-fg'>{title}</h3>
+                  </div>
+                  <p className='font-[inter] text-fg/80'>{summary}</p>
+                  <ul className='flex flex-col gap-2 font-[inter] text-sm text-fg/65'>
+                    {features.map((f) => (
+                      <li key={f} className='flex gap-2'><span className='text-primary' aria-hidden='true'>›</span><span>{f}</span></li>
+                    ))}
+                  </ul>
+                </article>
+              )
+            })}
           </div>
         </div>
-      </section>
+      </PageSection>
 
-      <section id="payroll" style={{ background: 'var(--gray-50)' }}>
-        <div className="spotlight">
-          <div className="spotlight-text">
-            <span className="section-label">Payroll Engine</span>
-            <h2>Salary structures as complex as your organisation</h2>
-            <p>Forget rigid payroll templates. Build any compensation structure element by element and let the engine calculate everything automatically at the end of each period.</p>
-            <ul className="feature-list">
-              <li>Fixed amounts, daily attendance rates, and dependent-based allowances</li>
-              <li>Tiered tax brackets in both percentage and fixed-amount formats with dynamic base selection</li>
-              <li>Overtime and undertime prorating on any element you choose</li>
-              <li>Full per-currency breakdown when employees hold mixed-currency compensation</li>
-              <li>Profile-level element bundles auto-applied when assigning an employee to a profile</li>
-            </ul>
+      {/* Attendance spotlight */}
+      <PageSection className='bg-secondary/20 border-y border-border-color'>
+        <div className='grid gap-14 lg:grid-cols-2 lg:items-center'>
+          <div className='flex flex-col gap-6'>
+            <SectionHeading
+              align='left'
+              eyebrow='Time & attendance'
+              title='Clock in where the work happens'
+              subtitle='Employees punch from their phone inside approved locations or on your biometric devices. Index HR turns every punch into hours, lateness, overtime and pay automatically.'
+            />
+            <CheckList items={[
+              'Geofenced check-in locations, each linked to a cost centre',
+              'Rosters with patterns, publish, shift requests and swaps',
+              'Overnight shifts attributed to the right working day',
+              'Push reminders when someone forgets to clock in or out',
+              'Overtime raised from punches, paid only once approved',
+            ]} />
           </div>
-          <div className="spotlight-visual">
-            <div className="mock-header">
-              <span>Payroll Breakdown — Ahmed Al-Rashid</span>
-              <span style={{ fontSize: '11px', opacity: 0.7 }}>May 2026</span>
-            </div>
-            <div style={{ background: 'rgba(59,130,246,0.08)', borderRadius: '8px', padding: '8px 12px', fontSize: '11px', fontWeight: 700, color: 'var(--blue-600)', letterSpacing: '0.5px' }}>USD</div>
-            <div className="mock-row">
-              <span className="mock-row-label">+ Basic Salary</span>
-              <span className="mock-row-value" style={{ color: 'var(--green-600)' }}>+5,500.00</span>
-            </div>
-            <div className="mock-row">
-              <span className="mock-row-label">+ Housing Allowance</span>
-              <span className="mock-row-value" style={{ color: 'var(--green-600)' }}>+800.00</span>
-            </div>
-            <div className="mock-row">
-              <span className="mock-row-label">- Income Tax <span className="mock-badge amber">8%</span></span>
-              <span className="mock-row-value" style={{ color: 'var(--rose-500)' }}>-504.00</span>
-            </div>
-            <div style={{ background: 'rgba(59,130,246,0.08)', borderRadius: '8px', padding: '8px 12px', fontSize: '11px', fontWeight: 700, color: 'var(--blue-600)', letterSpacing: '0.5px', marginTop: '4px' }}>EUR</div>
-            <div className="mock-row">
-              <span className="mock-row-label">+ Transportation</span>
-              <span className="mock-row-value" style={{ color: 'var(--green-600)' }}>+350.00</span>
-            </div>
-            <div className="mock-row" style={{ background: 'var(--gray-50)' }}>
-              <span className="mock-row-label" style={{ fontWeight: 700 }}>Total USD</span>
-              <span className="mock-row-value" style={{ fontSize: '15px' }}>5,796.00 USD</span>
-            </div>
-            <div className="mock-row" style={{ background: 'var(--gray-50)' }}>
-              <span className="mock-row-label" style={{ fontWeight: 700 }}>Total EUR</span>
-              <span className="mock-row-value" style={{ fontSize: '15px' }}>350.00 EUR</span>
-            </div>
+          <div className='mx-auto grid w-full max-w-lg grid-cols-2 gap-5'>
+            <PhoneShot shot={SCREENSHOTS.schedule} />
+            <PhoneShot shot={SCREENSHOTS.timesheet} className='translate-y-10' />
           </div>
         </div>
-      </section>
+      </PageSection>
 
-      <div className="payroll-section text-center">
-        <span className="section-label">5 Calculation Methods</span>
-        <h2>Every compensation scenario covered</h2>
-        <p className="section-subtitle">From the simplest fixed salary to complex tiered tax structures, IOS HRMS handles it all natively.</p>
-        <div className="payroll-grid">
-          <div className="payroll-card">
-            <div className="payroll-card-icon">📌</div>
-            <h3>Fixed Amount</h3>
-            <p>Set a fixed monthly amount per employee. Optionally prorated by attended days and adjusted for overtime or undertime hours.</p>
+      {/* Payroll spotlight */}
+      <PageSection>
+        <div className='grid gap-14 lg:grid-cols-2 lg:items-center'>
+          <div className='order-2 lg:order-1 rounded-2xl border border-border-color bg-secondary/40 p-6 md:p-8 font-[inter]'>
+            <div className='flex items-center justify-between border-b border-border-color pb-4 mb-4'>
+              <span className='font-semibold text-fg'>Payroll run · October 2026</span>
+              <span className='font-[jetBrainsMono] text-xs rounded-full bg-emerald-500/15 text-emerald-400 px-3 py-1'>Ready to post</span>
+            </div>
+            {[
+              ['Basic salary', '1,800.00'],
+              ['Housing allowance', '450.00'],
+              ['Overtime (approved 6.5 h)', '97.50'],
+              ['Mission benefit', '60.00'],
+              ['Late / undertime', '−22.50'],
+              ['Loan installment', '−150.00'],
+            ].map(([label, amount]) => (
+              <div key={label} className='flex justify-between py-2 text-sm'>
+                <span className='text-fg/70'>{label}</span>
+                <span className={`tabular-nums ${amount.startsWith('−') ? 'text-rose-400' : 'text-fg'}`}>{amount}</span>
+              </div>
+            ))}
+            <div className='flex justify-between border-t border-border-color pt-4 mt-2'>
+              <span className='font-semibold text-fg'>Net pay (USD)</span>
+              <span className='font-semibold text-primary tabular-nums'>2,235.00</span>
+            </div>
+            <p className='mt-4 text-xs text-fg/45'>Illustrative example.</p>
           </div>
-          <div className="payroll-card">
-            <div className="payroll-card-icon">📅</div>
-            <h3>Daily Rate</h3>
-            <p>Multiply a fixed daily rate by the number of days the employee attended during the payroll period.</p>
-          </div>
-          <div className="payroll-card">
-            <div className="payroll-card-icon">👨‍👩‍👧</div>
-            <h3>Dependent-Based</h3>
-            <p>Automatically calculated from the employee&apos;s registered family members. Define rules such as a monthly amount per studying child or a fixed amount for a non-working spouse.</p>
-          </div>
-          <div className="payroll-card">
-            <div className="payroll-card-icon">📊</div>
-            <h3>Percentage Tiered</h3>
-            <p>Apply a percentage to the sum of selected elements based on salary brackets, ideal for progressive income tax calculations.</p>
-          </div>
-          <div className="payroll-card">
-            <div className="payroll-card-icon">🔢</div>
-            <h3>Fixed Amount Tiered</h3>
-            <p>Return a fixed currency amount based on salary range brackets, perfect for flat-rate deductions or tier-based bonuses.</p>
-          </div>
-          <div className="payroll-card">
-            <div className="payroll-card-icon">💱</div>
-            <h3>Multi-Currency</h3>
-            <p>Employees can hold elements in different currencies. The payroll report separates totals by currency so amounts are never mixed across currencies.</p>
+          <div className='order-1 lg:order-2 flex flex-col gap-6'>
+            <SectionHeading
+              align='left'
+              eyebrow='Payroll'
+              title='Payroll straight from attendance'
+              subtitle='No exporting timesheets into spreadsheets. Pay is calculated from punches, shifts, leave, holidays, overtime, missions and loans, then posted to your general ledger.'
+            />
+            <CheckList items={[
+              'Payroll elements: fixed, daily rate, dependent-based and tiered brackets',
+              'Overtime and lateness shown as separate lines, never netted',
+              'Loans with schedules, postponement and automatic deduction',
+              'Multi-currency runs with totals kept per currency',
+              'Saudi pack: GOSI, end of service and WPS salary file',
+              'One-click posting to Business Central as a general journal',
+            ]} />
           </div>
         </div>
-      </div>
+      </PageSection>
 
-      <section style={{ background: 'var(--gray-50)' }}>
-        <div className="spotlight">
-          <div className="spotlight-text">
-            <span className="section-label">Time &amp; Attendance</span>
-            <h2>Two sources feeding the same calculation</h2>
-            <p>Upload your attendance Excel file or pull records directly from connected punching machines. The engine processes both sources identically, applying leave, shift rules, and payroll elements automatically.</p>
-            <ul className="feature-list">
-              <li>Real-time sync with ZKTeco and compatible biometric devices</li>
-              <li>Pending records queue for unmatched machine user IDs</li>
-              <li>Per-employee shift settings from their Leave and Payroll Profile</li>
-              <li>Anomaly detection for duplicate punches, orphan clock-ins, and shift overruns</li>
-              <li>Inline edit of individual days without re-running the full batch</li>
-              <li>Calculation history saved locally so you can revisit any previous payroll run</li>
-            </ul>
+      {/* Mobile app */}
+      <PageSection className='bg-secondary/20 border-y border-border-color'>
+        <div className='flex flex-col gap-14'>
+          <SectionHeading
+            eyebrow='Employee & manager app'
+            title='HR in every pocket, in every language'
+            subtitle='A native app for iPhone, Android and iPad, plus mobile web. Employees serve themselves; managers approve their team in seconds.'
+          />
+          <div className='flex flex-wrap justify-center gap-3'>
+            {APP_LANGUAGES.map((l) => (
+              <span key={l} className='rounded-full border border-border-color bg-mainbg px-4 py-2 font-[inter] text-fg/85'>{l}</span>
+            ))}
           </div>
-          <div className="spotlight-visual">
-            <div className="mock-header">
-              <span>Payroll Calc — May 2026</span>
-              <div style={{ display: 'flex', gap: '8px' }}>
-                <span className="mock-badge" style={{ background: 'rgba(255,255,255,0.15)', color: '#fff', fontSize: '10px' }}>📂 Excel</span>
-                <span className="mock-badge" style={{ background: 'rgba(255,255,255,0.15)', color: '#fff', fontSize: '10px' }}>🖥️ Clock</span>
-              </div>
+          <div className='grid gap-12 lg:grid-cols-[1.3fr_1fr] lg:items-center'>
+            <div className='rounded-2xl border-[6px] border-[#2a2a30] overflow-hidden shadow-[0_30px_80px_-20px_rgba(59,130,246,0.35)]'>
+              {/* eslint-disable-next-line @next/next/no-img-element */}
+              <img src={SCREENSHOTS.arabicTablet.src} alt={SCREENSHOTS.arabicTablet.alt} width={1400} height={1050} loading='lazy' className='block w-full h-auto' />
             </div>
-            <div className="mock-row">
-              <div>
-                <div className="mock-row-label">Sarah Mitchell</div>
-                <div style={{ fontSize: '11px', color: 'var(--gray-400)' }}>22 days · 176h · 4.5h OT</div>
-              </div>
-              <div style={{ textAlign: 'right' }}>
-                <div style={{ fontSize: '14px', fontWeight: 700 }}>6,240.00 USD</div>
-                <div style={{ fontSize: '10px', color: 'var(--gray-400)' }}>Details ↗</div>
-              </div>
+            <div className='flex flex-col gap-6'>
+              <h3 className='font-[newake] text-3xl text-fg'>What employees can do</h3>
+              <CheckList items={MOBILE_FEATURES} />
             </div>
-            <div className="mock-row">
-              <div>
-                <div className="mock-row-label">James Okonkwo</div>
-                <div style={{ fontSize: '11px', color: 'var(--gray-400)' }}>20 days · 158h · 2h undertime</div>
-              </div>
-              <div style={{ textAlign: 'right' }}>
-                <div style={{ fontSize: '14px', fontWeight: 700 }}>4,810.00 USD</div>
-                <div style={{ fontSize: '10px', color: 'var(--blue-500)' }}>350.00 EUR</div>
-              </div>
-            </div>
-            <div className="mock-row" style={{ borderLeft: '3px solid var(--amber-500)' }}>
-              <div>
-                <div className="mock-row-label">Lena Fischer</div>
-                <div style={{ fontSize: '11px', color: 'var(--amber-500)' }}>⚠ 2 anomalies</div>
-              </div>
-              <div style={{ textAlign: 'right' }}>
-                <div style={{ fontSize: '14px', fontWeight: 700 }}>3,920.00 USD</div>
-              </div>
-            </div>
-            <div style={{ display: 'flex', gap: '8px', marginTop: '4px' }}>
-              <div style={{ flex: 1, background: 'var(--green-600)', color: '#fff', borderRadius: '8px', padding: '10px', textAlign: 'center', fontSize: '12px', fontWeight: 700 }}>Export Excel</div>
-              <div style={{ flex: 1, background: 'var(--navy)', color: '#fff', borderRadius: '8px', padding: '10px', textAlign: 'center', fontSize: '12px', fontWeight: 700 }}>Save to History</div>
-            </div>
+          </div>
+          <div className='mx-auto grid w-full max-w-3xl grid-cols-3 gap-4 md:gap-8'>
+            <PhoneShot shot={SCREENSHOTS.leaveBalance} />
+            <PhoneShot shot={SCREENSHOTS.myTeam} className='-translate-y-6' />
+            <PhoneShot shot={SCREENSHOTS.clockIn} />
           </div>
         </div>
-      </section>
+      </PageSection>
 
-      <section style={{ background: '#fff' }}>
-        <div className="spotlight reverse">
-          <div className="spotlight-visual" style={{ background: 'linear-gradient(135deg,#FFF7ED,#FFFBEB)' }}>
-            <div className="mock-header" style={{ background: '#B45309' }}>
-              <span>Recruitment Pipeline</span>
-              <span style={{ fontSize: '11px', opacity: 0.7 }}>3 open positions</span>
-            </div>
-            <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr 1fr', gap: '8px' }}>
-              <div>
-                <div style={{ fontSize: '10px', fontWeight: 700, color: 'var(--gray-500)', marginBottom: '6px', textTransform: 'uppercase' }}>Applied</div>
-                <div className="mock-row" style={{ flexDirection: 'column', gap: '4px', padding: '10px' }}>
-                  <div style={{ fontSize: '12px', fontWeight: 600 }}>Amir Hassan</div>
-                  <div style={{ fontSize: '10px', color: 'var(--gray-400)' }}>Senior Dev</div>
-                </div>
-                <div className="mock-row" style={{ flexDirection: 'column', gap: '4px', padding: '10px', marginTop: '8px' }}>
-                  <div style={{ fontSize: '12px', fontWeight: 600 }}>Priya Nair</div>
-                  <div style={{ fontSize: '10px', color: 'var(--gray-400)' }}>UX Designer</div>
-                </div>
+      {/* Integrations */}
+      <PageSection>
+        <div className='flex flex-col gap-14'>
+          <SectionHeading
+            eyebrow='Integrations'
+            title='Connects to the systems you already run'
+            subtitle='Built by a Microsoft Business Central partner, Index HR fits into your finance, identity and hardware landscape.'
+          />
+          <div className='grid gap-5 md:grid-cols-2 lg:grid-cols-3'>
+            {INTEGRATIONS.map(({ name, detail }, i) => (
+              <div key={name} className={`rounded-2xl border p-6 flex flex-col gap-2 ${i === 0 ? 'border-primary/50 bg-primary/5' : 'border-border-color bg-secondary/30'}`}>
+                <h3 className='font-[inter] font-semibold text-fg'>{name}</h3>
+                <p className='font-[inter] text-sm text-fg/65 leading-relaxed'>{detail}</p>
               </div>
-              <div>
-                <div style={{ fontSize: '10px', fontWeight: 700, color: 'var(--gray-500)', marginBottom: '6px', textTransform: 'uppercase' }}>Interview</div>
-                <div className="mock-row" style={{ flexDirection: 'column', gap: '4px', padding: '10px', borderLeft: '3px solid var(--blue-600)' }}>
-                  <div style={{ fontSize: '12px', fontWeight: 600 }}>Chen Wei</div>
-                  <div style={{ fontSize: '10px', color: 'var(--blue-600)' }}>📅 Jun 12</div>
-                </div>
-              </div>
-              <div>
-                <div style={{ fontSize: '10px', fontWeight: 700, color: 'var(--gray-500)', marginBottom: '6px', textTransform: 'uppercase' }}>Offer</div>
-                <div className="mock-row" style={{ flexDirection: 'column', gap: '4px', padding: '10px', borderLeft: '3px solid var(--green-600)' }}>
-                  <div style={{ fontSize: '12px', fontWeight: 600 }}>Maria Rossi</div>
-                  <span className="mock-badge green" style={{ fontSize: '10px', alignSelf: 'flex-start' }}>Accepted</span>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div className="spotlight-text">
-            <span className="section-label">Recruitment</span>
-            <h2>Hire better, faster, together</h2>
-            <p>A full applicant tracking system built into the same platform your HR team already uses, with no need to switch between tools.</p>
-            <ul className="feature-list">
-              <li>Branded careers portal with customisable job postings</li>
-              <li>Kanban pipeline from application to offer letter</li>
-              <li>Interview scheduling with calendar integration</li>
-              <li>LinkedIn job posting with one click</li>
-              <li>Candidate database and recruitment reporting</li>
-              <li>Seamless handover to onboarding on acceptance</li>
-            </ul>
+            ))}
           </div>
         </div>
-      </section>
+      </PageSection>
 
-      <section id="workflow" className="workflow-section text-center">
-        <span className="section-label">How It Works</span>
-        <h2>Up and running in four steps</h2>
-        <p className="section-subtitle">No lengthy implementation. No consultant required. Start with your company profile and grow from there.</p>
-
-        <div className="steps-grid">
-          <div className="step">
-            <div className="step-num">1</div>
-            <h3>Set Up Your Company</h3>
-            <p>Add your company, departments, and employees. Import from Excel or enter manually and be up and running in minutes.</p>
-          </div>
-          <div className="step">
-            <div className="step-num">2</div>
-            <h3>Configure Payroll Profiles</h3>
-            <p>Define Leave and Payroll Profiles with shift settings, overtime rates, and default payroll elements. Assign them to employees.</p>
-          </div>
-          <div className="step">
-            <div className="step-num">3</div>
-            <h3>Process Attendance</h3>
-            <p>Upload your attendance Excel or pull from punching machines. Review any anomalies and make inline adjustments before calculating.</p>
-          </div>
-          <div className="step">
-            <div className="step-num">4</div>
-            <h3>Export Payroll</h3>
-            <p>Review per-employee salary breakdowns by currency, then export a clean payroll Excel ready for your finance team.</p>
-          </div>
+      {/* Implementation */}
+      <PageSection className='!pt-0'>
+        <div className='flex flex-col gap-14'>
+          <SectionHeading
+            eyebrow='Implementation'
+            title='Live with a team that knows HR and finance'
+            subtitle='Index of Solutions implements Index HR end to end, with the same team that supports you afterwards.'
+          />
+          <ol className='grid gap-6 md:grid-cols-2 lg:grid-cols-4'>
+            {IMPLEMENTATION_STEPS.map(({ title, text }, i) => (
+              <li key={title} className='rounded-2xl border border-border-color bg-secondary/30 p-6 flex flex-col gap-3'>
+                <span className='font-[jetBrainsMono] text-sm text-primary'>0{i + 1}</span>
+                <h3 className='font-[newake] text-2xl text-fg'>{title}</h3>
+                <p className='font-[inter] text-sm text-fg/65 leading-relaxed'>{text}</p>
+              </li>
+            ))}
+          </ol>
         </div>
-      </section>
+      </PageSection>
 
-      <section style={{ background: '#fff', padding: '72px 24px' }}>
-        <div className="text-center" style={{ marginBottom: '48px' }}>
-          <span className="section-label">Integrations &amp; Connectivity</span>
-          <h2>Connects to tools you already use</h2>
-          <p className="section-subtitle">From biometric hardware to professional networks, IOS HRMS fits into your existing ecosystem.</p>
+      {/* Pricing + comparison teasers */}
+      <PageSection className='!pt-0'>
+        <div className='grid gap-6 md:grid-cols-2'>
+          <Link href={INDEX_HR_PRICING} className='group rounded-2xl border border-border-color bg-secondary/30 p-8 flex flex-col gap-3 hover:border-primary/60 transition-colors'>
+            <Eyebrow>Pricing</Eyebrow>
+            <h3 className='font-[newake] text-3xl text-fg'>From ${PRICING_BANDS[0].monthly} a month, every module included</h3>
+            <p className='font-[inter] text-fg/65'>One flat price per headcount band, and 20% off with yearly billing.</p>
+            <span className='font-[inter] text-primary flex items-center gap-2'>View pricing <ArrowRight className='size-4 transition-transform group-hover:translate-x-1' aria-hidden='true' /></span>
+          </Link>
+          <Link href={INDEX_HR_COMPARE} className='group rounded-2xl border border-border-color bg-secondary/30 p-8 flex flex-col gap-3 hover:border-primary/60 transition-colors'>
+            <Eyebrow>Compare</Eyebrow>
+            <h3 className='font-[newake] text-3xl text-fg'>Index HR vs Zoho People, BambooHR, Rippling, Jisr, MenaITech & ZenHR</h3>
+            <p className='font-[inter] text-fg/65'>See how Index HR compares, feature by feature.</p>
+            <span className='font-[inter] text-primary flex items-center gap-2'>Read the comparison <ArrowRight className='size-4 transition-transform group-hover:translate-x-1' aria-hidden='true' /></span>
+          </Link>
         </div>
-        <div className="integrations-row">
-          <div className="integration-pill"><span style={{ fontSize: '18px' }}>🖥️</span> ZKTeco Devices</div>
-          <div className="integration-pill"><span style={{ fontSize: '18px' }}>📊</span> Microsoft Excel</div>
-          <div className="integration-pill"><span style={{ fontSize: '18px' }}>🔗</span> LinkedIn Jobs</div>
-          <div className="integration-pill"><span style={{ fontSize: '18px' }}>📱</span> iOS Mobile App</div>
-          <div className="integration-pill"><span style={{ fontSize: '18px' }}>📍</span> GPS Geofencing</div>
-          <div className="integration-pill"><span style={{ fontSize: '18px' }}>✉️</span> Email Notifications</div>
-          <div className="integration-pill"><span style={{ fontSize: '18px' }}>☁️</span> Azure Cloud</div>
-          <div className="integration-pill"><span style={{ fontSize: '18px' }}>🔐</span> REST API Access</div>
-        </div>
-      </section>
+      </PageSection>
 
-      <section style={{ background: 'var(--gray-50)', padding: '72px 24px' }}>
-        <div className="highlight-box">
-          <div style={{ fontSize: '40px', marginBottom: '16px' }}>💬</div>
-          <blockquote>
-            &quot;We replaced four separate tools (an attendance tracker, a payroll spreadsheet, an ATS, and a leave system) with IOS HRMS. The payroll elements engine alone saves our HR team hours every month.&quot;
-          </blockquote>
-          <cite>HR Director, Regional Manufacturing Group</cite>
+      {/* FAQ */}
+      <PageSection className='!pt-0'>
+        <div className='flex flex-col gap-10'>
+          <SectionHeading eyebrow='FAQ' title='Questions about Index HR' />
+          <FaqList items={HR_FAQS} />
         </div>
-      </section>
+      </PageSection>
 
-      <section style={{ background: '#fff' }}>
-        <div className="spotlight">
-          <div className="spotlight-text">
-            <span className="section-label">Mobile App</span>
-            <h2>HR in your team&apos;s pocket</h2>
-            <p>The IOS HRMS mobile app gives employees and managers everything they need on the go, no desktop browser required.</p>
-            <ul className="feature-list">
-              <li>Geofenced clock-in with GPS location verification</li>
-              <li>Leave requests and approvals on mobile</li>
-              <li>Push notifications for pending approvals and announcements</li>
-              <li>Dark mode support with persistent theme preference</li>
-              <li>Secure company-specific login with per-employee access control</li>
-            </ul>
-          </div>
-          <div className="spotlight-visual" style={{ background: 'linear-gradient(135deg,var(--navy),#2d3f8e)', border: 'none', alignItems: 'center', justifyContent: 'center', gap: '20px', flexDirection: 'row' }}>
-            <div style={{ background: 'rgba(255,255,255,0.1)', borderRadius: '24px', padding: '24px', width: '160px', textAlign: 'center', border: '1px solid rgba(255,255,255,0.2)' }}>
-              <div style={{ fontSize: '32px', marginBottom: '10px' }}>📍</div>
-              <div style={{ color: '#fff', fontSize: '13px', fontWeight: 700, marginBottom: '4px' }}>Clock In</div>
-              <div style={{ color: '#93C5FD', fontSize: '11px' }}>GPS verified</div>
-              <div style={{ marginTop: '14px', background: 'var(--green-600)', color: '#fff', borderRadius: '10px', padding: '8px', fontSize: '12px', fontWeight: 700 }}>✓ Within Zone</div>
-            </div>
-            <div style={{ background: 'rgba(255,255,255,0.1)', borderRadius: '24px', padding: '24px', width: '160px', textAlign: 'center', border: '1px solid rgba(255,255,255,0.2)' }}>
-              <div style={{ fontSize: '32px', marginBottom: '10px' }}>🌴</div>
-              <div style={{ color: '#fff', fontSize: '13px', fontWeight: 700, marginBottom: '4px' }}>Leave Request</div>
-              <div style={{ color: '#93C5FD', fontSize: '11px' }}>12 days remaining</div>
-              <div style={{ marginTop: '14px', background: 'var(--blue-600)', color: '#fff', borderRadius: '10px', padding: '8px', fontSize: '12px', fontWeight: 700 }}>Request Leave</div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <section id="contact" className="cta-section">
-        <span className="section-label" style={{ background: 'rgba(255,255,255,0.12)', color: '#93C5FD', marginBottom: '20px', display: 'inline-block' }}>Get Started Today</span>
-        <h2>Ready to simplify your HR operations?</h2>
-        <p>Join organisations already using IOS HRMS to run payroll, manage people, and hire smarter, all from one platform.</p>
-        <div className="hero-cta">
-          <a href="https://www.indexofsolutions.com/contact" className="btn-primary">Request a Demo</a>
-          <a href="https://www.indexofsolutions.com/contact" className="btn-secondary">Contact Us</a>
-        </div>
-      </section>
-
+      <CtaBand
+        title='Ready to simplify your HR operations?'
+        text='See Index HR with your own shifts, policies and pay rules. Book a demo and we will walk you through it.'
+        primary={{ href: '/contact', label: 'Book a demo' }}
+        secondary={{ href: INDEX_HR_PRICING, label: 'See pricing' }}
+      />
     </>
   )
 }

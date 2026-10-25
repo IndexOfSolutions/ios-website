@@ -84,7 +84,7 @@ export const Header = () => {
                                                 <Link href="/services/ls-central-transforms-business-central-into-a-complete-retail-powerhouse" className='px-4'>LS Central For Retail</Link>
                                                 <Link href="/services/power-bi-and-analytics" className='px-4'>Microsoft Power BI & Fabric</Link>
                                                 <Link href="/services/microsoft-copilot-for-business-central" className='px-4'>Microsoft Copilot</Link>
-                                                <Link href="/services/full-stack-hr-platform" className='px-4'>Full Stack HR Platform</Link>
+                                                <Link href="/services/full-stack-hr-platform" className='px-4'>Index HR</Link>
                                             </div>
                                         </div>
                                     </li>
@@ -108,6 +108,8 @@ export const Header = () => {
                                                 <Link href="/business-central-pricing-lebanon" scroll={true}>BC Pricing Guide</Link>
                                                 <Link href="/compare/business-central-vs-sap" scroll={true}>Business Central vs SAP</Link>
                                                 <Link href="/compare/business-central-vs-odoo" scroll={true}>Business Central vs Odoo</Link>
+                                                <Link href="/compare/index-hr-vs-hr-software" scroll={true}>Index HR vs Other HR Software</Link>
+                                                <Link href="/services/full-stack-hr-platform/pricing" scroll={true}>Index HR Pricing</Link>
                                             </div>
                                         </div>
                                     </li>
@@ -200,6 +202,12 @@ export const Header = () => {
                             </li>
                             <li>
                                 <Link href="/compare/business-central-vs-odoo">BC vs Odoo</Link>
+                            </li>
+                            <li>
+                                <Link href="/compare/index-hr-vs-hr-software">Index HR vs Other HR Software</Link>
+                            </li>
+                            <li>
+                                <Link href="/services/full-stack-hr-platform/pricing">Index HR Pricing</Link>
                             </li>
                             <li>
                                 <Link href="/price-estimator" scroll={true} className='hover:text-primary'>Price Estimator</Link>

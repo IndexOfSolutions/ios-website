@@ -27,6 +27,7 @@ export default async function sitemap() {
     { path: '/services/dynamics-nav-support', priority: 0.7, changeFrequency: 'weekly' },
     { path: '/services/ls-central-transforms-business-central-into-a-complete-retail-powerhouse', priority: 0.75, changeFrequency: 'weekly' },
     { path: '/services/full-stack-hr-platform', priority: 0.65, changeFrequency: 'monthly' },
+    { path: '/services/full-stack-hr-platform/pricing', priority: 0.6, changeFrequency: 'monthly' },
 
     // About pages
     { path: '/about', priority: 0.8, changeFrequency: 'monthly' },
@@ -52,6 +53,7 @@ export default async function sitemap() {
     { path: '/business-central-pricing-lebanon', priority: 0.85, changeFrequency: 'monthly' },
     { path: '/compare/business-central-vs-sap', priority: 0.75, changeFrequency: 'monthly' },
     { path: '/compare/business-central-vs-odoo', priority: 0.75, changeFrequency: 'monthly' },
+    { path: '/compare/index-hr-vs-hr-software', priority: 0.7, changeFrequency: 'monthly' },
 
     // Other indexable pages
     { path: '/blogs', priority: 0.6, changeFrequency: 'weekly' },

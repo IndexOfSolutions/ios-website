@@ -320,12 +320,12 @@ export const PRIVACY_POLICIES = [
   },
   {
     slug: 'full-stack-hr-platform',
-    name: 'Full Stack HR Platform',
-    title: 'Privacy Policy – Full Stack HR Platform',
+    name: 'Index HR',
+    title: 'Privacy Policy – Index HR',
     summary:
       'End-to-end HR and payroll platform deployed for our customers, covering employee records, attendance, leave and payroll processing.',
     metaDescription:
-      'Privacy policy for the Index of Solutions Full Stack HR Platform — how employee data is processed, stored, secured and retained.',
+      'Privacy policy for Index HR by Index of Solutions — how employee data is processed, stored, secured and retained.',
     keywords:
       'HR platform privacy policy, payroll data protection, employee data, Index of Solutions, HRIS Lebanon',
     lastUpdated: 'August 2026',
@@ -337,7 +337,7 @@ export const PRIVACY_POLICIES = [
           {
             type: 'p',
             text:
-              'This Privacy Policy explains how **Index of Solutions** handles data in the **Full Stack HR Platform**, our human resources and payroll solution deployed for customer organizations. It covers the platform itself and the implementation and support services we provide around it.',
+              'This Privacy Policy explains how **Index of Solutions** handles data in **Index HR**, our human resources and payroll solution deployed for customer organizations. It covers the platform itself and the implementation and support services we provide around it.',
           },
         ],
       },

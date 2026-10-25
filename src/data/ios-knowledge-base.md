@@ -214,7 +214,7 @@ LS Central is a unified commerce platform built natively on top of Business Cent
 
 ---
 
-### 8. IOS HRMS — Full Stack HR Platform
+### 8. Index HR
 **URL:** /services/full-stack-hr-platform
 
 A proprietary, full-featured HRMS (Human Resource Management System) built by Index of Solutions for growing organizations.
@@ -248,6 +248,26 @@ A proprietary, full-featured HRMS (Human Resource Management System) built by In
 - Percentage Tiered (progressive tax)
 - Fixed Amount Tiered (flat-rate by salary bracket)
 - Multi-Currency (per-currency breakdown, amounts never mixed)
+
+**Mobile app languages:** English, Arabic, French, Hindi, Bengali, Urdu, Malayalam, Tamil (iOS, Android, tablet, mobile web).
+
+**Integrations:** Dynamics 365 Business Central connector (employee sync + payroll journal posting), Microsoft Entra SSO, ZKTeco punching machines, LinkedIn job posting, REST API with signed webhooks.
+
+**Pricing** (/services/full-stack-hr-platform/pricing) — one Professional plan with every module (incl. recruitment, training, performance). Flat monthly price per active-employee band, in USD; yearly billing saves 20%:
+| Employees | Monthly | Yearly |
+|---|---|---|
+| 1–15 | $45 | $430 |
+| 16–50 | $150 | $1,440 |
+| 51–100 | $250 | $2,400 |
+| 101–200 | $400 | $3,840 |
+| 201–300 | $510 | $4,900 |
+| 301–400 | $640 | $6,150 |
+| 401–500 | $750 | $7,200 |
+| 501–1,000 | $1,200 | $11,500 |
+| 1,000+ | $1 per employee per month | |
+Implementation, the Business Central connector, AI features and custom development are quoted separately.
+
+**Comparison page:** /compare/index-hr-vs-hr-software (vs Zoho People, BambooHR, Rippling, Jisr, MenaITech, ZenHR).
 
 **Attendance Sources:**
 - Excel upload
@@ -387,7 +407,7 @@ A: Depends on business requirements, scope, customization, and support needs. IO
 **Core Positioning:** Exclusive Microsoft Dynamics 365 Business Central specialists. Not a generalist ERP house — purely focused on Dynamics. Serving Lebanese and regional SMBs with 12+ years of experience, Microsoft-certified team, in-house delivery only.
 
 **Sub-products / Proprietary Platforms:**
-- IOS HRMS (SaaS HR platform)
+- Index HR (SaaS HR platform)
 - LS Central implementations (retail-specific)
 
 **Technology Stack Referenced:**
@@ -417,7 +437,9 @@ A: Depends on business requirements, scope, customization, and support needs. IO
 | Power BI & Analytics | /services/power-bi-and-analytics |
 | NAV to BC Upgrade | /services/nav-to-business-central-upgrade |
 | LS Central Article | /services/ls-central-transforms-business-central-into-a-complete-retail-powerhouse |
-| HRMS Platform | /services/full-stack-hr-platform |
+| Index HR | /services/full-stack-hr-platform |
+| Index HR Pricing | /services/full-stack-hr-platform/pricing |
+| Index HR vs Other HR Software | /compare/index-hr-vs-hr-software |
 | Retail Industry | /industries/business-central-for-retail |
 | Distribution Industry | /industries/business-central-for-distribution |
 | Pharma Industry | /industries/business-central-pharma (404) |
